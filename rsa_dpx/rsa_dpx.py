@@ -53,7 +53,7 @@ pathName = os.getcwd()
 # C:\Tektronix\RSA_API\lib\x64 needs to be added to the
 # PATH system environment variable
 chdir("C:\\Tektronix\\RSA_API\\lib\\x64")
-rsa = cdll.LoadLibrary("RSA_API.dll")
+rsa = cdll.LoadLibrary("./RSA_API.dll")
 
 #turn interactive plotting off (to help with img error)
 plt.ioff()
@@ -210,10 +210,12 @@ def dpx_example():
     #draw background (once)
     graph_axis(cf, refLevel, span, rbw)
 
-    #spawn new thread to continuously graph dpx frames
+    # spawn new thread to continuously graph dpx frames
     dpx_thread = Thread(target=dpx_loop,args=(quit, cf, refLevel, span, rbw))
     dpx_thread.start()
     print("thread started") 
+
+    # dpx_loop(quit, cf, refLevel, span, rbw)
 
     #loop to see if graph params are changed
     #to change, in command line type the variable to change followed by
@@ -276,7 +278,7 @@ def dpx_example():
 def dpx_loop(quit, cf, refLevel, span, rbw):
     while(True):
     #for x in range(100):
-        #print("##########################")
+        print("##########################")
         #draw graph (every time)
         graph_dpx(cf, refLevel, span, rbw)
 

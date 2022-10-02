@@ -37,9 +37,10 @@ public class fetchDPXFrame : MonoBehaviour
 
         if(File.Exists(path))
         {
+           
             fileData = File.ReadAllBytes(path);
-            texture = new Texture2D(2,2);
-            texture.LoadImage(fileData);
+            texture = new Texture2D(2, 2);
+            texture.LoadImage(fileData); 
         }
         return texture;
     }

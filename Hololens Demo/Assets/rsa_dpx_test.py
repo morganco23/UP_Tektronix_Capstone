@@ -52,8 +52,8 @@ pathName = os.getcwd()
 
 # C:\Tektronix\RSA_API\lib\x64 needs to be added to the
 # PATH system environment variable
-chdir("C:\\Users\\zmade\\Hololens Demo\\Assets\\RSA_API\\lib\\x64")
-rsa = cdll.LoadLibrary("RSA_API.dll")
+chdir("C:\\Users\\Cerat\\OneDrive\\Documents\\Github\\UP_Tektronix_Capstone\\Hololens Demo\\Assets\\RSA_API\\lib\\x64")
+rsa = cdll.LoadLibrary("./RSA_API.dll")
 
 #turn interactive plotting off (to help with img error)
 plt.ioff()
@@ -146,7 +146,7 @@ def acquire_dpx_frame():
             rsa.DPX_WaitForDataReady(c_int(100), byref(ready))
     rsa.DPX_GetFrameBuffer(byref(fb))
     rsa.DPX_FinishFrameBuffer()
-    rsa.DEVICE_Stop()
+    #rsa.DEVICE_Stop()
     return fb
 
 
@@ -211,66 +211,53 @@ def dpx_example():
     graph_axis(cf, refLevel, span, rbw)
 
     #spawn new thread to continuously graph dpx frames
-    dpx_thread = Thread(target=dpx_loop,args=(quit, cf, refLevel, span, rbw))
-    dpx_thread.start()
-    print("thread started") 
-
+    #dpx_thread = Thread(target=dpx_loop,args=(quit, cf, refLevel, span, rbw))
+    #dpx_thread.start()
+    #print("thread started")
+    dpx_loop(quit, cf, refLevel, span, rbw)
     #loop to see if graph params are changed
     #to change, in command line type the variable to change followed by
     #an eqauls, followed by the number
     #i.e: "span = 42e6" or "reflevel = -45" or "cf = 2.44e8" or "rbw = 100e2"
-    while(True):
-        #get input from keyboard
-        print("press letter q to quit:")
-        string = input()
-        string = string.lower()
 
-        #if the character typed was q, quit break out of loop and 
-        #send signal to stop thread
-        if(string == "q"):
-            quit.set()
-            break
+def update_settings_loop(quit, input_str, cf, refLevel, span, rbw):
+    #if want to change cf
+    if "cf" in input_str:
+        print("input was cf")
+        num = input_str.split('=')
+        print("setting cf to " + num[1])
+        cf = float(num[1])
+        rsa.DEVICE_Stop()
+        print("Stopped Device")
 
-        #if want to change cf
-        if "cf" in string:
-            print("input was cf")
-            num = string.split('=')
-            print("setting cf to " + num[1])
-            cf = float(num[1])
-            graph_axis(cf, refLevel, span, rbw)
+    #if want to change reflevel
+    elif "reflevel" in input_str:
+        print("input was refLevel")
+        num = input_str.split('=')
+        print("setting refLevel to " + num[1])
+        refLevel = float(num[1])
+        rsa.DEVICE_Stop()
 
-        #if want to change reflevel
-        elif "reflevel" in string:
-            print("input was refLevel")
-            num = string.split('=')
-            print("setting refLevel to " + num[1])
-            refLevel = float(num[1])
-            graph_axis(cf, refLevel, span, rbw)
+    #if want to change span
+    elif "span" in input_str:
+        print("input was span")
+        num = input_str.split('=')
+        print("setting span to " + num[1])
+        span = float(num[1])
+        rsa.DEVICE_Stop()
 
-        #if want to change span
-        elif "span" in string:
-            print("input was span")
-            num = string.split('=')
-            print("setting span to " + num[1])
-            span = float(num[1])
-            graph_axis(cf, refLevel, span, rbw)
-
-        #if want to change rbw
-        elif "rbw" in string:
-            print("input was rbw")
-            num = string.split('=')
-            print("setting rbw to " + num[1])
-            rbw = float(num[1]) 
-            graph_axis(cf, refLevel, span, rbw)
-
-        #print out the changed values
-        print("cf = " + str(cf) + " refLevel = " + str(refLevel) + " span = " + str(span) + " rbw = " + str(rbw))
-
-    dpx_thread.join()
-    print("done")
-
-    rsa.DEVICE_Disconnect()
-
+    #if want to change rbw
+    elif "rbw" in input_str:
+        print("input was rbw")
+        num = input_str.split('=')
+        print("setting rbw to " + num[1])
+        rbw = float(num[1]) 
+        
+        rsa.DEVICE_Stop()
+    
+    #print out the changed values
+    print("cf = " + str(cf) + " refLevel = " + str(refLevel) + " span = " + str(span) + " rbw = " + str(rbw))
+    
 
 
 def dpx_loop(quit, cf, refLevel, span, rbw):
@@ -278,8 +265,17 @@ def dpx_loop(quit, cf, refLevel, span, rbw):
     #for x in range(100):
         #print("##########################")
         #draw graph (every time)
-        graph_dpx(cf, refLevel, span, rbw)
+        # input_str = input().lower()
+        # if input_str is not None:
+        #     settings_thread = Thread(target=update_settings_loop,args=(quit,input_str,cf,refLevel,span,rbw))
+        #     settings_thread.start()
+        
 
+        
+        #if the character typed was q, quit break out of loop and 
+        #send signal to stop thread
+        graph_axis(cf, refLevel, span, rbw)
+        graph_dpx(cf, refLevel, span, rbw)
         #check if quit was triggered
         if quit.isSet():
             print("quitting...")
@@ -312,12 +308,16 @@ def graph_dpx(cf, refLevel, span, rbw):
     #filename = pathName + str(ts) + ".png" #for multiple img files
     filename = pathName + "\exe.png" #for a single img file updated repeatedly
     #filename = "exe.png"
-    plt.savefig(filename)
-    plt.close()
-    graphstop = timeit.default_timer()
-    graphtime = graphstop - graphstart
-    #print("Time to graph: ", graphtime)
+    try:
+        plt.savefig(filename)
+        plt.close()
+        graphstop = timeit.default_timer()
+        graphtime = graphstop - graphstart
+        #print("Time to graph: ", graphtime)
+    except:
+        print("failed")
 
+    
 def graph_axis(cf, refLevel, span, rbw):
 
     dpxFreq, dpxAmp = config_DPX(cf, refLevel, span, rbw)

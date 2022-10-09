@@ -52,7 +52,7 @@ pathName = os.getcwd()
 
 # C:\Tektronix\RSA_API\lib\x64 needs to be added to the
 # PATH system environment variable
-chdir("C:\\Users\\Cerat\\OneDrive\\Documents\\Github\\UP_Tektronix_Capstone\\Hololens Demo\\Assets\\RSA_API\\lib\\x64")
+chdir(".\\RSA_API\\lib\\x64")
 rsa = cdll.LoadLibrary("./RSA_API.dll")
 
 #turn interactive plotting off (to help with img error)

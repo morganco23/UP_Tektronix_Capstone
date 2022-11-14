@@ -83,6 +83,7 @@ def search_connect():
         exit()
     elif numFound.value == 1:
         print('One device found.')
+        print(f'Device ID: {deviceIDs[0]}')
         print('Device type: {}'.format(deviceType.value.decode()))
         print('Device serial number: {}'.format(deviceSerial.value.decode()))
         err_check(rsa.DEVICE_Connect(deviceIDs[0]))

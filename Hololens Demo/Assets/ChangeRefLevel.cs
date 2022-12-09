@@ -20,10 +20,17 @@ public class ChangeRefLevel : MonoBehaviour
     public void IncreaseRefLevel()
     {
         refLevel += 1.0;
+        Debug.Log($"Reference Level is now {refLevel}");
     }
 
     public void DecreaseRefLevel()
     {
         refLevel -= 1.0;
+        Debug.Log($"Reference Level is now {refLevel}");
+    }
+
+    public void UpdateRefLevel() 
+    { 
+
     }
 }

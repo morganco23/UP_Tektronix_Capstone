@@ -20,10 +20,17 @@ public class ChangeRBW : MonoBehaviour
     public void IncreaseRBW()
     {
         rbw += 1e3;
+        Debug.Log($"RBW is now {rbw}");
     }
 
     public void DecreaseRBW()
     {
         rbw -= 1e3;
+        Debug.Log($"RBW is now {rbw}");
+    }
+
+    public void UpdateRBW() 
+    {
+
     }
 }

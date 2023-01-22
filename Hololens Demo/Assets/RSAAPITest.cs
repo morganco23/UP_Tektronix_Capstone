@@ -98,6 +98,8 @@ public class RSAAPITest : MonoBehaviour
             StringBuilder type
         );
 
+    
+
     [DllImport("rsa_api", EntryPoint = "DEVICE_Connect")]
     private static extern ReturnStatus DEVICE_Connect(int id);
 

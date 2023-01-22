@@ -1,4 +1,4 @@
-Hololens Demo/Logs
+Hololens Demo/Logs/
 Hololens Demo/Library/Artifacts
 Hololens Demo/Library/PackageCache
 .vs
@@ -8,4 +8,7 @@ Hololens Demo/Temp
 Hololens Demo/Assets_axis.png
 Hololens Demo/Assets/exe.png
 Hololens Demo/Logs/shadercompiler-UnityShaderCompiler.exe0.log
-Hololens Demo/Logs/shadercompiler-UnityShaderCompiler.exe0.log
+Hololens Demo/Assets/TextMesh Pro/
+Hololens Demo/Assets/MixedRealityToolkit.Generated/CustomProfiles/
+Hololens Demo/Packages/MixedReality/
+Hololens Demo/UserSettings/

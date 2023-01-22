@@ -20,10 +20,16 @@ public class ChangeFrequency : MonoBehaviour
     public void IncreaseFrequency()
     {
         frequency += 0.01e9;
+        Debug.Log($"Frequency is now {frequency}");
     }
 
     public void DecreaseFrequency()
     {
         frequency -= 0.01e9;
+        Debug.Log($"Frequency is now {frequency}");
+    }
+
+    public void UpdateFrequency() { 
+    
     }
 }

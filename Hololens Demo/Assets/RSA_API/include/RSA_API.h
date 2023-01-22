@@ -1,14 +1,14 @@
 /**************************************************************************************************
-*  RSA_API.h -- RSA API SW interface definition for RSA306/500A/600A devices (AKA "V2") 
+*  RSA_API.h -- RSA API SW interface definition for RSA306/306B/500A/600A devices 
 *
-*  Backward compatibility for the initial RSA300_API interface is supported by
-*  by defining the macro value RSA300_API_LEGACY before including this file.
-*  This is done within the RSA300API.h file to support user legacy applications without code change.
+*  NOTE:
+*    This file contains the RSA API "V2" SW interface definition.
+*    The V2 API is compatible with all RSA306/RSA306B/RSA500A/RSA600A devices.
 *
-*  Please note:
-* --- RSA300_API (V1) is DEPRECATED and support will be removed in a later release.
-* --- API users are strongly encouraged to migrate their applications to the
-* --- RSA_API (V2) API definition in this file.
+*    The initial RSA300_API interface (AKA "V1") is defined in the "RSA300API.h" file.
+*    RSA300_API (V1) is DEPRECATED and support may be removed in a future release.
+*    API users are strongly encouraged to migrate applications to the V2 API.  
+*    See the API Programming Reference manual for information on how to migrate V1 usage to V2 usage.
 *
 *  Copyright (c) Tektronix Incorporated 2016.  All rights reserved.
 *  Licensed software products are owned by Tektronix or its subsidiaries or suppliers,
@@ -20,48 +20,39 @@
 
 /******************/
 
-// --- Define import/export macro for Windows target
+#ifndef RETURNSTATUS_ONLY   // wnen def'd, only ReturnStatus definition is enabled (special use only)
+
+// --- Define import/export macro for Windows builds
 #ifdef _WIN32
 #ifdef RSA_API_EXPORTS
 #define RSA_API_DLL __declspec(dllexport)
 #else
 #define RSA_API_DLL __declspec(dllimport)
 #endif
-#else  // non-Windows target
+#else  // non-Windows builds
 #define RSA_API_DLL
 #endif
 
-// --- Select RSA_API (V2) or RSA300_API (V1) compatibility
-#ifndef RSA300_API_LEGACY	
-#define IS_RSA_API		// AKA "V2"
-#else
-#define IS_RSA300_API	// AKA "V1"
-#define RSA300_API_DLL RSA_API_DLL
-#endif
-
-/******************/
+//#define MATLAB_COMPAT		// when this macro is def'd, it removes some content that causes Matlab loadlibrary() compatibility issues
 
 #include <stdint.h>
+#ifndef MATLAB_COMPAT
 #include <time.h>
-
-/******************/
-
-#ifdef __cplusplus
-#ifdef IS_RSA_API
-namespace RSA_API       // V2 namespace
 #else
-namespace RSA300_API    // V1 namespace
+typedef long long time_t;
 #endif
+
+#ifdef __cplusplus  // for C++ compilation...
+namespace RSA_API   // ...use V2 namespace
 {
-extern "C"
+extern "C"          // ...prevent C++ function name mangling
 {
 #endif //__cplusplus
 
-	///////////////////////////////////////////////////////////
-	// Status and Error Reporting
-	///////////////////////////////////////////////////////////
-	// Note: The assigned enumeration values in this list have
-	//        been modified between V1 and V2 releases.
+#endif // #ifndef RETURNSTATUS_ONLY
+
+    ///////////////////////////////////////////////////////////
+	// Status and Error Reporting enums
 	///////////////////////////////////////////////////////////
 
 	typedef enum
@@ -70,7 +61,7 @@ extern "C"
 		// User errors
 		//-----------------
 
-        noError = 0,
+        noError = 0,    // most API functions return this value when successful
 
         // Connection
         errorNotConnected = 101,
@@ -89,6 +80,7 @@ extern "C"
         errorPOSTFailureUsbSpeed,
         errorPOSTDiagFailure,
 		errorPOSTFailure3P3VSense,
+		errorPOSTLinkFailure,
 
         // General Msmt
         errorBufferAllocFailed = 301,
@@ -112,11 +104,14 @@ extern "C"
         errorStreamingFastForwardTimeInvalid,
         errorStreamingInvalidParameters,
         errorStreamingEOF,
+        errorStreamingIfReadTimeout,
+        errorStreamingIfNotEnabled,
 
 		// IQ streaming
 		errorIQStreamInvalidFileDataType = 1301,
 		errorIQStreamFileOpenFailed,
 		errorIQStreamBandwidthOutOfRange,
+        errorIQStreamingNotEnabled,
 
 
 		//-----------------
@@ -142,6 +137,7 @@ extern "C"
 		errorDisconnectedTimeoutWaitingForADcData,
 		errorDisconnectedIOBeginTransfer,
 		errorOperationNotSupportedInSimMode,
+		errorDisconnectedIOFinishTransfer,
 
 		errorFPGAConfigureFailure = 3201,
         errorCalCWNormFailure,
@@ -192,6 +188,13 @@ extern "C"
         errorFlashReadFailure,
         errorFlashFileSystemBadArgument,
         errorFlashFileSystemCreateFile,
+		errorArchiveDirectoryNotFound,
+		errorArchiveDirectoryNotWriteable,
+		errorArchiveWriteFile,
+		errorArchiveGenerateFilename,
+		errorArchiveBoost,
+		errorArchiveStd,
+		errorArchiveGeneric,
 
         // Aux monitoring
         errorMonitoringNotSupported = 3501,
@@ -212,7 +215,7 @@ extern "C"
 		// Revision information
 		errorRevisionDataNotFound = 3801,
 		
-		//  alignment
+		// alignment
 		error112MHzAlignmentSignalLevelTooLow = 3901,
 		error10MHzAlignmentSignalLevelTooLow,
 		errorInvalidCalConstant,
@@ -226,6 +229,13 @@ extern "C"
 		// VNA
         errorVNAUnsupportedConfiguration = 4100,
 
+		// MFC
+		errorMFCHWNotPresent = 4200,
+		errorMFCWriteCalFile,
+		errorMFCReadCalFile,
+		errorMFCFileFormatError,
+		errorMFCFlashCorruptDataError,
+
 		// acq status
         errorADCOverrange = 9000,	// must not change the location of these error codes without coordinating with MFG TEST
         errorOscUnlock = 9001,      
@@ -236,7 +246,9 @@ extern "C"
         notImplemented = -1
 
 	} ReturnStatus;
+    
 
+#ifndef RETURNSTATUS_ONLY   // if def'd, all content below is disabled
 
 	///////////////////////////////////////////////////////////
 	// Global Type Definitions
@@ -270,15 +282,12 @@ extern "C"
 		int16_t q;
 	} CplxInt16;
 
-
 	//
 	// AcqDataStatus enumeration gives the bit-field defininitions for the .acqDataStatus member in the following info structs:
-	//   * IQHeader (returned by GetIQHeader() (RSA300_API (V1) version only))
-	//   * Spectrum_TraceInfo( returned by SPECTRUM_GetTraceInfo())
-	//   * DPX_FrameBuffer (returned by DPX_GetFrameBuffer())
+	//   - Spectrum_TraceInfo (returned by SPECTRUM_GetTraceInfo())
+	//   - DPX_FrameBuffer (returned by DPX_GetFrameBuffer())
 	//  NOTE: Any active (1) bits in the status word other than defined below are for internal use only and should be ignored.
 	//
-#ifdef IS_RSA_API  // V2-only content 
 	enum
 	{ 
 		AcqDataStatus_ADC_OVERRANGE		= 0x1,		// Bit 0: Overrange - Input to the ADC was outside of its operating range.
@@ -287,26 +296,11 @@ extern "C"
 		AcqDataStatus_ADC_DATA_LOST		= 0x20,		// Bit 5: Dropped frame - Loss of ADC data frame samples
 		AcqDataStatus_VALID_BITS_MASK	= (AcqDataStatus_ADC_OVERRANGE | AcqDataStatus_REF_OSC_UNLOCK | AcqDataStatus_LOW_SUPPLY_VOLTAGE | AcqDataStatus_ADC_DATA_LOST)
 	};  // AcqDataStatus
-#else  // IS_RSA300_API -- Legacy support - OBSOLETE, do not use for new work
-	typedef enum
-	{
-		adcOverrange = 0x1,				// Bit 0: Overrange - Input to the ADC was outside of its operating range.
-		refFreqUnlock = 0x2,			// Bit 1: Reference oscillator unlocked - Loss of locked status on the reference oscillator.
-		lo1Unlock = 0x4,				// Bit 2: Internal use only
-		lo2Unlock = 0x8,				// Bit 3: Internal use only
-		lowSupplyVoltage = 0x10,		// Bit 4: Power fail - Power (5V and Usb) failure detected.
-		adcDataLost = 0x20,				// Bit 5: Dropped frame - Loss of ADC data frame samples
-		event1pps = 0x40,				// Bit 6: Internal use only
-		eventTrig1 = 0x80,				// Bit 7: Internal use only
-		eventTrig2 = 0x100,				// Bit 8: Internal use only
-	} AcqDataStatus;
-#endif
+
 
 	///////////////////////////////////////////////////////////
 	// Device Connection and Info
 	///////////////////////////////////////////////////////////
-
-#ifdef IS_RSA_API  // V2-only content 
 
 	RSA_API_DLL const char*  DEVICE_GetErrorString(ReturnStatus status);		// translate ReturnStatus code into text (char) string
 
@@ -330,8 +324,10 @@ extern "C"
 	// const {char|wchar_t}** devSN;	// ptr to array of ptrs to devSN strings
 	// const {char|wchar_t}** devType;	// ptr to array of ptrs to devType strings
 	// rs = RSA_API::DEVICE_SearchInt{W}(&numDev, &devID, &devSN, &devType);
+#ifndef MATLAB_COMPAT
 	RSA_API_DLL ReturnStatus DEVICE_SearchInt(int* numDevicesFound, int* deviceIDs[], const char** deviceSerial[], const char** deviceType[]);
 	RSA_API_DLL ReturnStatus DEVICE_SearchIntW(int* numDevicesFound, int* deviceIDs[], const wchar_t** deviceSerial[], const wchar_t** deviceType[]);
+#endif
 
 	RSA_API_DLL ReturnStatus DEVICE_Connect(int deviceID);
 	RSA_API_DLL ReturnStatus DEVICE_Reset(int deviceID);
@@ -348,6 +344,7 @@ extern "C"
 	RSA_API_DLL ReturnStatus DEVICE_GetFPGAVersion(char* fpgaVersion);
 	RSA_API_DLL ReturnStatus DEVICE_GetHWVersion(char* hwVersion);
 	// Get all device info strings at once
+#ifndef MATLAB_COMPAT
 	typedef struct
 	{
 		char nomenclature[DEVINFO_MAX_STRLEN];
@@ -358,29 +355,15 @@ extern "C"
 		char hwVersion[DEVINFO_MAX_STRLEN];
 	} DEVICE_INFO;
 	RSA_API_DLL ReturnStatus DEVICE_GetInfo(DEVICE_INFO* devInfo);
-	
+#endif
+
 	RSA_API_DLL ReturnStatus DEVICE_GetOverTemperatureStatus(bool* overTemperature);
 
-#else // IS_RSA300_API -- Legacy support
-	RSA300_API_DLL const char* GetErrorString(ReturnStatus status);
-	RSA300_API_DLL ReturnStatus Search(long deviceIDs[], wchar_t* deviceSerial[], int* numDevicesFound); //returns array of valid deviceIDs
-	RSA300_API_DLL ReturnStatus Connect(long deviceID); //connect to specific deviceID
-	RSA300_API_DLL ReturnStatus ResetDevice(long deviceID);
-	RSA300_API_DLL ReturnStatus Disconnect();
-	RSA300_API_DLL ReturnStatus GetAPIVersion(char* apiVersion);
-	RSA300_API_DLL ReturnStatus GetFirmwareVersion(char* fwVersion);
-	RSA300_API_DLL ReturnStatus GetFPGAVersion(char* fpgaVersion);
-	RSA300_API_DLL ReturnStatus GetHWVersion(char* hwVersion);
-	RSA300_API_DLL ReturnStatus GetDeviceSerialNumber(char* serialNum);
-	RSA300_API_DLL ReturnStatus GetDeviceNomenclature(char* nomenclature);
-	RSA300_API_DLL ReturnStatus POST_QueryStatus();
-#endif 
 	
-	///////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////
 	// Device Configuration (global)
 	///////////////////////////////////////////////////////////
 
-#ifdef IS_RSA_API  // V2-only content 
 	RSA_API_DLL ReturnStatus CONFIG_Preset();
 
 	RSA_API_DLL ReturnStatus CONFIG_SetReferenceLevel(double refLevel);
@@ -397,7 +380,7 @@ extern "C"
 	RSA_API_DLL ReturnStatus CONFIG_GetRFAttenuator(double *value);
 	RSA_API_DLL ReturnStatus CONFIG_SetRFAttenuator(double value);
 
-    RSA_API_DLL ReturnStatus CONFIG_SetExternalRefEnable(bool exRefEn);
+    RSA_API_DLL ReturnStatus CONFIG_SetExternalRefEnable(bool exRefEn);     // use CONFIG_SetFrequencyReferenceSource instead
     RSA_API_DLL ReturnStatus CONFIG_GetExternalRefEnable(bool* exRefEn);
     RSA_API_DLL ReturnStatus CONFIG_GetExternalRefFrequency(double* extFreq);
 
@@ -419,7 +402,8 @@ extern "C"
     // Manage USER Frequency Reference setting set/get
     RSA_API_DLL ReturnStatus CONFIG_SetFreqRefUserSetting(const char* i_usstr);
     RSA_API_DLL ReturnStatus CONFIG_GetFreqRefUserSetting(char* o_usstr);
-    typedef struct
+#ifndef MATLAB_COMPAT
+	typedef struct
     {
         bool    isvalid;
         unsigned int dacValue;
@@ -427,21 +411,7 @@ extern "C"
         double  temperature;    // storage temperature degC
     } FREQREF_USER_INFO;
     RSA_API_DLL ReturnStatus CONFIG_DecodeFreqRefUserSettingString(const char* i_usstr, FREQREF_USER_INFO* o_fui);
-
-#else // IS_RSA300_API -- Legacy support
-	RSA300_API_DLL ReturnStatus Preset();
-
-	RSA300_API_DLL ReturnStatus SetReferenceLevel(double refLevel);
-	RSA300_API_DLL ReturnStatus GetReferenceLevel(double* refLevel);
-	RSA300_API_DLL ReturnStatus GetMaxCenterFreq(double* maxCF);
-	RSA300_API_DLL ReturnStatus GetMinCenterFreq(double* minCF);
-	RSA300_API_DLL ReturnStatus SetCenterFreq(double cf);
-	RSA300_API_DLL ReturnStatus GetCenterFreq(double* cf);
-	RSA300_API_DLL ReturnStatus GetTunedCenterFreq(double* cf);
-	RSA300_API_DLL ReturnStatus SetExternalRefEnable(bool exRefEn);
-	RSA300_API_DLL ReturnStatus GetExternalRefEnable(bool* exRefEn);
-#endif 
-
+#endif
 
 	///////////////////////////////////////////////////////////
 	// Trigger Configuration 
@@ -456,7 +426,8 @@ extern "C"
 	typedef enum
 	{
 		TriggerSourceExternal = 0,		//  external 
-		TriggerSourceIFPowerLevel = 1	//  IF power level
+		TriggerSourceIFPowerLevel = 1,	//  IF power level
+		TriggerSourceTime = 2			//  time-based trigger
 	} TriggerSource;
 
 	typedef enum
@@ -466,7 +437,6 @@ extern "C"
 		TriggerTransitionEither = 3		//  either Low to High or High to Low transition	
 	} TriggerTransition;
 
-#ifdef IS_RSA_API  // V2-only content 
 	RSA_API_DLL ReturnStatus TRIG_SetTriggerMode(TriggerMode mode);
 	RSA_API_DLL ReturnStatus TRIG_GetTriggerMode(TriggerMode* mode);
 	RSA_API_DLL ReturnStatus TRIG_SetTriggerSource(TriggerSource source);
@@ -477,42 +447,25 @@ extern "C"
 	RSA_API_DLL ReturnStatus TRIG_GetIFPowerTriggerLevel(double *level);
 	RSA_API_DLL ReturnStatus TRIG_SetTriggerPositionPercent(double trigPosPercent);
 	RSA_API_DLL ReturnStatus TRIG_GetTriggerPositionPercent(double* trigPosPercent);
-	RSA_API_DLL ReturnStatus TRIG_ForceTrigger();
-#else // IS_RSA300_API -- Legacy support
-	RSA300_API_DLL ReturnStatus ForceTrigger();
-	RSA300_API_DLL ReturnStatus SetTriggerPositionPercent(double trigPosPercent);
-	RSA300_API_DLL ReturnStatus GetTriggerPositionPercent(double* trigPosPercent);
-	RSA300_API_DLL ReturnStatus SetTriggerMode(TriggerMode mode);
-	RSA300_API_DLL ReturnStatus GetTriggerMode(TriggerMode* mode);
-	RSA300_API_DLL ReturnStatus SetTriggerTransition(TriggerTransition transition);
-	RSA300_API_DLL ReturnStatus GetTriggerTransition(TriggerTransition *transition);
-	RSA300_API_DLL ReturnStatus SetTriggerSource(TriggerSource source);
-	RSA300_API_DLL ReturnStatus GetTriggerSource(TriggerSource *source);
-	RSA300_API_DLL ReturnStatus SetIFPowerTriggerLevel(double level);
-	RSA300_API_DLL ReturnStatus GetIFPowerTriggerLevel(double *level);
-#endif 
+	RSA_API_DLL ReturnStatus TRIG_SetTriggerTime(time_t startTimeSec, uint64_t startTimeNsec, uint64_t repeatTimeNsec);
+	RSA_API_DLL ReturnStatus TRIG_GetTriggerTime(time_t* startTimeSec, uint64_t* startTimeNsec, uint64_t* repeatTimeNsec);
 
+	RSA_API_DLL ReturnStatus TRIG_ForceTrigger();
 	
-	///////////////////////////////////////////////////////////
+	
+    ///////////////////////////////////////////////////////////
 	// Device Alignment
 	///////////////////////////////////////////////////////////
 	
-#ifdef IS_RSA_API  // V2-only content 
     RSA_API_DLL ReturnStatus ALIGN_GetWarmupStatus(bool* warmedUp);
 	RSA_API_DLL ReturnStatus ALIGN_GetAlignmentNeeded(bool* needed);
 	RSA_API_DLL ReturnStatus ALIGN_RunAlignment();
-#else // IS_RSA300_API -- Legacy support
-	RSA300_API_DLL ReturnStatus IsAlignmentNeeded(bool *needed);
-	RSA300_API_DLL ReturnStatus RunAlignment();
-	RSA300_API_DLL double GetDeviceTemperature();
-#endif 
 
-	
+
 	///////////////////////////////////////////////////////////
 	// Device Operation (global)
 	///////////////////////////////////////////////////////////
 	
-#ifdef IS_RSA_API  // V2-only content 
 	RSA_API_DLL ReturnStatus DEVICE_GetEnable(bool* enable);
 	RSA_API_DLL ReturnStatus DEVICE_Run();
 	RSA_API_DLL ReturnStatus DEVICE_Stop();
@@ -522,40 +475,25 @@ extern "C"
 	enum { DEVEVENT_OVERRANGE = 0, DEVEVENT_TRIGGER = 1, DEVEVENT_1PPS = 2 };
 	RSA_API_DLL ReturnStatus DEVICE_GetEventStatus(int eventID, bool* eventOccurred, uint64_t* eventTimestamp);
 
-#else // IS_RSA300_API -- Legacy support
-	typedef enum
-	{
-		stopped = 0,
-		running = 1
-	} RunMode;
-	RSA300_API_DLL ReturnStatus GetRunState(RunMode* runMode);
-	RSA300_API_DLL ReturnStatus Run();
-	RSA300_API_DLL ReturnStatus Stop();
-	RSA300_API_DLL ReturnStatus PrepareForRun();
-	RSA300_API_DLL ReturnStatus StartFrameTransfer();
-#endif 
 	
 	///////////////////////////////////////////////////////////
 	// System/Reference Time 
 	///////////////////////////////////////////////////////////
 
-	RSA_API_DLL  ReturnStatus REFTIME_GetTimestampRate(uint64_t* o_refTimestampRate);
-	RSA_API_DLL  ReturnStatus REFTIME_GetCurrentTime(time_t* o_timeSec, uint64_t* o_timeNsec, uint64_t* o_timestamp);
-	RSA_API_DLL  ReturnStatus REFTIME_GetTimeFromTimestamp(uint64_t i_timestamp, time_t* o_timeSec, uint64_t* o_timeNsec);
-	RSA_API_DLL  ReturnStatus REFTIME_GetTimestampFromTime(time_t i_timeSec, uint64_t i_timeNsec, uint64_t* o_timestamp);
-	RSA_API_DLL  ReturnStatus REFTIME_GetIntervalSinceRefTimeSet(double* sec);
-#ifdef IS_RSA_API  // V2-only content 
-	RSA_API_DLL  ReturnStatus REFTIME_SetReferenceTime(time_t refTimeSec, uint64_t refTimeNsec, uint64_t refTimestamp);
-	RSA_API_DLL  ReturnStatus REFTIME_GetReferenceTime(time_t* refTimeSec, uint64_t* refTimeNsec, uint64_t* refTimestamp);
-    typedef enum { RTSRC_NONE = 0, RTSRC_SYSTEM = 1, RTSRC_GNSS = 2, RTSRC_USER = 3 } REFTIME_SRC;
-    RSA_API_DLL  ReturnStatus REFTIME_GetReferenceTimeSource(REFTIME_SRC* source);
-#endif
+	RSA_API_DLL ReturnStatus REFTIME_GetTimestampRate(uint64_t* o_refTimestampRate);
+	RSA_API_DLL ReturnStatus REFTIME_GetCurrentTime(time_t* o_timeSec, uint64_t* o_timeNsec, uint64_t* o_timestamp);
+	RSA_API_DLL ReturnStatus REFTIME_GetTimeFromTimestamp(uint64_t i_timestamp, time_t* o_timeSec, uint64_t* o_timeNsec);
+	RSA_API_DLL ReturnStatus REFTIME_GetTimestampFromTime(time_t i_timeSec, uint64_t i_timeNsec, uint64_t* o_timestamp);
+	RSA_API_DLL ReturnStatus REFTIME_GetIntervalSinceRefTimeSet(double* sec);
+	RSA_API_DLL ReturnStatus REFTIME_SetReferenceTime(time_t refTimeSec, uint64_t refTimeNsec, uint64_t refTimestamp);
+	RSA_API_DLL ReturnStatus REFTIME_GetReferenceTime(time_t* refTimeSec, uint64_t* refTimeNsec, uint64_t* refTimestamp);
+    typedef enum { RTSRC_NONE = 0, RTSRC_SYSTEM = 1, RTSRC_GNSS = 2, RTSRC_USER = 3, RTSRC_IRIGBAM = 4, RTSRC_IRIGBDC = 5, RTSRC_PPS = 6} REFTIME_SRC;
+    RSA_API_DLL ReturnStatus REFTIME_GetReferenceTimeSource(REFTIME_SRC* source);
 
 	///////////////////////////////////////////////////////////
 	// IQ Block Data aquisition
 	///////////////////////////////////////////////////////////
 
-#ifdef IS_RSA_API  // V2-only content
 	RSA_API_DLL ReturnStatus IQBLK_GetMaxIQBandwidth(double* maxBandwidth);
 	RSA_API_DLL ReturnStatus IQBLK_GetMinIQBandwidth(double* minBandwidth);
 
@@ -575,6 +513,8 @@ extern "C"
 	RSA_API_DLL ReturnStatus IQBLK_GetIQDataDeinterleaved(float* iData, float* qData, int* outLength, int reqLength);
 	RSA_API_DLL ReturnStatus IQBLK_GetIQDataCplx(Cplx32* iqData, int* outLength, int reqLength);
 	
+	RSA_API_DLL ReturnStatus IQBLK_FinishedIQData(void);
+
 	// Bit field definitions for "acqStatus" word of IQBLK_ACQINFO struct
 	enum {
 		IQBLK_STATUS_INPUT_OVERRANGE = (1 << 0),
@@ -590,36 +530,6 @@ extern "C"
 		uint32_t  acqStatus;				// 0:no errors, >0:acq events/issues; see IQBLK_STATUS_* bit enums to decode...
 	} IQBLK_ACQINFO;
 	RSA_API_DLL ReturnStatus IQBLK_GetIQAcqInfo(IQBLK_ACQINFO* acqInfo);   // Query IQ block acquisition info
-
-#else // IS_RSA300_API -- Legacy support
-	RSA300_API_DLL ReturnStatus GetMaxIQBandwidth(double* maxBandwidth);
-	RSA300_API_DLL ReturnStatus GetMinIQBandwidth(double* minBandwidth);
-	RSA300_API_DLL ReturnStatus GetMaxAcquisitionSamples(unsigned long* maxSamples);
-
-	RSA300_API_DLL ReturnStatus SetIQBandwidth(double iqBandwidth);
-	RSA300_API_DLL ReturnStatus GetIQBandwidth(double* iqBandwidth);
-	RSA300_API_DLL ReturnStatus GetIQSampleRate(double* iqSampleRate);
-	RSA300_API_DLL ReturnStatus SetIQRecordLength(long recordLength);
-	RSA300_API_DLL ReturnStatus GetIQRecordLength(long* recordLength);
-
-	RSA300_API_DLL ReturnStatus WaitForIQDataReady(int timeoutMsec, bool* ready);
-	RSA300_API_DLL ReturnStatus GetIQData(float* iqData, int startIndex, int length);
-	RSA300_API_DLL ReturnStatus GetIQDataDeinterleaved(float* iData, float*	qData, int startIndex, int length);
-	RSA300_API_DLL ReturnStatus GetIQDataCplx(Cplx32* iqData, int startIndex, int length);
-
-	// Query IQ block acquisition status
-	typedef struct
-	{
-		uint16_t acqDataStatus;				// See AcqDataStatus enumeration for bit definitions
-		uint64_t acquisitionTimestamp;
-		uint32_t frameID;
-		uint16_t trigger1Index;
-		uint16_t trigger2Index;
-		uint16_t timeSyncIndex;
-	} IQHeader;
-
-	RSA300_API_DLL ReturnStatus GetIQHeader(IQHeader* header);
-#endif 
 
 	
 	///////////////////////////////////////////////////////////
@@ -724,15 +634,10 @@ extern "C"
 	//  Get spectrum setting limits
 	RSA_API_DLL ReturnStatus SPECTRUM_GetLimits(Spectrum_Limits *limits);
 
-#ifdef IS_RSA_API  // V2-only content 
 	//  Start Trace acquisition
 	RSA_API_DLL ReturnStatus SPECTRUM_AcquireTrace();
 	//  Wait for spectrum trace ready
 	RSA_API_DLL ReturnStatus SPECTRUM_WaitForTraceReady(int timeoutMsec, bool *ready);
-#else // IS_RSA300_API -- Legacy support
-	//  Wait for spectrum trace ready
-	RSA300_API_DLL ReturnStatus SPECTRUM_WaitForDataReady(int timeoutMsec, bool *ready);
-#endif
 
 	//  Get spectrum trace data
 	RSA_API_DLL ReturnStatus SPECTRUM_GetTrace(SpectrumTraces trace, int maxTracePoints, float *traceData, int *outTracePoints);
@@ -814,13 +719,8 @@ extern "C"
 		VerticalUnit_Amp = 3
 	} VerticalUnitType;
 
-#ifdef IS_RSA_API  // V2-only content 
 	RSA_API_DLL ReturnStatus DPX_GetEnable(bool* enable);
 	RSA_API_DLL ReturnStatus DPX_SetEnable(bool enable);
-#else // IS_RSA300_API -- Legacy support
-	RSA300_API_DLL ReturnStatus GetDPXEnabled(bool* enabled);
-	RSA300_API_DLL ReturnStatus SetDPXEnabled(bool enabled);
-#endif
 
 	RSA_API_DLL ReturnStatus DPX_SetParameters(double fspan, double rbw, int32_t bitmapWidth, int32_t tracePtsPerPixel, 
 		                                       VerticalUnitType yUnit, double yTop, double yBottom, 
@@ -831,15 +731,9 @@ extern "C"
 	enum { DPX_TRACEIDX_1 = 0, DPX_TRACEIDX_2 = 1, DPX_TRACEIDX_3 = 2 };   // traceIndex enumerations
 	RSA_API_DLL ReturnStatus DPX_SetSpectrumTraceType(int32_t traceIndex, TraceType type);
 
-#ifdef IS_RSA_API  // V2-only content 
 	RSA_API_DLL ReturnStatus DPX_GetRBWRange(double fspan, double* minRBW, double* maxRBW);
 	RSA_API_DLL ReturnStatus DPX_Reset();
 	RSA_API_DLL ReturnStatus DPX_WaitForDataReady(int timeoutMsec, bool* ready);
-#else // IS_RSA300_API -- Legacy support
-	RSA300_API_DLL ReturnStatus DPX_FindRBWRange(double fspan, double* minRBW, double* maxRBW);
-	RSA300_API_DLL ReturnStatus DPX_ResetDPx();
-	RSA300_API_DLL ReturnStatus WaitForDPXDataReady(int timeoutMsec, bool* ready);
-#endif
 
 	RSA_API_DLL ReturnStatus DPX_GetFrameInfo(int64_t* frameCount, int64_t* fftCount);
 
@@ -886,21 +780,13 @@ extern "C"
 	RSA_API_DLL ReturnStatus AUDIO_SetMute(bool mute);
 	RSA_API_DLL ReturnStatus AUDIO_GetMute(bool* _mute);
 
-#ifdef IS_RSA_API  // V2-only content 
 	// Tune Offset from center frequency (default is 0 Hz offset)
 	RSA_API_DLL ReturnStatus AUDIO_SetFrequencyOffset(double freqOffsetHz);
 	RSA_API_DLL ReturnStatus AUDIO_GetFrequencyOffset(double* freqOffsetHz);
-#endif
 
-#ifdef IS_RSA_API  // V2-only content 
 	RSA_API_DLL ReturnStatus AUDIO_Start();						// Start the audio demod output generation
 	RSA_API_DLL ReturnStatus AUDIO_Stop();						// Stop the audio demod output generation
 	RSA_API_DLL ReturnStatus AUDIO_GetEnable(bool *enable);		// Query the audio demod state
-#else // IS_RSA300_API -- Legacy support
-	RSA300_API_DLL ReturnStatus AUDIO_StartAudio();
-	RSA300_API_DLL ReturnStatus AUDIO_StopAudio();
-	RSA300_API_DLL ReturnStatus AUDIO_Running(bool *_running);
-#endif
 
 	// Get data from audio ooutput
 	// User must allocate data to inSize before calling
@@ -909,78 +795,113 @@ extern "C"
 
 	
 	///////////////////////////////////////////////////////////
-	// IF(ADC) Data Streaming to disk
+	// IF(ADC) Data Streaming to client or disk file
 	///////////////////////////////////////////////////////////
 	
-	typedef enum
-	{
-		StreamingModeRaw = 0,
-		StreamingModeFramed = 1
+    // Note: IFSTREAM_SetOutputConfiguration() function and IFSOUTDEST type are now preferred setting IF streaming output.
+    // They should be used in place of IFSTREAM_SetDiskFileMode() function and StreamingMode type in new work.
+    typedef enum {
+        IFSOD_CLIENT = 0,               // output direct to client, no file written
+        IFSOD_FILE_R3F = 1,             // R3F file output, equivalent to IFSTREAM_SetDiskFileMode(StreamingModeFramed)
+        IFSOD_FILE_R3HA_DET = 3,        // R3H+R3A file output, equivalent to IFSTREAM_SetDiskFileMode(StreamingModeRaw)
+        IFSOD_FILE_MIDAS = 11,          // Midas CDIF file output, combined header+data file
+        IFSOD_FILE_MIDAS_DET = 12       // Midas CDIF+DET file output, separate header and data files
+    } IFSOUTDEST;
+    RSA_API_DLL ReturnStatus IFSTREAM_SetOutputConfiguration(IFSOUTDEST dest);  // may be used for all output types (file or client)
+    
+    // Configure IF data disk file output 
+	// Note: IFSTREAM_SetDiskFileMode() will be maintained for legacy support.
+    // Use IFSTREAM_SetOutputConfiguration() for new work.
+    typedef enum {
+		StreamingModeRaw = 0,       // output to R3H+R3A files (separate header + raw data)
+		StreamingModeFramed = 1     // output to R3F file (combined header + framed data)
 	} StreamingMode;
-#ifdef IS_RSA_API  // V2-only content 
-	RSA_API_DLL ReturnStatus IFSTREAM_SetEnable(bool enable);
-	RSA_API_DLL ReturnStatus IFSTREAM_GetActiveStatus(bool *active);
-	RSA_API_DLL ReturnStatus IFSTREAM_SetDiskFileMode(StreamingMode mode);
+	RSA_API_DLL ReturnStatus IFSTREAM_SetDiskFileMode(StreamingMode mode);  // legacy: for file output type
 	RSA_API_DLL ReturnStatus IFSTREAM_SetDiskFilePath(const char *path);
 	RSA_API_DLL ReturnStatus IFSTREAM_SetDiskFilenameBase(const char *base);
 	enum { IFSSDFN_SUFFIX_INCRINDEX_MIN = 0, IFSSDFN_SUFFIX_TIMESTAMP = -1, IFSSDFN_SUFFIX_NONE = -2 };  // enums for the special fileSuffixCtl values
-	RSA_API_DLL ReturnStatus IFSTREAM_SetDiskFilenameSuffix(int suffixCtl);
+	RSA_API_DLL ReturnStatus IFSTREAM_SetDiskFilenameSuffix(int fileSuffixCtl);
 	RSA_API_DLL ReturnStatus IFSTREAM_SetDiskFileLength(int msec);
 	RSA_API_DLL ReturnStatus IFSTREAM_SetDiskFileCount(int count);
-#else // IS_RSA300_API -- Legacy support
-	RSA300_API_DLL ReturnStatus SetStreamADCToDiskEnabled(bool enabled);
-	RSA300_API_DLL ReturnStatus GetStreamADCToDiskActive(bool *enabled);
-	RSA300_API_DLL ReturnStatus SetStreamADCToDiskMode(StreamingMode mode);
-	RSA300_API_DLL ReturnStatus SetStreamADCToDiskPath(const char *path);
-	RSA300_API_DLL ReturnStatus SetStreamADCToDiskFilenameBase(const char *filename);
-	RSA300_API_DLL ReturnStatus SetStreamADCToDiskMaxTime(long milliseconds);
-	RSA300_API_DLL ReturnStatus SetStreamADCToDiskMaxFileCount(int maximum);
-#endif
+
+    // Queries for IF data parameters (client use)
+    RSA_API_DLL ReturnStatus IFSTREAM_GetAcqParameters(double* bwHz_act, double* srSps, double* cfAtIfHz);
+    RSA_API_DLL ReturnStatus IFSTREAM_GetScalingParameters(double* scaleFactor, double* scaleFreq);
+    RSA_API_DLL ReturnStatus IFSTREAM_GetEQParameters(int* numPts, float** freq, float** ampl, float** phase);
+    RSA_API_DLL ReturnStatus IFSTREAM_GetIFDataBufferSize(int* buffSize, int* numSamples);
+
+    // IF stream Start/Stop/Status access
+    RSA_API_DLL ReturnStatus IFSTREAM_SetEnable(bool enable);
+    RSA_API_DLL ReturnStatus IFSTREAM_GetActiveStatus(bool *active);
+
+    // IF data output to client
+    enum { IFSTRM_MAXTRIGGERS = 32 };  // max size of IFSTRMDATAINFO triggerIndices array 
+    enum {
+        IFSTRM_STATUS_OVERRANGE = (1 << 0),         // ADC input overrange detected
+        IFSTRM_STATUS_XFER_DISCONTINUITY = (1 << 1),// Continuity error (gap) detected in IF frames
+    };
+    typedef struct
+    {
+        uint64_t  timestamp;            // timestamp of first IF sample returned in block
+        int       triggerCount;         // number of triggers detected in this block
+        int*      triggerIndices;       // internal array of trigger sample indices in block (overwritten on each new block query)
+        uint32_t  acqStatus;            // 0:acq OK, >0:acq issues; see IFQSTRM_STATUS enums to decode...
+    } IFSTRMDATAINFO;
+    RSA_API_DLL ReturnStatus IFSTREAM_GetIFData(int16_t* data, int* datalen, IFSTRMDATAINFO* datainfo);
+    RSA_API_DLL ReturnStatus IFSTREAM_GetIFFrames(uint8_t** data, int* numBytes, int* numFrames);
 
 	///////////////////////////////////////////////////////////
-	// IQ Data Streaming to client or disk
+	// IQ Data Streaming to client or disk file
 	///////////////////////////////////////////////////////////
 
-#ifdef IS_RSA_API  // V2-only content 
 	RSA_API_DLL ReturnStatus IQSTREAM_GetMaxAcqBandwidth(double* maxBandwidthHz);
 	RSA_API_DLL ReturnStatus IQSTREAM_GetMinAcqBandwidth(double* minBandwidthHz);
-#endif
 	RSA_API_DLL ReturnStatus IQSTREAM_SetAcqBandwidth(double bwHz_req);
-	RSA_API_DLL ReturnStatus IQSTREAM_GetAcqParameters(double* bwHz_act, double* srSps);
+    RSA_API_DLL ReturnStatus IQSTREAM_GetAcqParameters(double* bwHz_act, double* srSps);
 
-	typedef enum { IQSOD_CLIENT = 0, IQSOD_FILE_TIQ = 1, IQSOD_FILE_SIQ = 2, IQSOD_FILE_SIQ_SPLIT = 3 } IQSOUTDEST;
-	typedef enum { IQSODT_SINGLE = 0, IQSODT_INT32 = 1, IQSODT_INT16 = 2 } IQSOUTDTYPE;
+	typedef enum { 
+        IQSOD_CLIENT = 0,               // output direct to client, no file written
+        IQSOD_FILE_TIQ = 1,             // TIQ file output
+        IQSOD_FILE_SIQ = 2,             // SIQ file output, combined header+data
+        IQSOD_FILE_SIQ_SPLIT = 3,       // SIQH+SIQD file output, split header and data
+        IQSOD_FILE_MIDAS = 11,          // Midas CDIF file output, combined header+data file
+        IQSOD_FILE_MIDAS_DET = 12       // Midas CDIF+DET file output, separate header and data files
+    } IQSOUTDEST;
+	typedef enum { 
+        IQSODT_SINGLE = 0,				// float32, scaled to volts/50 ohms
+        IQSODT_INT32 = 1,				// int32 
+        IQSODT_INT16 = 2,				// int16
+		IQSODT_SINGLE_SCALE_INT32 = 3	// float32, scaled to int32 range
+	} IQSOUTDTYPE;
 	RSA_API_DLL ReturnStatus IQSTREAM_SetOutputConfiguration(IQSOUTDEST dest, IQSOUTDTYPE dtype);
 
 	RSA_API_DLL ReturnStatus IQSTREAM_SetIQDataBufferSize(int reqSize);
 	RSA_API_DLL ReturnStatus IQSTREAM_GetIQDataBufferSize(int* maxSize);
 
-	RSA_API_DLL ReturnStatus IQSTREAM_SetDiskFilenameBaseW(const wchar_t* filenameBaseW);
-	RSA_API_DLL ReturnStatus IQSTREAM_SetDiskFilenameBase(const char* filenameBase);
-	enum { IQSSDFN_SUFFIX_INCRINDEX_MIN = 0, IQSSDFN_SUFFIX_TIMESTAMP = -1, IQSSDFN_SUFFIX_NONE = -2 };  // enums for the special fileSuffixCtl values
+    RSA_API_DLL ReturnStatus IQSTREAM_SetDiskFilenameBase(const char* filenameBase);
+    RSA_API_DLL ReturnStatus IQSTREAM_SetDiskFilenameBaseW(const wchar_t* filenameBaseW);
+	enum {  // enums for IQSTREAM_SetDiskFilenameSuffix() suffixCtl values
+        IQSSDFN_SUFFIX_INCRINDEX_MIN = 0, 
+        IQSSDFN_SUFFIX_TIMESTAMP = -1,      // default at connect
+        IQSSDFN_SUFFIX_NONE = -2 };     
 	RSA_API_DLL ReturnStatus IQSTREAM_SetDiskFilenameSuffix(int suffixCtl);
 	RSA_API_DLL ReturnStatus IQSTREAM_SetDiskFileLength(int msec);
 
 	RSA_API_DLL ReturnStatus IQSTREAM_Start();
 	RSA_API_DLL ReturnStatus IQSTREAM_Stop();
-#ifdef IS_RSA_API  // V2-only content 
 	RSA_API_DLL ReturnStatus IQSTREAM_GetEnable(bool* enable);
-#else // IS_RSA300_API -- Legacy support
-	RSA300_API_DLL ReturnStatus IQSTREAM_GetEnabled(bool* enabled);
-#endif
 
-	enum {
+    enum { IQSTRM_MAXTRIGGERS = 100 };  // max size of IQSTRMIQINFO triggerIndices array 
+    enum {
 		IQSTRM_STATUS_OVERRANGE = (1 << 0),         // RF input overrange detected (non-sticky(client): in this block; sticky(client+file): in entire run)
 		IQSTRM_STATUS_XFER_DISCONTINUITY = (1 << 1),// Continuity error (gap) detected in IF frame transfers 
 		IQSTRM_STATUS_IBUFF75PCT = (1 << 2),        // Input buffer >= 75 % full, indicates IQ processing may have difficulty keeping up with IF sample stream
 		IQSTRM_STATUS_IBUFFOVFLOW = (1 << 3),       // Input buffer overflow, IQ processing cannot keep up with IF sample stream, input samples dropped
 		IQSTRM_STATUS_OBUFF75PCT = (1 << 4),        // Output buffer >= 75% full, indicates output sink (disk or client) may have difficulty keeping up with IQ output stream
-		IQSTRM_STATUS_OBUFFOVFLOW = (1 << 5),       // Output buffer overflow, IQ unloading not keeping up with IA sample stream, output samples dropped
+		IQSTRM_STATUS_OBUFFOVFLOW = (1 << 5),       // Output buffer overflow, IQ unloading not keeping up with IF sample stream, output samples dropped
 		IQSTRM_STATUS_NONSTICKY_SHIFT = 0,          // Non-sticky status bits are shifted this many bits left from LSB
 		IQSTRM_STATUS_STICKY_SHIFT = 16             // Sticky status bits are shifted this many bits left from LSB
 	};
-
-	enum { IQSTRM_MAXTRIGGERS = 100 };  // max size of IQSTRMIQINFO triggerIndices array 
 	typedef struct
 	{
 		uint64_t  timestamp;            // timestamp of first IQ sample returned in block
@@ -990,11 +911,12 @@ extern "C"
 		uint32_t  acqStatus;            // 0:acq OK, >0:acq issues; see IQSTRM_STATUS enums to decode...
 	} IQSTRMIQINFO;
 
+    RSA_API_DLL ReturnStatus IQSTREAM_WaitForIQDataReady(int timeoutMsec, bool* ready);
 	RSA_API_DLL ReturnStatus IQSTREAM_GetIQData(void* iqdata, int* iqlen, IQSTRMIQINFO* iqinfo);
 
 	RSA_API_DLL ReturnStatus IQSTREAM_GetDiskFileWriteStatus(bool* isComplete, bool *isWriting);
 
-	enum { IQSTRM_FILENAME_DATA_IDX = 0, IQSTRM_FILENAME_HEADER_IDX = 1 };
+	enum { IQSTRM_FILENAME_DATA_IDX = 0, IQSTRM_FILENAME_HEADER_IDX = 1 };  // indices to IQSTRMFILEINFO filenames
 	typedef struct
 	{
 		uint64_t  numberSamples;              // number of samples written to file
@@ -1004,11 +926,7 @@ extern "C"
 		uint32_t  acqStatus;                  // 0=acq OK, >0 acq issues; see IQSTRM_STATUS enums to decode...
 		wchar_t** filenames;                  // [0]:data filename, [1]:header filename
 	} IQSTRMFILEINFO;
-#ifdef IS_RSA_API  // V2-only content 
 	RSA_API_DLL ReturnStatus IQSTREAM_GetDiskFileInfo(IQSTRMFILEINFO* fileinfo);
-#else // IS_RSA300_API -- Legacy support
-	RSA300_API_DLL ReturnStatus IQSTREAM_GetFileInfo(IQSTRMFILEINFO* fileinfo);
-#endif
 
 	RSA_API_DLL void IQSTREAM_ClearAcqStatus();
 
@@ -1025,14 +943,9 @@ extern "C"
         bool loopAtEndOfFile,
         bool emulateRealTime);
 
-#ifdef IS_RSA_API  // V2-only content 
 	RSA_API_DLL ReturnStatus PLAYBACK_GetReplayComplete(bool* complete);
-#else // IS_RSA300_API -- Legacy support
-	RSA300_API_DLL ReturnStatus PLAYBACK_HasReplayCompleted(bool * isCompleted);
-#endif
 
 
-#ifdef IS_RSA_API  // V2-only content 
 	///////////////////////////////////////////////////////////
 	// Tracking Generator control
 	///////////////////////////////////////////////////////////
@@ -1042,10 +955,9 @@ extern "C"
 	RSA_API_DLL ReturnStatus TRKGEN_GetEnable(bool *enable);
 	RSA_API_DLL ReturnStatus TRKGEN_SetOutputLevel(double leveldBm);
 	RSA_API_DLL ReturnStatus TRKGEN_GetOutputLevel(double *leveldBm);
-#endif
 
-#ifdef IS_RSA_API  // V2-only content 
-	///////////////////////////////////////////////////////////
+
+    ///////////////////////////////////////////////////////////
 	// GNSS Rx Control and Output
 	///////////////////////////////////////////////////////////
 
@@ -1062,9 +974,7 @@ extern "C"
 	RSA_API_DLL ReturnStatus GNSS_ClearNavMessageData();
 	RSA_API_DLL ReturnStatus GNSS_Get1PPSTimestamp(bool* isValid, uint64_t* timestamp1PPS);
     RSA_API_DLL ReturnStatus GNSS_GetStatusRxLock(bool* lock);
-#endif
 
-#ifdef IS_RSA_API  // V2-only content 
 	///////////////////////////////////////////////////////////
 	// Power and Battery Status
 	///////////////////////////////////////////////////////////
@@ -1078,13 +988,13 @@ extern "C"
 		bool batteryOverTemperature;
 		bool batteryHardwareError;
 	} POWER_INFO;
-
 	RSA_API_DLL ReturnStatus POWER_GetStatus(POWER_INFO* powerInfo);
-#endif
 
 #ifdef __cplusplus
 }  //extern "C"
-}  //namespace __NAMESPACE_API__
+}  //namespace RSA_API
 #endif //__cplusplus
+
+#endif // #ifndef RETURNSTATUS_ONLY
 
 #endif // RSA_API_H

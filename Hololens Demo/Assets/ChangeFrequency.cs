@@ -1,10 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using System;
-using RSAAPITest;
 using UnityEngine;
-
-
+using System.Runtime.InteropServices;
 
 public class ChangeFrequency : MonoBehaviour
 {
@@ -16,7 +14,7 @@ public class ChangeFrequency : MonoBehaviour
     private static extern RSAAPITest.ReturnStatus DPX_Reset();
 
     private const double FREQUENCY_MIN =  0.0;
-    private const double FREQUENCY_MAX = 10.0;
+    private const double FREQUENCY_MAX = 10.0e9;
     private double frequency = 2.4453e9;
 
 
@@ -34,18 +32,21 @@ public class ChangeFrequency : MonoBehaviour
 
     public void IncreaseFrequency()
     {
-        if((frequency + 0.01e9) < FREQUENCY_MAX){
+        Debug.Log($"Frequency Before = {frequency} Hz");
+        if ((frequency + 0.01e9) < FREQUENCY_MAX){
             AUDIO_SetFrequencyOffset(frequency + 0.01e9);
             DPX_Reset(); // Reset is necessary as the RSA will not update settings without resetting DPX first
-        } 
-        
+        }
+        Debug.Log($"Frequency After = {frequency} Hz");
     }
 
     public void DecreaseFrequency()
     {
+        Debug.Log($"Frequency Before = {frequency} Hz");
         if((frequency - 0.01e9) > FREQUENCY_MIN){
             AUDIO_SetFrequencyOffset(frequency - 0.01e9);
             DPX_Reset();
-        } 
+        }
+        Debug.Log($"Frequency After = {frequency} Hz");
     }
 }

@@ -62,13 +62,14 @@
     <Compile Include="Assets\fetchDPXFrame.cs" />
     <Compile Include="Assets\DPXVoiceCommands.cs" />
     <Compile Include="Assets\ChangeSpan.cs" />
+    <Compile Include="Assets\RSAAPITest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
     <None Include="Assets\MRTK\Shaders\Text3DShader.shader" />
-    <None Include="Assets\RSA_API\lib\x64\SharedUtils.dll" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
     <None Include="Assets\MRTK\Shaders\InstancedColored.shader" />
+    <None Include="Assets\RSA_API\lib\x64\RSA500API.dll" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
     <None Include="Assets\MRTK\Shaders\ChannelPacker.shader" />
     <None Include="Assets\RSA_API\lib\x86\GPMeasDSP.dll" />
@@ -77,8 +78,8 @@
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF SSD.shader" />
     <None Include="Assets\MRTK\Shaders\InvisibleShader.shader" />
     <None Include="Assets\RSA_API\lib\x86\RSA500API.dll" />
+    <None Include="Assets\RSA_API\lib\x64\GPMeasDSP.dll" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface-Mobile.shader" />
-    <None Include="Assets\RSA_API\lib\x64\RSA500API.dll" />
     <None Include="Assets\MixedRealityToolkit.Generated\link.xml" />
     <None Include="Assets\RSA_API\lib\x86\RSA_API.dll" />
     <None Include="Assets\RSA_API\lib\x86\BaseDSPL.dll" />
@@ -90,23 +91,23 @@
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile SSD.shader" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Properties.cginc" />
+    <None Include="Assets\RSA_API\lib\x64\RSA_API.dll" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Surface.cginc" />
     <None Include="Assets\RSA_API\lib\x64\RSA300API.dll" />
+    <None Include="Assets\RSA_API\lib\x64\SharedUtils.dll" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
     <None Include="Assets\MRTK\Shaders\MixedRealityStandard.shader" />
-    <None Include="Assets\RSA_API\lib\x64\BaseDSPL.dll" />
     <None Include="Assets\MRTK\Shaders\MixedRealityTextMeshPro.shader" />
-    <None Include="Assets\RSA_API\lib\x64\GPMeasDSP.dll" />
     <None Include="Assets\MRTK\Shaders\MRTK_Wireframe.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Masking.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF Overlay.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Mobile.shader" />
+    <None Include="Assets\RSA_API\lib\x64\BaseDSPL.dll" />
     <None Include="Assets\TextMesh Pro\Fonts\LiberationSans - OFL.txt" />
     <None Include="Assets\MRTK\Shaders\DepthBufferPostProcess.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Sprite.shader" />
     <None Include="Assets\MRTK\Shaders\MixedRealityShaderUtils.cginc" />
-    <None Include="Assets\RSA_API\lib\x64\RSA_API.dll" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

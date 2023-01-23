@@ -13,7 +13,7 @@ public class DPXVoiceCommands : MonoBehaviour
     {
         keywords.Add("change frequency", () => {
             ChangeFrequency cfChange = (ChangeFrequency)GameObject.Find("frequency").GetComponent(typeof(ChangeFrequency));
-            cfChange.UpdateFrequency();
+            //cfChange.UpdateFrequency();
         });
         keywords.Add("change reference level", () => {
             ChangeRefLevel refLevelChange = (ChangeRefLevel)GameObject.Find("refLevel").GetComponent(typeof(ChangeRefLevel));

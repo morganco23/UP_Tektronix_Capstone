@@ -20,10 +20,18 @@ public class ChangeSpan : MonoBehaviour
     public void IncreaseSpan()
     {
         span += 1e6;
+        Debug.Log($"Span is now {span}");
+
     }
 
     public void DecreaseSpan()
     {
         span -= 1e6;
+        Debug.Log($"Span is now {span}");
+    }
+
+    public void UpdateSpan() 
+    { 
+    
     }
 }

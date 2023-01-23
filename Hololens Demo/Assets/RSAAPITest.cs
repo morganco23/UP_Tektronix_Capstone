@@ -50,43 +50,43 @@ public class RSAAPITest : MonoBehaviour
 
     public struct DPX_SettingStruct
     {
-        bool enableSpectrum;
-        bool enableSpectrogram;
-        int bitmapWidth;
-        int bitmapHeight;
-        int traceLength;
-        float decayFactor;
-        double actualRBW;
+        public bool enableSpectrum;
+        public bool enableSpectrogram;
+        public int bitmapWidth;
+        public int bitmapHeight;
+        public int traceLength;
+        public float decayFactor;
+        public double actualRBW;
     }
 
-    private struct DPX_FrameBuffer
+    public struct DPX_FrameBuffer
     {
         
         int fftPerFrame;
         Int64 fftCount;
         Int64 frameCount;
-        double timestamp;
+        public double timestamp;
         uint acqDataStatus;
         double minSigDuration;
         bool minSigDurOutOfRange;
-        int spectrumBitmapWidth;
-        int spectrumBitmapHeight;
+        public int spectrumBitmapWidth;
+        public int spectrumBitmapHeight;
         int spectrumBitmapSize;
         int spectrumTraceLength;
         int numSpectrumTraces;
         bool spectrumEnabled;
         bool spectrogramEnabled;
-        [MarshalAs(UnmanagedType.LPArray , SizeConst = 161001)]
-        float[] spectrumBitmap;
-        [MarshalAs(UnmanagedType.LPArray, SizeConst = 161001)]
-        float[][] spectrumTraces;
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 161001)]
+        public float[] spectrumBitmap;
+
+        //float[][] spectrumTraces;
         int sogramBitmapWidth;
         int sogramBitmapHeight;
         int sogramBitmapSize;
         int sogramBitmapNumValidLines;
-        byte[] sogramBitmap;
-        double[] sogramBitmapTimestampArray;
-        double[] sogramBitmapContainTriggerArray;
+        //byte[] sogramBitmap;
+        //double[] sogramBitmapTimestampArray;
+        //double[] sogramBitmapContainTriggerArray;
     }
 
 
@@ -97,6 +97,8 @@ public class RSAAPITest : MonoBehaviour
             StringBuilder name,
             StringBuilder type
         );
+
+    
 
     [DllImport("rsa_api", EntryPoint = "DEVICE_Connect")]
     private static extern ReturnStatus DEVICE_Connect(int id);
@@ -235,6 +237,9 @@ public class RSAAPITest : MonoBehaviour
         UnityEngine.Debug.Log(error);
 
         DPX_SettingStruct dpxSettings = new DPX_SettingStruct();
+
+        //UnityEngine.Debug.Log(dpxSettings.bitmapHeight * dpxSettings.bitmapWidth);
+
         error = CONFIG_SetCenterFreq(2400000.00);
         error = CONFIG_SetCenterFreq(0.00);
         UnityEngine.Debug.Log(error);
@@ -246,7 +251,7 @@ public class RSAAPITest : MonoBehaviour
         error = DPX_SetSpectrumTraceType(2, TraceType.TraceTypeAverage);
 
         error = DPX_GetSettings(ref dpxSettings);
-        //UnityEngine.Debug.Log(dpxSettings);
+        UnityEngine.Debug.Log(dpxSettings.bitmapHeight * dpxSettings.bitmapWidth);
         UnityEngine.Debug.Log(DPX_SetEnable(true));
 
     }
@@ -254,9 +259,6 @@ public class RSAAPITest : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-
-        
         bool doFrame = true;
         // only update once every 2 frames
         if(doFrame)
@@ -267,26 +269,43 @@ public class RSAAPITest : MonoBehaviour
             bool available = false;
             DPX_FrameBuffer fb = new DPX_FrameBuffer();
 
+            //fb.spectrumBitmap = FltPtr Marshal.AllocHGlobal(Marshal.SizeOf(typeof(float)) * fb.spectrumBitmapWidth * fb.spectrumBitmapHeight);
+
+            
+
             rs = DEVICE_Run();
             rs = DPX_Reset();
 
             rs = DPX_IsFrameBufferAvailable(ref ready);
-            UnityEngine.Debug.Log(ready);
+            if(ready)
+            {
+                UnityEngine.Debug.Log("Ready to grab frame");
+            }
+            
+            UnityEngine.Debug.Log("Error: " + rs);
             if(rs == 0 && ready)
             {
                 rs = DPX_IsFrameBufferAvailable(ref available);
-                
                 
             }
             if(available)
             {
                 rs = DPX_GetFrameBuffer(ref fb); // DOES NOT WORK YET
-
-                UnityEngine.Debug.Log("Error is: ");
+                UnityEngine.Debug.Log("timestamp: " + fb.timestamp);
+                //UnityEngine.Debug.Log("Error is: ");
             }
+
+            byte[] a = BitConverter.GetBytes(fb.spectrumBitmap[0]);
+            StringBuilder s = new StringBuilder(a.Length*2);
+            foreach( byte b in a)
+            {
+                s.Append(b.ToString("x2"));
+            }
+            UnityEngine.Debug.Log(s);
             
             // generate bmp file
 
+            
 
         }
         else

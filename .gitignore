@@ -12,3 +12,4 @@ Hololens Demo/Assets/TextMesh Pro/
 Hololens Demo/Assets/MixedRealityToolkit.Generated/CustomProfiles/
 Hololens Demo/Packages/MixedReality/
 Hololens Demo/UserSettings/
+*.log

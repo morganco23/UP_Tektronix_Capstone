@@ -5,16 +5,25 @@ using UnityEngine;
 using System.Diagnostics;
 using System.IO;
 using UnityEngine.UI;
-
-
-
+using ScottPlot;
+using System.Runtime.InteropServices;
+using System.Linq;
 
 public class fetchDPXFrame : MonoBehaviour
 {
+    [DllImport("rsa_api", EntryPoint = "CONFIG_SetReferenceLevel")]
+    private static extern RSAAPITest.ReturnStatus CONFIG_GetReferenceLevel(ref double refLevel);
+
+    [DllImport("rsa_api", EntryPoint = "DPX_GetSettings")]
+    private static extern RSAAPITest.ReturnStatus DPX_GetSettings(ref RSAAPITest.DPX_SettingStruct settings);
+
     RawImage img;
-    public Texture frame;
-    public string imgPath = "Assets/exe.png";
-    public int timer;
+    //public Texture frame;
+    //public string imgPath = "Assets/exe.png";
+    //public int timer;
+    public Plot plt;
+    public double referenceLevel;
+    public RSAAPITest.DPX_SettingStruct dpxSettings;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,13 +32,15 @@ public class fetchDPXFrame : MonoBehaviour
         //run_cmd();
 
         //apply initial texture
-        img = GetComponent<RawImage>();
-        img.texture = frame;
-        img.texture = LoadPNG("Assets/exe_axis.png");
+        plt = new Plot(15, 10);
+		dpxSettings = new RSAAPITest.DPX_SettingStruct();
+        //img = GetComponent<RawImage>();
+        //img.texture = frame;
+        //img.mainTexture = LoadPNG("Assets/exe_axis.png");
         UnityEngine.Debug.Log("initial texture loaded");
 
         //for delay
-        timer = 0;
+        //timer = 0;
 
     }
 
@@ -52,7 +63,7 @@ public class fetchDPXFrame : MonoBehaviour
     void Update()
     {
         //img.texture = frame;
-        if(timer == 0)
+        /*if(timer == 0)
         {
             img.texture = LoadPNG("Assets/exe.png");
             UnityEngine.Debug.Log("update called");
@@ -61,7 +72,16 @@ public class fetchDPXFrame : MonoBehaviour
         else
         {
             timer = timer - 1;
-        }
+        }*/
+        plt.Title("DPX Spectrum Trace");
+        plt.YLabel("Amplitude (dBm)");
+        plt.XLabel("Frequency (Hz)");
+		plt.AxisAuto();
+        DPX_GetSettings(ref dpxSettings);
+        CONFIG_GetReferenceLevel(ref referenceLevel);
+        plt.SetAxisLimitsY(referenceLevel - 100, referenceLevel);
+        plt.SaveFig("Assets/exe_new.png");
+        img.texture = LoadPNG("Assets/exe_new.png");
     }
 
     void createTexture()

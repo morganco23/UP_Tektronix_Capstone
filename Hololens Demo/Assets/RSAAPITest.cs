@@ -48,6 +48,25 @@ public class RSAAPITest : MonoBehaviour
         TraceTypeMinHold
     }
 
+    /*public enum SpectrumWindows
+    {
+        SpectrumWindow_Kaiser,
+        SpecturmWindow_Mil6dB,
+        SpectrumWindow_BlackmanHarris,
+        SpectrumWindow_Rectangular,
+        SpectrumWindow_FlatTop,
+        SpectrumWindow_Hann
+    }
+
+    public enum SpectrumVerticalUnits 
+    {
+        SpectrumVerticalUnit_dBm,
+        SpectrumVerticalUnit_Watt,
+        SpectrumVerticalUnit_Volt,
+        SpectrumVerticalUnit_Amp,
+        SpectrumVerticalUnit_dBmV
+    }*/
+
     public struct DPX_SettingStruct
     {
         bool enableSpectrum;
@@ -58,6 +77,23 @@ public class RSAAPITest : MonoBehaviour
         float decayFactor;
         double actualRBW;
     }
+
+    /*public struct Spectrum_Settings
+    {
+        public double span;
+        public double rbw;
+        bool enableVBW;
+        double vbw;
+        public int traceLength;
+        SpectrumWindows window;
+        SpectrumVerticalUnits verticalUnit;
+        public double actualStartFreq;
+        double actualStopFreq;
+        public double actualFreqStepSize;
+        double actualRBW;
+        double VBW;
+        int actualNumIQSamples;
+    }*/
 
     private struct DPX_FrameBuffer
     {
@@ -214,6 +250,18 @@ public class RSAAPITest : MonoBehaviour
     [DllImport("rsa_api", EntryPoint = "TRIG_SetTriggerPositionPercent")]
     private static extern ReturnStatus TRIG_SetTriggerPositionPercent(double trigPosPercent);
 
+    public struct DPX_Config
+    {
+        public double cf { get; set; }
+        public double refLevel { get; set; }
+        public double span { get; set; }
+        public double rbw { get; set; }
+    }
+
+    public static DPX_Config GetDPXConfigParams(ref DPX_Config dpxConfig) 
+    {
+        return dpxConfig;
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -225,21 +273,21 @@ public class RSAAPITest : MonoBehaviour
         StringBuilder name = new StringBuilder(20);
         ReturnStatus error = DEVICE_Search(ref numDevices, idList, name, type);
 
-        UnityEngine.Debug.Log("num devices found: " + numDevices);
-        UnityEngine.Debug.Log(idList[1]);
+        Debug.Log("num devices found: " + numDevices);
+        Debug.Log(idList[1]);
         error = DEVICE_Connect(idList[0]);
-        UnityEngine.Debug.Log(error);
+        Debug.Log(error);
         StringBuilder hwVersion = new StringBuilder(20);
         error = DEVICE_GetHWVersion(hwVersion);
         // UnityEngine.Debug.Log("error: " + error);
-        UnityEngine.Debug.Log(name);
+        Debug.Log(name);
         error = DEVICE_Run();
-        UnityEngine.Debug.Log(error);
+        Debug.Log(error);
 
         DPX_SettingStruct dpxSettings = new DPX_SettingStruct();
-        error = CONFIG_SetCenterFreq(2400000.00);
-        error = CONFIG_SetCenterFreq(0.00);
-        UnityEngine.Debug.Log(error);
+        error = CONFIG_SetCenterFreq(2400000000.00);
+        error = CONFIG_SetReferenceLevel(0.00);
+        Debug.Log(error);
         
         error = DPX_SetParameters(40000000, 300000, 801, 1, 0, 0, -100, true, 1.0, false);
         error = DPX_Configure(true, false);
@@ -249,7 +297,7 @@ public class RSAAPITest : MonoBehaviour
 
         error = DPX_GetSettings(ref dpxSettings);
         //UnityEngine.Debug.Log(dpxSettings);
-        UnityEngine.Debug.Log(DPX_SetEnable(true));
+        Debug.Log(DPX_SetEnable(true));
 
     }
 
@@ -273,7 +321,7 @@ public class RSAAPITest : MonoBehaviour
             rs = DPX_Reset();
 
             rs = DPX_IsFrameBufferAvailable(ref ready);
-            UnityEngine.Debug.Log(ready);
+            Debug.Log(ready);
             if(rs == 0 && ready)
             {
                 rs = DPX_IsFrameBufferAvailable(ref available);
@@ -284,7 +332,7 @@ public class RSAAPITest : MonoBehaviour
             {
                 rs = DPX_GetFrameBuffer(ref fb); // DOES NOT WORK YET
 
-                UnityEngine.Debug.Log("Error is: ");
+                Debug.Log("Error is: ");
             }
             
             // generate bmp file

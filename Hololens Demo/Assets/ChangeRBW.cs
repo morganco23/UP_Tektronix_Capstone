@@ -1,10 +1,38 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using UnityEngine;
 
 public class ChangeRBW : MonoBehaviour
 {
-    public double rbw = 100e3;
+    // This function returns the current spectrum settings
+    //[DllImport("rsa_api", EntryPoint = "SPECTRUM_GetSettings")]
+    //private static extern RSAAPITest.ReturnStatus SPECTRUM_GetSettings(ref RSAAPITest.Spectrum_Settings settings);
+
+    // This function modifies the spectrum settings
+    //[DllImport("rsa_api", EntryPoint = "SPECTRUM_SetSettings")]
+    //private static extern RSAAPITest.ReturnStatus SPECTRUM_SetSettings(RSAAPITest.Spectrum_Settings settings);
+
+    [DllImport("rsa_api", EntryPoint = "DPX_Configure")]
+    private static extern RSAAPITest.ReturnStatus DPX_Configure(bool enableSpectrum, bool enableSpectrogram);
+	
+	[DllImport("rsa_api", EntryPoint = "DPX_SetParameters")]
+    private static extern RSAAPITest.ReturnStatus DPX_SetParameters(
+       double fspan,
+       double rbw,
+       int bitmapWidth,
+       int tracePtsPerPixel,
+       RSAAPITest.VerticalUnitType yUnit,
+       double yTop,
+       double yBottom,
+       bool infinitePersistence,
+       double persistenceTimeSec,
+       bool showOnlyTrigFrame
+       );
+
+    //public static double rbw = 300e3;
+	public const double RBW_MIN = 0.0;
+    public RSAAPITest.DPX_Config dpxConfig;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,14 +47,31 @@ public class ChangeRBW : MonoBehaviour
 
     public void IncreaseRBW()
     {
-        rbw += 1e3;
-        Debug.Log($"RBW is now {rbw}");
+        RSAAPITest.GetDPXConfigParams(ref dpxConfig);
+        Debug.Log($"The resolution bandwidth before was {dpxConfig.rbw}");
+		DPX_SetParameters(dpxConfig.span, dpxConfig.rbw+1e3, 801, 1, 0, 0, -100, true, 1.0, false);
+        //SPECTRUM_GetSettings(ref specSettings);
+        //specSettings.rbw = rbw + 1e3;
+        //SPECTRUM_SetSettings(specSettings);
+        dpxConfig.rbw += 1e3;
+        DPX_Configure(true, true);
+        Debug.Log($"The resolution bandwidth is now {dpxConfig.rbw}");
     }
 
     public void DecreaseRBW()
     {
-        rbw -= 1e3;
-        Debug.Log($"RBW is now {rbw}");
+        Debug.Log($"The resolution bandwidth before was {dpxConfig.rbw}");
+		if (dpxConfig.rbw-1e3 > 0)
+        {
+            RSAAPITest.GetDPXConfigParams(ref dpxConfig);
+            DPX_SetParameters(dpxConfig.span, dpxConfig.rbw-1e3, 801, 1, 0, 0, -100, true, 1.0, false);
+            //SPECTRUM_GetSettings(ref specSettings);
+            //specSettings.rbw = rbw - 1e3;
+            //SPECTRUM_SetSettings(specSettings);
+            dpxConfig.rbw -= 1e3;
+            DPX_Configure(true, true);
+		}
+        Debug.Log($"The resolution bandwidth is now {dpxConfig.rbw}");
     }
 
     public void UpdateRBW() 

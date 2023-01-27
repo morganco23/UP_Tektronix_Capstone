@@ -1,5 +1,12 @@
 {
   "dependencies": {
+    "com.github-glitchenzo.nugetforunity": {
+      "version": "https://github.com/GlitchEnzo/NuGetForUnity.git?path=/src/NuGetForUnity",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "c9188a99f5209c19c7ee9c0171f8336fdad558bb"
+    },
     "com.microsoft.mixedreality.input": {
       "version": "file:MixedReality/com.microsoft.mixedreality.input-0.9.2006.tgz",
       "depth": 0,

@@ -35,6 +35,7 @@ public class ChangeSpan : MonoBehaviour
     //public static double span = 40e6;
     public const double SPAN_MIN = 0.0;
     public const double SPAN_MAX = 40e6;
+    RSAAPITest.ReturnStatus error;
 
     // Start is called before the first frame update
     void Start()

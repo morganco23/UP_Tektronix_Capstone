@@ -33,6 +33,9 @@ public class ChangeRBW : MonoBehaviour
     //public static double rbw = 300e3;
 	public const double RBW_MIN = 0.0;
     public RSAAPITest.DPX_Config dpxConfig;
+    RSAAPITest.ReturnStatus error;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -49,7 +52,7 @@ public class ChangeRBW : MonoBehaviour
     {
         RSAAPITest.GetDPXConfigParams(ref dpxConfig);
         Debug.Log($"The resolution bandwidth before was {dpxConfig.rbw}");
-		DPX_SetParameters(dpxConfig.span, dpxConfig.rbw+1e3, 801, 1, 0, 0, -100, true, 1.0, false);
+		error = DPX_SetParameters(dpxConfig.span, dpxConfig.rbw+1e3, 801, 1, 0, 0, -100, true, 1.0, false);
         //SPECTRUM_GetSettings(ref specSettings);
         //specSettings.rbw = rbw + 1e3;
         //SPECTRUM_SetSettings(specSettings);

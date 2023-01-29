@@ -17,6 +17,8 @@ public class ChangeRefLevel : MonoBehaviour
     private const double REF_LEVEL_MIN = -130.0;
     private const double REF_LEVEL_MAX = 30.0;
     public double refLevel;
+    RSAAPITest.ReturnStatus error;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -35,8 +37,14 @@ public class ChangeRefLevel : MonoBehaviour
         Debug.Log($"Reference Level is now {refLevel}");
         if ((refLevel + 1.0) <= REF_LEVEL_MAX)
         {
-            CONFIG_SetReferenceLevel(refLevel + 1.0);
-            DPX_Reset(); // Reset is necessary as the RSA will not update settings without resetting DPX first
+            error = CONFIG_SetReferenceLevel(refLevel + 1.0);
+            if(error == 0){
+                DPX_Reset(); // Reset is necessary as the RSA will not update settings without resetting DPX first
+                CONFIG_GetReferenceLevel(ref refLevel);
+
+            } else {
+                Debug.Log($"ERROR: CONFIG_SetReferenceLevel returned error code: {error}.");
+            }
         }
         Debug.Log($"Reference Level is now {refLevel}");
     }
@@ -47,8 +55,14 @@ public class ChangeRefLevel : MonoBehaviour
         Debug.Log($"Reference Level is now {refLevel}");
         if ((refLevel - 1.0) >= REF_LEVEL_MIN)
         {
-            CONFIG_SetReferenceLevel(refLevel - 1.0);
-            DPX_Reset();
+            error = CONFIG_SetReferenceLevel(refLevel + 1.0);
+            if(error == 0){
+                DPX_Reset(); // Reset is necessary as the RSA will not update settings without resetting DPX first
+                CONFIG_GetReferenceLevel(ref refLevel);
+
+            } else {
+                Debug.Log($"ERROR: CONFIG_SetReferenceLevel returned error code: {error}.");
+            }
         }
         Debug.Log($"Reference Level is now {refLevel}");
     }

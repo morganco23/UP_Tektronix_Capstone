@@ -19,6 +19,8 @@ public class ChangeFrequency : MonoBehaviour
     private const double FREQUENCY_MIN =  0.0;
     private const double FREQUENCY_MAX = 10.0e9;
     private double frequency;
+    RSAAPITest.ReturnStatus error;
+    private double updatedFreq = 0;
 
 
     // Start is called before the first frame update
@@ -38,10 +40,20 @@ public class ChangeFrequency : MonoBehaviour
         CONFIG_GetCenterFreq(ref frequency);
         Debug.Log($"Center Frequency Before = {frequency} Hz");
         if ((frequency + 0.01e9) <= FREQUENCY_MAX){
-            CONFIG_SetCenterFreq(frequency + 0.01e9);
-            DPX_Reset(); // Reset is necessary as the RSA will not update settings without resetting DPX first
+            error = CONFIG_SetCenterFreq(frequency + 0.01e9);
+            if(error == 0) {
+                DPX_Reset(); // Reset is necessary as the RSA will not update settings without resetting DPX first
+                CONFIG_GetCenterFreq(ref updatedFreq);
+                CONFIG_GetCenterFreq(ref frequency);
+
+
+            } else {
+                Debug.Log($"ERROR: CONFIG_SetCenterFreq returned error code: {error}.");
+            }
         }
-        Debug.Log($"Center Frequency After = {frequency} Hz");
+        Debug.Log($"(Variable) Center Frequency After = {frequency} Hz");
+        Debug.Log($"(RSA) Updated Frequency = {updatedFreq} Hz");
+
     }
 
     public void DecreaseFrequency()
@@ -50,8 +62,17 @@ public class ChangeFrequency : MonoBehaviour
         Debug.Log($"Center Frequency Before = {frequency} Hz");
         if((frequency - 0.01e9) > FREQUENCY_MIN){
             CONFIG_SetCenterFreq(frequency - 0.01e9);
-            DPX_Reset();
+            if(error == 0) {
+                DPX_Reset(); // Reset is necessary as the RSA will not update settings without resetting DPX first
+                CONFIG_GetCenterFreq(ref updatedFreq);
+                CONFIG_GetCenterFreq(ref frequency);
+
+            } else {
+                Debug.Log($"ERROR: CONFIG_SetCenterFreq returned error code: {error}.");
+            }
         }
-        Debug.Log($"Center Frequency After = {frequency} Hz");
+
+        Debug.Log($"(Variable) Center Frequency After = {frequency} Hz");
+        Debug.Log($"(RSA) Updated Frequency = {updatedFreq} Hz");
     }
 }

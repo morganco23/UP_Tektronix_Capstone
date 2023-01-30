@@ -249,7 +249,6 @@ public class RSAAPITest : MonoBehaviour
 
     private struct DPX_FrameBuffer
     {
-        
         int fftPerFrame;
         Int64 fftCount;
         Int64 frameCount;
@@ -415,7 +414,7 @@ public class RSAAPITest : MonoBehaviour
         return dpxConfig;
     }
 
-    // Start is called before the first frame update
+    // Start is called before the first frame update (Automatically called by Unity on start)
     void Start()
     {
         // Search for device
@@ -453,48 +452,64 @@ public class RSAAPITest : MonoBehaviour
 
     }
 
-    // Update is called once per frame
+    // Update is called once per frame (auto-loops; called after Start())
     void Update()
     {
-        
-        bool doFrame = true;
-        // only update once every 2 frames
-        if(doFrame)
-        {
-            ReturnStatus rs;
-            bool frameAvailable = false;
-            bool ready = false;
-            bool available = false;
-            DPX_FrameBuffer fb = new DPX_FrameBuffer();
+            // TODO: 
+            // 1. Get the latest DPX settings (span, frequency, amplitude).
+            // 2. Call graph function which uses ScottPlot to graph the given settings
 
-            rs = DEVICE_Run();
-            rs = DPX_Reset();
-
-            rs = DPX_IsFrameBufferAvailable(ref ready);
-            Debug.Log(ready);
-            if(rs == 0 && ready)
+            bool doFrame = true;
+            // only update once every 2 frames
+            if(doFrame)
             {
-                rs = DPX_IsFrameBufferAvailable(ref available);
+                ReturnStatus rs;
+                bool frameAvailable = false;
+                bool isAvailable = false;
+                DPX_FrameBuffer fb = new DPX_FrameBuffer();
+
+                rs = DEVICE_Run();
+                if(rs != 0){
+                    Debug.Log($"ERROR: DEVICE_Run error code {rs}");
+                }
+
+                rs = DPX_Reset();
+                if(rs != 0){
+                    Debug.Log($"ERROR: DPX_Reset error code {rs}");
+                }
+
+                rs = DPX_IsFrameBufferAvailable(ref isAvailable);
+                if(rs != 0){
+                    Debug.Log($"ERROR: DPX_IsFrameBufferAvailable error code {rs}");
+                }
+
+                Debug.Log($"STATUS: Is Frame Buffer available: {isAvailable}");
+
+                if(rs == 0 && isAvailable)
+                {
+                    rs = DPX_IsFrameBufferAvailable(ref isAvailable);
+                    if(rs != 0){
+                        Debug.Log($"ERROR: DPX_IsFrameBufferAvailable error code {rs}");
+                    } 
+                }
+
+                if(isAvailable)
+                {
+                    rs = DPX_GetFrameBuffer(ref fb); // DOES NOT WORK YET
+                    Debug.Log("Error is: ");
+                }
                 
+                // generate bmp file
                 
+
+            } else {
+                DPX_FinishFrameBuffer();
             }
-            if(available)
-            {
-                rs = DPX_GetFrameBuffer(ref fb); // DOES NOT WORK YET
 
-                Debug.Log("Error is: ");
-            }
-            
-            // generate bmp file
-
-
+            doFrame = !doFrame;
         }
-        else
-        {
-           DPX_FinishFrameBuffer();
-        }
-        doFrame = !doFrame;
         
 
-    }
 }
+
+ 

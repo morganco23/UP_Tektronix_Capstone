@@ -223,8 +223,8 @@ public class RSAAPITest : MonoBehaviour
     {
         bool enableSpectrum;
         bool enableSpectrogram;
-        int bitmapWidth;
-        int bitmapHeight;
+        public int bitmapWidth;
+        public int bitmapHeight;
         int traceLength;
         float decayFactor;
         double actualRBW;
@@ -247,7 +247,7 @@ public class RSAAPITest : MonoBehaviour
         int actualNumIQSamples;
     }*/
 
-    private struct DPX_FrameBuffer
+    public struct DPX_FrameBuffer
     {
         int fftPerFrame;
         Int64 fftCount;
@@ -256,22 +256,22 @@ public class RSAAPITest : MonoBehaviour
         uint acqDataStatus;
         double minSigDuration;
         bool minSigDurOutOfRange;
-        int spectrumBitmapWidth;
-        int spectrumBitmapHeight;
-        int spectrumBitmapSize;
-        int spectrumTraceLength;
+        public int spectrumBitmapWidth;
+        public int spectrumBitmapHeight;
+        public int spectrumBitmapSize;
+        public int spectrumTraceLength;
         int numSpectrumTraces;
         bool spectrumEnabled;
         bool spectrogramEnabled;
-        [MarshalAs(UnmanagedType.LPArray , SizeConst = 161001)]
-        float[] spectrumBitmap;
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 161001)]
+        public float[] spectrumBitmap;
         [MarshalAs(UnmanagedType.LPArray, SizeConst = 161001)]
-        float[][] spectrumTraces;
-        int sogramBitmapWidth;
-        int sogramBitmapHeight;
-        int sogramBitmapSize;
-        int sogramBitmapNumValidLines;
-        byte[] sogramBitmap;
+        public float[][] spectrumTraces;
+        public int sogramBitmapWidth;
+        public int sogramBitmapHeight;
+        public int sogramBitmapSize;
+        public int sogramBitmapNumValidLines;
+        public byte[] sogramBitmap;
         double[] sogramBitmapTimestampArray;
         double[] sogramBitmapContainTriggerArray;
     }
@@ -409,9 +409,16 @@ public class RSAAPITest : MonoBehaviour
         public double rbw { get; set; }
     }
 
+    public static DPX_FrameBuffer fb;
+
     public static DPX_Config GetDPXConfigParams(ref DPX_Config dpxConfig) 
     {
         return dpxConfig;
+    }
+
+    public static DPX_FrameBuffer GetCurrentFrameBuffer()
+    {
+        return fb;
     }
 
     // Start is called before the first frame update (Automatically called by Unity on start)
@@ -442,10 +449,14 @@ public class RSAAPITest : MonoBehaviour
         
         error = DPX_SetParameters(40000000, 300000, 801, 1, 0, 0, -100, true, 1.0, false);
         error = DPX_Configure(true, false);
-        error = DPX_SetSpectrumTraceType(0, TraceType.TraceTypeMax);
-        error = DPX_SetSpectrumTraceType(1, TraceType.TraceTypeMin);
+        error = DPX_SetSpectrumTraceType(0, TraceType.TraceTypeMaxHold);
+        error = DPX_SetSpectrumTraceType(1, TraceType.TraceTypeMinHold);
         error = DPX_SetSpectrumTraceType(2, TraceType.TraceTypeAverage);
-
+        DPX_Config dpxConfig = new DPX_Config();
+        dpxConfig.cf = 2400000000.00;
+        dpxConfig.refLevel = 0.00;
+        dpxConfig.span = 40000000;
+        dpxConfig.rbw = 300000;
         error = DPX_GetSettings(ref dpxSettings);
         //UnityEngine.Debug.Log(dpxSettings);
         Debug.Log(DPX_SetEnable(true));
@@ -464,7 +475,7 @@ public class RSAAPITest : MonoBehaviour
             if(doFrame)
             {
                 ReturnStatus rs;
-                bool frameAvailable = false;
+                bool frameReady = false;
                 bool isAvailable = false;
                 DPX_FrameBuffer fb = new DPX_FrameBuffer();
 
@@ -487,26 +498,24 @@ public class RSAAPITest : MonoBehaviour
 
                 if(rs == 0 && isAvailable)
                 {
-                    rs = DPX_IsFrameBufferAvailable(ref isAvailable);
+                    rs = DPX_WaitForDataReady(100, ref frameReady);
                     if(rs != 0){
                         Debug.Log($"ERROR: DPX_IsFrameBufferAvailable error code {rs}");
                     } 
                 }
 
-                if(isAvailable)
+                if(frameReady)
                 {
                     rs = DPX_GetFrameBuffer(ref fb); // DOES NOT WORK YET
                     Debug.Log("Error is: ");
                 }
-                
+
                 // generate bmp file
-                
+                doFrame = !doFrame;
 
             } else {
                 DPX_FinishFrameBuffer();
             }
-
-            doFrame = !doFrame;
         }
         
 

@@ -5,7 +5,8 @@ using System.Text;
 using System;
 using UnityEngine;
 
-public class RSAAPITest : MonoBehaviour
+
+public unsafe class RSAAPITest : MonoBehaviour
 {
     public enum ReturnStatus
     {
@@ -59,7 +60,7 @@ public class RSAAPITest : MonoBehaviour
         public double actualRBW;
     }
 
-    public struct DPX_FrameBuffer
+    public unsafe struct DPX_FrameBuffer
     {
         
         int fftPerFrame;
@@ -71,14 +72,14 @@ public class RSAAPITest : MonoBehaviour
         bool minSigDurOutOfRange;
         public int spectrumBitmapWidth;
         public int spectrumBitmapHeight;
-        int spectrumBitmapSize;
+        public int spectrumBitmapSize;
         int spectrumTraceLength;
         int numSpectrumTraces;
         bool spectrumEnabled;
         bool spectrogramEnabled;
         [MarshalAs(UnmanagedType.ByValArray, SizeConst = 161001)]
-        public float[] spectrumBitmap;
-
+        public float* spectrumBitmap;
+        //[MarshalAs(UnmanagedType.ByValArray, SizeConst = 1065353216)]
         //float[][] spectrumTraces;
         int sogramBitmapWidth;
         int sogramBitmapHeight;
@@ -241,18 +242,21 @@ public class RSAAPITest : MonoBehaviour
         //UnityEngine.Debug.Log(dpxSettings.bitmapHeight * dpxSettings.bitmapWidth);
 
         error = CONFIG_SetCenterFreq(2400000.00);
-        error = CONFIG_SetCenterFreq(0.00);
         UnityEngine.Debug.Log(error);
         
-        error = DPX_SetParameters(40000000, 300000, 801, 1, 0, 0, -100, true, 1.0, false);
+        error = DPX_SetParameters(40000000, 300000, 801, 1, 0, 0, -100, false, 1.0, false);
+        UnityEngine.Debug.Log("Error setting DPX parameters?: " + error);
         error = DPX_Configure(true, false);
         error = DPX_SetSpectrumTraceType(0, TraceType.TraceTypeMax);
         error = DPX_SetSpectrumTraceType(1, TraceType.TraceTypeMin);
         error = DPX_SetSpectrumTraceType(2, TraceType.TraceTypeAverage);
+        error = DPX_Configure(true, false);
 
         error = DPX_GetSettings(ref dpxSettings);
-        UnityEngine.Debug.Log(dpxSettings.bitmapHeight * dpxSettings.bitmapWidth);
-        UnityEngine.Debug.Log(DPX_SetEnable(true));
+        
+        DPX_SetEnable(true);
+
+        DEVICE_Run();
 
     }
 
@@ -264,54 +268,47 @@ public class RSAAPITest : MonoBehaviour
         if(doFrame)
         {
             ReturnStatus rs;
-            bool frameAvailable = false;
             bool ready = false;
             bool available = false;
             DPX_FrameBuffer fb = new DPX_FrameBuffer();
 
-            //fb.spectrumBitmap = FltPtr Marshal.AllocHGlobal(Marshal.SizeOf(typeof(float)) * fb.spectrumBitmapWidth * fb.spectrumBitmapHeight);
+            bool isDpxReady = false;
+            rs = DPX_WaitForDataReady(100, ref ready);
 
-            
-
-            rs = DEVICE_Run();
-            rs = DPX_Reset();
-
-            rs = DPX_IsFrameBufferAvailable(ref ready);
-            if(ready)
-            {
-                UnityEngine.Debug.Log("Ready to grab frame");
-            }
-            
-            UnityEngine.Debug.Log("Error: " + rs);
-            if(rs == 0 && ready)
+            // If DPX is ready, check if the frame buffer is available.
+            if (ready)
             {
                 rs = DPX_IsFrameBufferAvailable(ref available);
-                
             }
+
             if(available)
             {
-                rs = DPX_GetFrameBuffer(ref fb); // DOES NOT WORK YET
-                UnityEngine.Debug.Log("timestamp: " + fb.timestamp);
-                //UnityEngine.Debug.Log("Error is: ");
+                rs = DPX_GetFrameBuffer(ref fb);
+                UnityEngine.Debug.Log("grabbed new frame with timestamp: " + fb.timestamp);
             }
+            DPX_FinishFrameBuffer();
+            var bitmapFile = new System.IO.StreamWriter("DPXBitmap1.csv");
 
-            byte[] a = BitConverter.GetBytes(fb.spectrumBitmap[0]);
-            StringBuilder s = new StringBuilder(a.Length*2);
-            foreach( byte b in a)
+            int bitmapWidth = fb.spectrumBitmapWidth;
+            int bitmapHeight = fb.spectrumBitmapHeight;
+            int bitmapSize = fb.spectrumBitmapSize;
+            float* bitmap = fb.spectrumBitmap;
+            //UnityEngine.Debug.Log(bitmap[0]);
+
+            // Generate the bitmap frame.
+            for (int nh = 0; nh < bitmapHeight; nh++)
             {
-                s.Append(b.ToString("x2"));
+                for (int nw = 0; nw < bitmapWidth; nw++)
+                {
+                    bitmapFile.Write("{0},", bitmap[nh * bitmapWidth + nw]);
+                }
+                bitmapFile.WriteLine();
             }
-            UnityEngine.Debug.Log(s);
-            
-            // generate bmp file
-
+            bitmapFile.Close();
             
 
         }
-        else
-        {
-           DPX_FinishFrameBuffer();
-        }
+        
         doFrame = !doFrame;
         
 

@@ -215,6 +215,7 @@ public unsafe class RSAAPITest : MonoBehaviour
     [DllImport("rsa_api", EntryPoint = "TRIG_SetTriggerPositionPercent")]
     private static extern ReturnStatus TRIG_SetTriggerPositionPercent(double trigPosPercent);
 
+    Texture2D tex;
 
     // Start is called before the first frame update
     void Start()
@@ -258,14 +259,21 @@ public unsafe class RSAAPITest : MonoBehaviour
 
         DEVICE_Run();
 
+        GameObject plane = GameObject.Find("Plane");
+        Renderer r = plane.GetComponent<Renderer>();
+        Material mat = r.material;
+
+        tex = new Texture2D(801, 201, TextureFormat.RGBA32, false);
+        mat.mainTexture = tex;
     }
 
     // Update is called once per frame
     void Update()
     {
-        bool doFrame = true;
-        // only update once every 2 frames
-        if(doFrame)
+        DPX_Reset();
+        int c = 0;
+        // only update once every 10 frames
+        if(c % 10 == 0)
         {
             ReturnStatus rs;
             bool ready = false;
@@ -284,32 +292,31 @@ public unsafe class RSAAPITest : MonoBehaviour
             if(available)
             {
                 rs = DPX_GetFrameBuffer(ref fb);
-                UnityEngine.Debug.Log("grabbed new frame with timestamp: " + fb.timestamp);
+                //UnityEngine.Debug.Log("grabbed new frame with timestamp: " + fb.timestamp);
             }
             DPX_FinishFrameBuffer();
-            var bitmapFile = new System.IO.StreamWriter("DPXBitmap1.csv");
 
             int bitmapWidth = fb.spectrumBitmapWidth;
             int bitmapHeight = fb.spectrumBitmapHeight;
             int bitmapSize = fb.spectrumBitmapSize;
             float* bitmap = fb.spectrumBitmap;
-            //UnityEngine.Debug.Log(bitmap[0]);
 
-            // Generate the bitmap frame.
-            for (int nh = 0; nh < bitmapHeight; nh++)
+            // convert float* bitmap to actual colors.
+            Color[] colorArr = new Color[bitmapSize];
+
+            for(int i = 0; i < bitmapSize; i++)
             {
-                for (int nw = 0; nw < bitmapWidth; nw++)
-                {
-                    bitmapFile.Write("{0},", bitmap[nh * bitmapWidth + nw]);
-                }
-                bitmapFile.WriteLine();
+                colorArr[i] = Color.Lerp(Color.green, Color.red, .001f * bitmap[i]);
             }
-            bitmapFile.Close();
+
+            tex.SetPixels(colorArr);
+            tex.Apply();
             
 
+            c = 0;
         }
-        
-        doFrame = !doFrame;
+
+        c++;
         
 
     }

@@ -342,14 +342,14 @@
     <Reference Include="Microsoft.MixedReality.Input.DotNet">
       <HintPath>Library\PackageCache\com.microsoft.mixedreality.input@c707ff4d69e7\Plugins\Windows\Microsoft.MixedReality.Input.DotNet.dll</HintPath>
     </Reference>
-    <Reference Include="ScottPlot">
-      <HintPath>Assets\Packages\ScottPlot.4.1.60\lib\netstandard2.0\ScottPlot.dll</HintPath>
+    <Reference Include="Numpy.Bare">
+      <HintPath>Assets\Packages\Numpy.Bare.3.8.1.28\lib\netstandard2.0\Numpy.Bare.dll</HintPath>
     </Reference>
     <Reference Include="Python.Runtime">
       <HintPath>Assets\Packages\pythonnet_netstandard_py38_win.2.5.1\lib\netstandard2.0\Python.Runtime.dll</HintPath>
     </Reference>
-    <Reference Include="Numpy.Bare">
-      <HintPath>Assets\Packages\Numpy.Bare.3.8.1.28\lib\netstandard2.0\Numpy.Bare.dll</HintPath>
+    <Reference Include="ScottPlot">
+      <HintPath>Assets\Packages\ScottPlot.4.1.60\lib\netstandard2.0\ScottPlot.dll</HintPath>
     </Reference>
     <Reference Include="netstandard">
       <HintPath>C:\Program Files\Unity 2020.3.39f1\Editor\Data\NetStandard\ref\2.0.0\netstandard.dll</HintPath>

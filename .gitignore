@@ -13,3 +13,5 @@ Hololens Demo/Assets/MixedRealityToolkit.Generated/CustomProfiles/
 Hololens Demo/Packages/MixedReality/
 Hololens Demo/UserSettings/
 *.log
+Hololens Demo/obj/Debug/Assembly-CSharp.csproj.AssemblyReference.cache
+Hololens Demo/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache

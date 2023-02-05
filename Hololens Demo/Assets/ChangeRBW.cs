@@ -1,3 +1,5 @@
+using Microsoft.MixedReality.Toolkit.Experimental.UI;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
@@ -76,6 +78,11 @@ public class ChangeRBW : MonoBehaviour
 
     public void UpdateRBW() 
     {
-
+        MixedRealityKeyboard RBWkeyboard = GetComponent<MixedRealityKeyboard>();
+        double newRBW = Convert.ToDouble(RBWkeyboard.Text);
+        RSAAPITest.GetDPXConfigParams(ref dpxConfig);
+        DPX_SetParameters(dpxConfig.span, newRBW, 801, 1, 0, 0, -100, true, 1.0, false);
+        dpxConfig.rbw = newRBW;
+        DPX_Configure(true, true);
     }
 }

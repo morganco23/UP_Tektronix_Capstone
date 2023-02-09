@@ -544,7 +544,7 @@ public class RSAAPITest : MonoBehaviour
         //setting up signal data collection from RSA
         Tuple<NDarray, NDarray> dpxData = ConfigDPX(dpxConfig.cf, dpxConfig.refLevel, dpxConfig.span, dpxSettings);
         DPX_FrameBuffer fb = GetCurrentFrameBuffer();
-        Tuple<NDarray, float[][]> dpxTraceData = ExtractDPXSpectrum(fb);
+        Tuple<Bitmap, float[][]> dpxTraceData = ExtractDPXSpectrum(fb);
         //NDarray dpxogram = ExtractDPXogram(fb);
         NDarray plotFreq = np.linspace(dpxConfig.cf - dpxConfig.span / 2.0, dpxConfig.cf + dpxConfig.span / 2.0, 11) / 1e9;
         
@@ -553,34 +553,45 @@ public class RSAAPITest : MonoBehaviour
         plt.XTicks(np.linspace(0, fb.spectrumBitmapWidth, 11).GetData<double>(), xTicks);
         string[] yTicks = np.linspace(dpxConfig.refLevel, dpxConfig.refLevel - 100, 11).GetData<string>();
         plt.YTicks(np.linspace(0, fb.spectrumBitmapHeight, 11).GetData<double>(), yTicks);
-        string[] colorCodes = { "#440154", "#39568C", "#1F968B", "#73D055" };
-        System.Drawing.Color[] colors = colorCodes.Select(x => ColorTranslator.FromHtml(x)).ToArray();
-        var dpxFreq = dpxData.Item1;
-        double[][] dpxTraces = new double[3][];
-        for (int i = 0; i < 3; i++)
-            dpxTraces[i] = dpxTraceData.Item2[i].Select(dat => Convert.ToDouble(dat)).ToArray();
-        var dpxPlot = plt.AddSignalXY(dpxFreq.GetData<double>(), dpxTraces[0]);
-        dpxPlot.DensityColors = colors;
-        dpxPlot.Color = colors[0];
+        //string[] colorCodes = { "#440154", "#39568C", "#1F968B", "#73D055" };
+        //System.Drawing.Color[] colors = colorCodes.Select(x => ColorTranslator.FromHtml(x)).ToArray();
+        //var dpxFreq = dpxData.Item1;
+        //double[][] dpxTraces = new double[3][];
+        //for (int i = 0; i < 3; i++)
+        //dpxTraces[i] = dpxTraceData.Item2[i].Select(dat => Convert.ToDouble(dat)).ToArray();
+        //var dpxPlot = plt.AddSignalXY(dpxFreq.GetData<double>(), dpxTraces[0]);
+        //dpxPlot.DensityColors = colors;
+        //dpxPlot.Color = colors[0];
         //CONFIG_GetReferenceLevel(ref referenceLevel);
         //plt.SetAxisLimitsY(referenceLevel - 100, referenceLevel);
+        plt.AddImage(dpxTraceData.Item1, 0, 0, anchor: Alignment.LowerLeft);
         plt.Title("DPX Spectrum Trace");
         plt.YLabel("Amplitude (dBm)");
         plt.XLabel("Frequency (Hz)");
         plt.AxisAuto();
-        plt.SaveFig("./Assets/exe_new.png");
+        plt.SaveFig(".Assets/exe_new.png");
     }
 
-    private Tuple<NDarray, float[][]> ExtractDPXSpectrum(DPX_FrameBuffer fb)
+    private Tuple<Bitmap, float[][]> ExtractDPXSpectrum(DPX_FrameBuffer fb)
     {
         NDarray dpxBitmap = np.array(fb.spectrumBitmap.ToList().Take(fb.spectrumBitmapSize).ToArray());
-        dpxBitmap = dpxBitmap.reshape((fb.spectrumBitmapHeight, fb.spectrumBitmapWidth));
+        dpxBitmap = dpxBitmap.reshape((fb.spectrumBitmapWidth, fb.spectrumBitmapHeight));
+        float[][] dpxBitmapData = dpxBitmap.GetData<float[]>();
+        Bitmap dpxBmp = new Bitmap(fb.spectrumBitmapWidth, fb.spectrumBitmapHeight);
+        for (int i = 0; i < dpxBmp.Width; i++)
+        {
+            for (int j = 0; j < dpxBmp.Height; j++)
+            {
+                byte pixelRGB = (byte)(dpxBitmapData[i][j] * 255);
+                dpxBmp.SetPixel(i, j, System.Drawing.Color.FromArgb(pixelRGB, pixelRGB, pixelRGB));
+            }
+        }
         var traces = new float[3][];
         for (int i = 0; i < 3; i++)
         {
             traces[i] = (10 * np.log10(1000 * np.array(fb.spectrumTraces[i].Take(fb.spectrumTraceLength).ToArray())) + 30).GetData<float>();
         }
-        return Tuple.Create(dpxBitmap, traces);
+        return Tuple.Create(dpxBmp, traces);
     }
 
     private Tuple<NDarray, NDarray> ConfigDPX(double cf, double refLevel, double span, DPX_SettingStruct dpxSetting)

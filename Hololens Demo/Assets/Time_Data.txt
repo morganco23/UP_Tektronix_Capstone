@@ -1,0 +1,4 @@
+Average Unity Runtime: ~1.9 FPS
+SignalVue: ~6.0 FPS
+
+Dependent on computer power

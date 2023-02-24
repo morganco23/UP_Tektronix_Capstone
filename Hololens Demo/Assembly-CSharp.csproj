@@ -75,7 +75,6 @@
     <None Include="Assets\MRTK\Shaders\ChannelPacker.shader" />
     <None Include="Assets\RSA_API\lib\x86\GPMeasDSP.dll" />
     <None Include="Assets\RSA_API\lib\x86\SharedUtils.dll" />
-    <None Include="Assets\Packages\Numpy.Bare.3.8.1.28\lib\netstandard2.0\Numpy.Bare.dll" />
     <None Include="Assets\Packages\System.Drawing.Common.4.7.2\lib\netstandard2.0\System.Drawing.Common.dll" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Mobile.cginc" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF SSD.shader" />
@@ -86,7 +85,6 @@
     <None Include="Assets\Packages\System.Drawing.Common.4.7.2\LICENSE.TXT" />
     <None Include="Assets\MixedRealityToolkit.Generated\link.xml" />
     <None Include="Assets\RSA_API\lib\x86\RSA_API.dll" />
-    <None Include="Assets\Packages\pythonnet_netstandard_py38_win.2.5.1\lib\netstandard2.0\Python.Runtime.dll" />
     <None Include="Assets\RSA_API\lib\x86\BaseDSPL.dll" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface.shader" />
     <None Include="Assets\RSA_API\lib\x86\RSA300API.dll" />
@@ -107,7 +105,6 @@
     <None Include="Assets\Packages\System.Drawing.Common.4.7.2\version.txt" />
     <None Include="Assets\MRTK\Shaders\MixedRealityTextMeshPro.shader" />
     <None Include="Assets\MRTK\Shaders\MRTK_Wireframe.shader" />
-    <None Include="Assets\Packages\pythonnet_netstandard_py38_win.2.5.1\lib\netstandard2.0\Python.Runtime.xml" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Masking.shader" />
     <None Include="Assets\Packages\System.Drawing.Common.4.7.2\useSharedDesignerContext.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF Overlay.shader" />
@@ -342,14 +339,11 @@
     <Reference Include="Microsoft.MixedReality.Input.DotNet">
       <HintPath>Library\PackageCache\com.microsoft.mixedreality.input@c707ff4d69e7\Plugins\Windows\Microsoft.MixedReality.Input.DotNet.dll</HintPath>
     </Reference>
-    <Reference Include="Numpy.Bare">
-      <HintPath>Assets\Packages\Numpy.Bare.3.8.1.28\lib\netstandard2.0\Numpy.Bare.dll</HintPath>
-    </Reference>
-    <Reference Include="Python.Runtime">
-      <HintPath>Assets\Packages\pythonnet_netstandard_py38_win.2.5.1\lib\netstandard2.0\Python.Runtime.dll</HintPath>
-    </Reference>
     <Reference Include="ScottPlot">
       <HintPath>Assets\Packages\ScottPlot.4.1.60\lib\netstandard2.0\ScottPlot.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Windows.MixedReality.DotNetWinRT">
+      <HintPath>Library\PackageCache\com.microsoft.windows.mixedreality.dotnetwinrt@c4cffcb2b703\Plugins\Microsoft.Windows.MixedReality.DotNetWinRT.dll</HintPath>
     </Reference>
     <Reference Include="netstandard">
       <HintPath>C:\Program Files\Unity 2020.3.39f1\Editor\Data\NetStandard\ref\2.0.0\netstandard.dll</HintPath>
@@ -950,6 +944,9 @@
     </Reference>
     <Reference Include="Microsoft.MixedReality.Toolkit.StandardAssets.Editor">
       <HintPath>Library\ScriptAssemblies\Microsoft.MixedReality.Toolkit.StandardAssets.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Windows.MixedReality.DotNetWinRT.Editor">
+      <HintPath>Library\ScriptAssemblies\Microsoft.Windows.MixedReality.DotNetWinRT.Editor.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

@@ -6,12 +6,12 @@ using UnityEngine.Windows.Speech;
 
 public class DPXVoiceCommands : MonoBehaviour
 {
-    KeywordRecognizer keywordRecognizer;
-    Dictionary<string, System.Action> keywords = new Dictionary<string, System.Action>();
+    //KeywordRecognizer keywordRecognizer;
+    //Dictionary<string, System.Action> keywords = new Dictionary<string, System.Action>();
     // Start is called before the first frame update
     void Start()
     {
-        keywords.Add("change frequency", () => {
+        /*keywords.Add("change frequency", () => {
             ChangeFrequency cfChange = (ChangeFrequency)GameObject.Find("frequency").GetComponent(typeof(ChangeFrequency));
             //cfChange.UpdateFrequency();
         });
@@ -25,11 +25,11 @@ public class DPXVoiceCommands : MonoBehaviour
         });
         keywords.Add("change bandwidth", () => {
             ChangeRBW rbwChange = (ChangeRBW)GameObject.Find("rbw").GetComponent(typeof(ChangeRBW));
-            rbwChange.UpdateRBW();
+            //rbwChange.UpdateRBW();
         });
         keywordRecognizer = new KeywordRecognizer(keywords.Keys.ToArray());
         keywordRecognizer.OnPhraseRecognized += ChangeSetting_OnPhraseRecognized;
-        keywordRecognizer.Start();
+        keywordRecognizer.Start();*/
     }
 
     // Update is called once per frame
@@ -38,7 +38,7 @@ public class DPXVoiceCommands : MonoBehaviour
 
     }
 
-    private void ChangeSetting_OnPhraseRecognized(PhraseRecognizedEventArgs args)
+    /*private void ChangeSetting_OnPhraseRecognized(PhraseRecognizedEventArgs args)
     {
         System.Action keywordAction;
 
@@ -46,5 +46,5 @@ public class DPXVoiceCommands : MonoBehaviour
         {
             keywordAction.Invoke();
         }
-    }
+    }*/
 }

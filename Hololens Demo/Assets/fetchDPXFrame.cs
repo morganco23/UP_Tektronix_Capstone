@@ -1,21 +1,15 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using System.Diagnostics;
 using System.IO;
 using UnityEngine.UI;
 using ScottPlot;
 using System.Runtime.InteropServices;
-using System.Linq;
-using Numpy;
 using static RSAAPITest;
-using System.Drawing;
 
 public class fetchDPXFrame : MonoBehaviour
 {
     [DllImport("rsa_api", EntryPoint = "CONFIG_SetReferenceLevel")]
-    private static extern RSAAPITest.ReturnStatus CONFIG_GetReferenceLevel(ref double refLevel);
+    private static extern ReturnStatus CONFIG_GetReferenceLevel(ref double refLevel);
 
     [DllImport("rsa_api", EntryPoint = "DPX_GetSettings")]
     private static extern RSAAPITest.ReturnStatus DPX_GetSettings(ref RSAAPITest.DPX_SettingStruct settings);
@@ -61,7 +55,7 @@ public class fetchDPXFrame : MonoBehaviour
         //      plt.XLabel("Frequency (Hz)");
         //      plt.AxisAuto();
         img = GetComponent<RawImage>();
-        //img.texture = LoadPNG("Assets/exe_axis.png");
+        img.texture = LoadPNG("Assets/exe_axis.png");
         //img.mainTexture = LoadPNG("Assets/exe_axis.png");
         UnityEngine.Debug.Log("initial texture loaded");
 
@@ -122,34 +116,6 @@ public class fetchDPXFrame : MonoBehaviour
         //plt.SaveFig("./Assets/exe_new.png");
         img.texture = LoadPNG("./Assets/exe_new.png");
     }
-
-    //private NDarray ExtractDPXogram(DPX_FrameBuffer fb)
-    //{
-    //    NDarray dpxogram = np.array(fb.sogramBitmap.ToList().Take(fb.sogramBitmapSize).ToArray());
-    //    dpxogram = dpxogram.reshape((fb.spectrumBitmapHeight, fb.spectrumBitmapWidth));
-    //    return dpxogram;
-    //}
-
-    //private Tuple<NDarray, float[][]> ExtractDPXSpectrum(DPX_FrameBuffer fb)
-    //{
-    //    NDarray dpxBitmap = np.array(fb.spectrumBitmap.ToList().Take(fb.spectrumBitmapSize).ToArray());
-    //    dpxBitmap = dpxBitmap.reshape((fb.spectrumBitmapHeight, fb.spectrumBitmapWidth));
-    //    var traces = new float[3][];
-    //    for (int i = 0; i < 3; i++)
-    //    {
-    //        traces[i] = (10 * np.log10(1000 * np.array(fb.spectrumTraces[i].Take(fb.spectrumTraceLength).ToArray())) + 30).GetData<float>();
-    //    }
-    //    return Tuple.Create(dpxBitmap, traces);
-    //}
-
-    //private Tuple<NDarray, NDarray> ConfigDPX(double cf, double refLevel, double span, DPX_SettingStruct dpxSetting)
-    //{
-    //    double yTop = refLevel;
-    //    double yBottom = refLevel - 100;
-    //    NDarray dpxFreq = np.linspace((cf - span / 2), (cf + span / 2), dpxSetting.bitmapWidth);
-    //    NDarray dpxAmp = np.linspace(yBottom, yTop, dpxSetting.bitmapHeight);
-    //    return Tuple.Create(dpxFreq, dpxAmp);
-    //}
 
     void createTexture()
     {

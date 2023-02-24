@@ -10,20 +10,20 @@ public class ChangeFrequency : MonoBehaviour
 {
 
     [DllImport("rsa_api", EntryPoint = "CONFIG_SetCenterFreq")]
-    private static extern RSAAPITest.ReturnStatus CONFIG_SetCenterFreq(double centerFreq);
+    private static extern ReturnStatus CONFIG_SetCenterFreq(double centerFreq);
 
     [DllImport("rsa_api", EntryPoint = "CONFIG_GetCenterFreq")]
-    private static extern RSAAPITest.ReturnStatus CONFIG_GetCenterFreq(ref double centerFreq);
+    private static extern ReturnStatus CONFIG_GetCenterFreq(ref double centerFreq);
 
     [DllImport("rsa_api", EntryPoint = "DPX_Reset")]
-    private static extern RSAAPITest.ReturnStatus DPX_Reset();
+    private static extern ReturnStatus DPX_Reset();
 
     private const double FREQUENCY_MIN =  0.0;
     private const double FREQUENCY_MAX = 10.0e9;
     private double frequency;
-    RSAAPITest.ReturnStatus error;
+    private MixedRealityKeyboard freqKeyboard;
+    ReturnStatus error;
     private double updatedFreq = 0;
-    TouchScreenKeyboard freqKeyboard;
     public static string keyboardText = "";
     public DPX_Config dpxConfig;
 
@@ -81,20 +81,23 @@ public class ChangeFrequency : MonoBehaviour
         Debug.Log($"(RSA) Updated Frequency = {updatedFreq} Hz");
     }
 
-    public void UpdateFrequency()
+    public void BeginUpdateFrequency()
     {
         //Calls a touch screen keyboard for user to input value in Ghz
         CONFIG_GetCenterFreq(ref frequency);
         Debug.Log($"(Variable) Center Frequency Before = {frequency} Hz");
-        freqKeyboard = TouchScreenKeyboard.Open("");
-        if (freqKeyboard.status == TouchScreenKeyboard.Status.Done)
-        {
-            double newFrequency = Convert.ToDouble(freqKeyboard.text);
-            CONFIG_SetCenterFreq(newFrequency);
-            GetDPXConfigParams(ref dpxConfig);
-            dpxConfig.cf = frequency;
-            DPX_Reset();
-        }
+        freqKeyboard = GetComponent<MixedRealityKeyboard>();
+        freqKeyboard.ShowKeyboard();
+    }
+
+    public void FinishUpdateFrequency()
+    {
+        double newFrequency = Convert.ToDouble(freqKeyboard.Text);
+        freqKeyboard.HideKeyboard();
+        CONFIG_SetCenterFreq(newFrequency);
+        GetDPXConfigParams(ref dpxConfig);
+        dpxConfig.cf = frequency;
+        DPX_Reset();
         CONFIG_GetCenterFreq(ref frequency);
         Debug.Log($"(Variable) Center Frequency After = {frequency} Hz");
     }

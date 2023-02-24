@@ -35,6 +35,7 @@ public class ChangeRBW : MonoBehaviour
     //public static double rbw = 300e3;
 	public const double RBW_MIN = 0.0;
     public RSAAPITest.DPX_Config dpxConfig;
+    private MixedRealityKeyboard RBWkeyboard;
     // Start is called before the first frame update
     void Start()
     {
@@ -76,9 +77,14 @@ public class ChangeRBW : MonoBehaviour
         Debug.Log($"The resolution bandwidth is now {dpxConfig.rbw}");
     }
 
-    public void UpdateRBW() 
+    public void StartUpdateRBW() 
     {
         MixedRealityKeyboard RBWkeyboard = GetComponent<MixedRealityKeyboard>();
+        RBWkeyboard.ShowKeyboard();
+    }
+
+    public void FinishUpdateRBW()
+    {
         double newRBW = Convert.ToDouble(RBWkeyboard.Text);
         RSAAPITest.GetDPXConfigParams(ref dpxConfig);
         DPX_SetParameters(dpxConfig.span, newRBW, 801, 1, 0, 0, -100, true, 1.0, false);

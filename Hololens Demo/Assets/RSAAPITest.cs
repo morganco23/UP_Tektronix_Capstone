@@ -247,9 +247,7 @@ public unsafe class RSAAPITest : MonoBehaviour
 
         error = DPX_SetParameters(40000000, 300000, 801, 1, 0, 0, -100, false, 10, false);
 
-        error = DPX_SetSpectrumTraceType(0, TraceType.TraceTypeMax);
-        error = DPX_SetSpectrumTraceType(1, TraceType.TraceTypeMin);
-        error = DPX_SetSpectrumTraceType(2, TraceType.TraceTypeAverage);
+        error = DPX_SetSpectrumTraceType(0, TraceType.TraceTypeAverage);
         error = DPX_Configure(true, false);
 
         error = DPX_GetSettings(ref dpxSettings);
@@ -263,11 +261,13 @@ public unsafe class RSAAPITest : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // only update once every 10 frames
+        // call every other frame
         doFrame = !doFrame;
         if (!doFrame)
             return;
 
+
+        // Get DPX Frame
         ReturnStatus rs;
         bool ready = false;
         bool available = false;
@@ -286,7 +286,9 @@ public unsafe class RSAAPITest : MonoBehaviour
                 break;
             }
         }
-        /*
+
+        // Generate text file from trace data
+        
         var traceFile = new System.IO.StreamWriter("DPXdata.txt");
 
         // Acquire the current trace information.
@@ -294,7 +296,7 @@ public unsafe class RSAAPITest : MonoBehaviour
         int numTraces = fb.numSpectrumTraces;
         float** pTraces = fb.spectrumTraces;
         // Print trace information to file.
-        for (int ntr = 0; ntr < numTraces; ntr++)
+        for (int ntr = 0; ntr < numTraces/3; ntr++)
         {
             float* pTrace = pTraces[ntr];
             for (int n = 0; n < traceLen; n++)
@@ -304,15 +306,16 @@ public unsafe class RSAAPITest : MonoBehaviour
         }
             
         traceFile.Close();
-        */
+        
         int bitmapWidth = fb.spectrumBitmapWidth;
         int bitmapHeight = fb.spectrumBitmapHeight;
         int bitmapSize = fb.spectrumBitmapSize;
         float* bitmap = fb.spectrumBitmap;
 
+        // Generate csv of bitmap data
         // convert float* bitmap to actual colors.
         byte[] pngBytes = new byte[bitmapSize];
-        /*
+        
         var bitmapFile = new System.IO.StreamWriter("DPXBitmap1.csv");
 
         for(int nh = 0; nh < bitmapHeight; nh++)
@@ -324,7 +327,7 @@ public unsafe class RSAAPITest : MonoBehaviour
             bitmapFile.WriteLine();
         }
         bitmapFile.Close();
-        */
+        
 
         byte black = 0x89;
         byte other = 0x4A;

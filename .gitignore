@@ -16,3 +16,5 @@ Hololens Demo/Packages/MixedReality/
 Hololens Demo/UserSettings/
 .DS_Store
 Hololens Demo/.vsconfig
+Hololens Demo/Assets/__pycache__/RSA_API.cpython-39.pyc
+*.log

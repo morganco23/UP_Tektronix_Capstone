@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.Text;
 using System;
+using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -306,7 +307,62 @@ public unsafe class RSAAPITest : MonoBehaviour
         }
             
         traceFile.Close();
-        
+
+        // Get and print current directory
+        string currentDirectory = Directory.GetCurrentDirectory();
+        Console.WriteLine("Current directory is: " + currentDirectory);
+
+        // Create ScottPlot object
+        var plt = new ScottPlot.Plot(600, 400);
+        string fileName = "./DPXdata.txt"; // file name to be read from
+
+        // Read line by line from input file and add data values into dataArray
+        List<double> dataList = new List<double>();
+        double[] dataArray = { };
+        try
+        {
+            using (FileStream fs = new FileStream(fileName, FileMode.Open))
+            {
+                using (StreamReader sr = new StreamReader(fs))
+                {
+                    string line;
+                    while ((line = sr.ReadLine()) != null)
+                    {
+                        if (double.TryParse(line, out double value))
+                        {
+                            dataList.Add(value);
+                        }
+                    }
+                }
+            }
+
+            dataArray = dataList.ToArray();
+            Console.WriteLine("Data successfully read from file. Here are the values:");
+        } 
+        catch (FileNotFoundException)
+        {
+            Console.WriteLine("Error: File not found. "  + fileName);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine("Error: " + e.Message);
+        }
+
+        // plot the data values upto index 800
+        var sig = plt.PlotSignal(dataArray, maxRenderIndex: 800);
+
+        // setup plot labels
+        plt.Title("Partial Display of a 1,000,000 Element Array");
+        plt.YLabel("Value");
+        plt.XLabel("Array Index");
+
+        // save plot image
+        plt.AxisAuto();
+        plt.SaveFig("ScottPlotGenerated.png");
+
+
+
+
         int bitmapWidth = fb.spectrumBitmapWidth;
         int bitmapHeight = fb.spectrumBitmapHeight;
         int bitmapSize = fb.spectrumBitmapSize;

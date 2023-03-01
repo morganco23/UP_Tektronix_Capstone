@@ -9,7 +9,159 @@ public class RSAAPITest : MonoBehaviour
 {
     public enum ReturnStatus
     {
-        noError = 0
+        noError = 0,
+
+
+        // Connection
+        errorNotConnected = 101,
+        errorIncompatibleFirmware = 102,
+        errorBootLoaderNotRunning = 103,
+        errorTooManyBootLoadersConnected = 104,
+        errorRebootFailure = 105,
+
+        // POST
+        errorPOSTFailureFPGALoad = 201,
+        errorPOSTFailureHiPower = 202,
+        errorPOSTFailureI2C = 203,
+        errorPOSTFailureGPIF = 204,
+        errorPOSTFailureUsbSpeed = 205,
+        errorPOSTDiagFailure = 206,
+
+        // General Msmt
+        errorBufferAllocFailed = 301,
+        errorParameter = 302,
+        errorDataNotReady = 304,
+
+        // Spectrum
+        errorParameterTraceLength = 1101,
+        errorMeasurementNotEnabled = 1102,
+        errorSpanIsLessThanRBW = 1103,
+        errorFrequencyOutOfRange = 1104,
+
+        // IF streaming
+        errorStreamADCToDiskFileOpen = 1201,
+        errorStreamADCToDiskAlreadyStreaming = 1202,
+        errorStreamADCToDiskBadPath = 1203,
+        errorStreamADCToDiskThreadFailure = 1204,
+        errorStreamedFileInvalidHeader = 1205,
+        errorStreamedFileOpenFailure = 1206,
+        errorStreamingOperationNotSupported = 1207,
+        errorStreamingFastForwardTimeInvalid = 1208,
+        errorStreamingInvalidParameters = 1209,
+        errorStreamingEOF = 1210,
+
+        // IQ streaming
+        errorIQStreamInvalidFileDataType = 1301,
+        errorIQStreamFileOpenFailed = 1302,
+        errorIQStreamBandwidthOutOfRange = 1303,
+
+        // -----------------
+        // Internal errors
+        // -----------------
+        errorTimeout = 3001,
+        errorTransfer = 3002,
+        errorFileOpen = 3003,
+        errorFailed = 3004,
+        errorCRC = 3005,
+        errorChangeToFlashMode = 3006,
+        errorChangeToRunMode = 3007,
+        errorDSPLError = 3008,
+        errorLOLockFailure = 3009,
+        errorExternalReferenceNotEnabled = 3010,
+        errorLogFailure = 3011,
+        errorRegisterIO = 3012,
+        errorFileRead = 3013,
+
+        errorDisconnectedDeviceRemoved = 3101,
+        errorDisconnectedDeviceNodeChangedAndRemoved = 3102,
+        errorDisconnectedTimeoutWaitingForADcData = 3103,
+        errorDisconnectedIOBeginTransfer = 3104,
+        errorOperationNotSupportedInSimMode = 3015,
+
+        errorFPGAConfigureFailure = 3201,
+        errorCalCWNormFailure = 3202,
+        errorSystemAppDataDirectory = 3203,
+        errorFileCreateMRU = 3204,
+        errorDeleteUnsuitableCachePath = 3205,
+        errorUnableToSetFilePermissions = 3206,
+        errorCreateCachePath = 3207,
+        errorCreateCachePathBoost = 3208,
+        errorCreateCachePathStd = 3209,
+        errorCreateCachePathGen = 3210,
+        errorBufferLengthTooSmall = 3211,
+        errorRemoveCachePath = 3212,
+        errorGetCachingDirectoryBoost = 3213,
+        errorGetCachingDirectoryStd = 3214,
+        errorGetCachingDirectoryGen = 3215,
+        errorInconsistentFileSystem = 3216,
+
+        errorWriteCalConfigHeader = 3301,
+        errorWriteCalConfigData = 3302,
+        errorReadCalConfigHeader = 3303,
+        errorReadCalConfigData = 3304,
+        errorEraseCalConfig = 3305,
+        errorCalConfigFileSize = 3306,
+        errorInvalidCalibConstantFileFormat = 3307,
+        errorMismatchCalibConstantsSize = 3308,
+        errorCalConfigInvalid = 3309,
+
+        // flash
+        errorFlashFileSystemUnexpectedSize = 3401,
+        errorFlashFileSystemNotMounted = 3402,
+        errorFlashFileSystemOutOfRange = 3403,
+        errorFlashFileSystemIndexNotFound = 3404,
+        errorFlashFileSystemReadErrorCRC = 3405,
+        errorFlashFileSystemReadFileMissing = 3406,
+        errorFlashFileSystemCreateCacheIndex = 3407,
+        errorFlashFileSystemCreateCachedDataFile = 3408,
+        errorFlashFileSystemUnsupportedFileSize = 3409,
+        errorFlashFileSystemInsufficentSpace = 3410,
+        errorFlashFileSystemInconsistentState = 3411,
+        errorFlashFileSystemTooManyFiles = 3412,
+        errorFlashFileSystemImportFileNotFound = 3413,
+        errorFlashFileSystemImportFileReadError = 3414,
+        errorFlashFileSystemImportFileError = 3415,
+        errorFlashFileSystemFileNotFoundError = 3416,
+        errorFlashFileSystemReadBufferTooSmall = 3417,
+        errorFlashWriteFailure = 3418,
+        errorFlashReadFailure = 3419,
+        errorFlashFileSystemBadArgument = 3420,
+        errorFlashFileSystemCreateFile = 3421,
+
+        // Aux monitoring
+        errorMonitoringNotSupported = 3501,
+        errorAuxDataNotAvailable = 3502,
+
+        // battery
+        errorBatteryCommFailure = 3601,
+        errorBatteryChargerCommFailure = 3602,
+        errorBatteryNotPresent = 3603,
+
+        // EST
+        errorESTOutputPathFile = 3701,
+        errorESTPathNotDirectory = 3702,
+        errorESTPathDoesntExist = 3703,
+        errorESTUnableToOpenLog = 3704,
+        errorESTUnableToOpenLimits = 3705,
+
+        // Revision information
+        errorRevisionDataNotFound = 3801,
+
+        // alignment
+        error112MHzAlignmentSignalLevelTooLow = 3901,
+        error10MHzAlignmentSignalLevelTooLow = 3902,
+        errorInvalidCalConstant = 3903,
+        errorNormalizationCacheInvalid = 3904,
+        errorInvalidAlignmentCache = 3905,
+
+        // acq status
+        errorADCOverrange = 9000,  // must not change the location of these error codes without coordinating with MFG TEST
+        errorOscUnlock = 9001,
+
+        errorNotSupported = 9901,
+
+        errorPlaceholder = 9999,
+        notImplemented = -1
     }
 
     public enum TriggerMode
@@ -48,6 +200,25 @@ public class RSAAPITest : MonoBehaviour
         TraceTypeMinHold
     }
 
+    /*public enum SpectrumWindows
+    {
+        SpectrumWindow_Kaiser,
+        SpecturmWindow_Mil6dB,
+        SpectrumWindow_BlackmanHarris,
+        SpectrumWindow_Rectangular,
+        SpectrumWindow_FlatTop,
+        SpectrumWindow_Hann
+    }
+
+    public enum SpectrumVerticalUnits 
+    {
+        SpectrumVerticalUnit_dBm,
+        SpectrumVerticalUnit_Watt,
+        SpectrumVerticalUnit_Volt,
+        SpectrumVerticalUnit_Amp,
+        SpectrumVerticalUnit_dBmV
+    }*/
+
     public struct DPX_SettingStruct
     {
         bool enableSpectrum;
@@ -58,6 +229,23 @@ public class RSAAPITest : MonoBehaviour
         float decayFactor;
         double actualRBW;
     }
+
+    /*public struct Spectrum_Settings
+    {
+        public double span;
+        public double rbw;
+        bool enableVBW;
+        double vbw;
+        public int traceLength;
+        SpectrumWindows window;
+        SpectrumVerticalUnits verticalUnit;
+        public double actualStartFreq;
+        double actualStopFreq;
+        public double actualFreqStepSize;
+        double actualRBW;
+        double VBW;
+        int actualNumIQSamples;
+    }*/
 
     private struct DPX_FrameBuffer
     {
@@ -212,6 +400,18 @@ public class RSAAPITest : MonoBehaviour
     [DllImport("rsa_api", EntryPoint = "TRIG_SetTriggerPositionPercent")]
     private static extern ReturnStatus TRIG_SetTriggerPositionPercent(double trigPosPercent);
 
+    public struct DPX_Config
+    {
+        public double cf { get; set; }
+        public double refLevel { get; set; }
+        public double span { get; set; }
+        public double rbw { get; set; }
+    }
+
+    public static DPX_Config GetDPXConfigParams(ref DPX_Config dpxConfig) 
+    {
+        return dpxConfig;
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -223,21 +423,21 @@ public class RSAAPITest : MonoBehaviour
         StringBuilder name = new StringBuilder(20);
         ReturnStatus error = DEVICE_Search(ref numDevices, idList, name, type);
 
-        UnityEngine.Debug.Log("num devices found: " + numDevices);
-        UnityEngine.Debug.Log(idList[1]);
+        Debug.Log("num devices found: " + numDevices);
+        Debug.Log(idList[1]);
         error = DEVICE_Connect(idList[0]);
-        UnityEngine.Debug.Log(error);
+        Debug.Log(error);
         StringBuilder hwVersion = new StringBuilder(20);
         error = DEVICE_GetHWVersion(hwVersion);
         // UnityEngine.Debug.Log("error: " + error);
-        UnityEngine.Debug.Log(name);
+        Debug.Log(name);
         error = DEVICE_Run();
-        UnityEngine.Debug.Log(error);
+        Debug.Log(error);
 
         DPX_SettingStruct dpxSettings = new DPX_SettingStruct();
-        error = CONFIG_SetCenterFreq(2400000.00);
-        error = CONFIG_SetCenterFreq(0.00);
-        UnityEngine.Debug.Log(error);
+        error = CONFIG_SetCenterFreq(2400000000.00);
+        error = CONFIG_SetReferenceLevel(0.00);
+        Debug.Log(error);
         
         error = DPX_SetParameters(40000000, 300000, 801, 1, 0, 0, -100, true, 1.0, false);
         error = DPX_Configure(true, false);
@@ -247,15 +447,13 @@ public class RSAAPITest : MonoBehaviour
 
         error = DPX_GetSettings(ref dpxSettings);
         //UnityEngine.Debug.Log(dpxSettings);
-        UnityEngine.Debug.Log(DPX_SetEnable(true));
+        Debug.Log(DPX_SetEnable(true));
 
     }
 
     // Update is called once per frame
     void Update()
     {
-
-
         
         bool doFrame = true;
         // only update once every 2 frames
@@ -271,18 +469,17 @@ public class RSAAPITest : MonoBehaviour
             rs = DPX_Reset();
 
             rs = DPX_IsFrameBufferAvailable(ref ready);
-            UnityEngine.Debug.Log(ready);
+            Debug.Log(ready);
             if(rs == 0 && ready)
             {
                 rs = DPX_IsFrameBufferAvailable(ref available);
-                
                 
             }
             if(available)
             {
                 rs = DPX_GetFrameBuffer(ref fb); // DOES NOT WORK YET
 
-                UnityEngine.Debug.Log("Error is: ");
+                Debug.Log("Error is: ");
             }
             
             // generate bmp file

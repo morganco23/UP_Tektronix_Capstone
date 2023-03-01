@@ -29,7 +29,7 @@ TEKTRONIX CAPSTONE 2021-22
 
 from ctypes import *
 from os import chdir
-from time import sleep
+from time import *
 import os
 import time
 import numpy as np
@@ -42,6 +42,7 @@ import re
 
 #timer to check program runtime
 start = timeit.default_timer()
+start_time = time.time()
 
 from matplotlib import __version__ as __mversion__
 print('Matplotlib Version:', __mversion__)
@@ -121,7 +122,7 @@ def config_DPX(cf=1e9, refLevel=0, span=40e6, rbw=300e3):
                           c_double(1.0), c_bool(False))
     rsa.DPX_SetSogramParameters(c_double(1e-3), c_double(1e-3),
                                 c_double(refLevel), c_double(refLevel - 100))
-    rsa.DPX_Configure(c_bool(True), c_bool(True))
+    rsa.DPX_Configure(c_bool(True), c_bool(False))
 
     rsa.DPX_SetSpectrumTraceType(c_int32(0), c_int(2))
     rsa.DPX_SetSpectrumTraceType(c_int32(1), c_int(4))
@@ -144,7 +145,7 @@ def acquire_dpx_frame():
     while not frameAvailable.value:
         rsa.DPX_IsFrameBufferAvailable(byref(frameAvailable))
         while not ready.value:
-            rsa.DPX_WaitForDataReady(c_int(100), byref(ready))
+            rsa.DPX_WaitForDataReady(c_int(17), byref(ready))
     rsa.DPX_GetFrameBuffer(byref(fb))
     rsa.DPX_FinishFrameBuffer()
     #rsa.DEVICE_Stop()
@@ -209,12 +210,13 @@ def dpx_example():
     quit = Event()
 
     #draw background (once)
-    graph_axis(cf, refLevel, span, rbw)
+    #graph_axis(cf, refLevel, span, rbw)
 
     #spawn new thread to continuously graph dpx frames
     #dpx_thread = Thread(target=dpx_loop,args=(quit, cf, refLevel, span, rbw))
     #dpx_thread.start()
     #print("thread started")
+    #rsa.DEVICE_Run()
     dpx_loop(quit, cf, refLevel, span, rbw)
     #loop to see if graph params are changed
     #to change, in command line type the variable to change followed by
@@ -271,14 +273,18 @@ def dpx_loop(quit, cf, refLevel, span, rbw):
         #     settings_thread = Thread(target=update_settings_loop,args=(quit,input_str,cf,refLevel,span,rbw))
         #     settings_thread.start()
         
-
+        current_time = time.time()
         
         #if the character typed was q, quit break out of loop and 
         #send signal to stop thread
-        graph_axis(cf, refLevel, span, rbw)
+        #graph_axis(cf, refLevel, span, rbw)
+        #print("--- %s Graph Axis Seconds ---" % (time.time() - current_time))
+
+        #current_time = time.time()
         graph_dpx(cf, refLevel, span, rbw)
+        print("--- %s Loop Seconds ---" % (1/(time.time() - current_time)))
         #check if quit was triggered
-        if quit.isSet():
+        if quit.is_set():
             print("quitting...")
             break
 
@@ -320,7 +326,7 @@ def graph_dpx(cf, refLevel, span, rbw):
 
     
 def graph_axis(cf, refLevel, span, rbw):
-
+    current_time = time.time()
     dpxFreq, dpxAmp = config_DPX(cf, refLevel, span, rbw)
     fb = acquire_dpx_frame()
 
@@ -347,6 +353,7 @@ def graph_axis(cf, refLevel, span, rbw):
     filename = pathName + "_axis.png"
     plt.savefig(filename)
     plt.close()
+    #print("--- %s Graph Axis Seconds ---" % (time.time() - current_time))
 
 """################MISC################"""
 def config_trigger(trigMode=TriggerMode.triggered, trigLevel=-10,

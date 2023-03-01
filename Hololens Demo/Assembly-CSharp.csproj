@@ -22,7 +22,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>Temp\Bin\Debug\</OutputPath>
-    <DefineConstants>UNITY_2020_3_39;UNITY_2020_3;UNITY_2020;UNITY_5_3_OR_NEWER;UNITY_5_4_OR_NEWER;UNITY_5_5_OR_NEWER;UNITY_5_6_OR_NEWER;UNITY_2017_1_OR_NEWER;UNITY_2017_2_OR_NEWER;UNITY_2017_3_OR_NEWER;UNITY_2017_4_OR_NEWER;UNITY_2018_1_OR_NEWER;UNITY_2018_2_OR_NEWER;UNITY_2018_3_OR_NEWER;UNITY_2018_4_OR_NEWER;UNITY_2019_1_OR_NEWER;UNITY_2019_2_OR_NEWER;UNITY_2019_3_OR_NEWER;UNITY_2019_4_OR_NEWER;UNITY_2020_1_OR_NEWER;UNITY_2020_2_OR_NEWER;UNITY_2020_3_OR_NEWER;UNITY_INCLUDE_TESTS;USE_SEARCH_ENGINE_API;SCENE_TEMPLATE_MODULE;ENABLE_AR;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_EVENT_QUEUE;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_TEXTURE_STREAMING;ENABLE_VIRTUALTEXTURING;ENABLE_UNET;ENABLE_LZMA;ENABLE_UNITYEVENTS;ENABLE_VR;ENABLE_WEBCAM;ENABLE_UNITYWEBREQUEST;ENABLE_WWW;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_COLLAB;ENABLE_CLOUD_SERVICES_COLLAB_SOFTLOCKS;ENABLE_CLOUD_SERVICES_ADS;ENABLE_CLOUD_SERVICES_USE_WEBREQUEST;ENABLE_CLOUD_SERVICES_CRASH_REPORTING;ENABLE_CLOUD_SERVICES_PURCHASING;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_UNET;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_CLOUD_LICENSE;ENABLE_EDITOR_HUB_LICENSE;ENABLE_WEBSOCKET_CLIENT;ENABLE_DIRECTOR_AUDIO;ENABLE_DIRECTOR_TEXTURE;ENABLE_MANAGED_JOBS;ENABLE_MANAGED_TRANSFORM_JOBS;ENABLE_MANAGED_ANIMATION_JOBS;ENABLE_MANAGED_AUDIO_JOBS;ENABLE_ONSCREEN_KEYBOARD;ENABLE_MANAGED_UNITYTLS;INCLUDE_DYNAMIC_GI;ENABLE_MONO_BDWGC;ENABLE_SCRIPTING_GC_WBARRIERS;RENDER_SOFTWARE_CURSOR;ENABLE_VIDEO;PLATFORM_WINRT;PLATFORM_METRO;UNITY_METRO;UNITY_METRO_API;UNITY_WSA;UNITY_WSA_10_0;UNITY_WINRT_10_0;UNITY_WINRT;ENABLE_MOVIES;ENABLE_CRUNCH_TEXTURE_COMPRESSION;ENABLE_NETWORK;UNITY_PLATFORM_THREAD_TO_CORE_MAPPING;PLATFORM_SUPPORTS_ADS_ID;CURL_STATICLIB;PLATFORM_OVERRIDES_APPLICATION_PACKAGE_NAME;PLATFORM_IMPLEMENTS_ATTACH_DIALOG;DISABLE_PLUGIN_LOAD_WRAPPER;PLATFORM_UPDATES_TIME_OUTSIDE_OF_PLAYER_LOOP;ENABLE_MONO;NET_STANDARD_2_0;ENABLE_PROFILER;DEBUG;TRACE;UNITY_ASSERTIONS;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_WIN;ENABLE_UNITY_COLLECTIONS_CHECKS;ENABLE_BURST_AOT;UNITY_TEAM_LICENSE;ENABLE_CUSTOM_RENDER_TEXTURE;ENABLE_DIRECTOR;ENABLE_LOCALIZATION;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_TILEMAP;ENABLE_TIMELINE;ENABLE_INPUT_SYSTEM;ENABLE_LEGACY_INPUT_MANAGER;CSHARP_7_OR_LATER;CSHARP_7_3_OR_NEWER</DefineConstants>
+    <DefineConstants>UNITY_2020_3_39;UNITY_2020_3;UNITY_2020;UNITY_5_3_OR_NEWER;UNITY_5_4_OR_NEWER;UNITY_5_5_OR_NEWER;UNITY_5_6_OR_NEWER;UNITY_2017_1_OR_NEWER;UNITY_2017_2_OR_NEWER;UNITY_2017_3_OR_NEWER;UNITY_2017_4_OR_NEWER;UNITY_2018_1_OR_NEWER;UNITY_2018_2_OR_NEWER;UNITY_2018_3_OR_NEWER;UNITY_2018_4_OR_NEWER;UNITY_2019_1_OR_NEWER;UNITY_2019_2_OR_NEWER;UNITY_2019_3_OR_NEWER;UNITY_2019_4_OR_NEWER;UNITY_2020_1_OR_NEWER;UNITY_2020_2_OR_NEWER;UNITY_2020_3_OR_NEWER;PLATFORM_ARCH_64;UNITY_64;UNITY_INCLUDE_TESTS;USE_SEARCH_ENGINE_API;SCENE_TEMPLATE_MODULE;ENABLE_AR;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_EVENT_QUEUE;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_TEXTURE_STREAMING;ENABLE_VIRTUALTEXTURING;ENABLE_UNET;ENABLE_LZMA;ENABLE_UNITYEVENTS;ENABLE_VR;ENABLE_WEBCAM;ENABLE_UNITYWEBREQUEST;ENABLE_WWW;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_COLLAB;ENABLE_CLOUD_SERVICES_COLLAB_SOFTLOCKS;ENABLE_CLOUD_SERVICES_ADS;ENABLE_CLOUD_SERVICES_USE_WEBREQUEST;ENABLE_CLOUD_SERVICES_CRASH_REPORTING;ENABLE_CLOUD_SERVICES_PURCHASING;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_UNET;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_CLOUD_LICENSE;ENABLE_EDITOR_HUB_LICENSE;ENABLE_WEBSOCKET_CLIENT;ENABLE_DIRECTOR_AUDIO;ENABLE_DIRECTOR_TEXTURE;ENABLE_MANAGED_JOBS;ENABLE_MANAGED_TRANSFORM_JOBS;ENABLE_MANAGED_ANIMATION_JOBS;ENABLE_MANAGED_AUDIO_JOBS;ENABLE_MANAGED_UNITYTLS;INCLUDE_DYNAMIC_GI;ENABLE_MONO_BDWGC;ENABLE_SCRIPTING_GC_WBARRIERS;PLATFORM_SUPPORTS_MONO;RENDER_SOFTWARE_CURSOR;ENABLE_VIDEO;PLATFORM_STANDALONE;PLATFORM_STANDALONE_WIN;UNITY_STANDALONE_WIN;UNITY_STANDALONE;ENABLE_RUNTIME_GI;ENABLE_MOVIES;ENABLE_NETWORK;ENABLE_CRUNCH_TEXTURE_COMPRESSION;ENABLE_OUT_OF_PROCESS_CRASH_HANDLER;ENABLE_CLUSTER_SYNC;ENABLE_CLUSTERINPUT;PLATFORM_UPDATES_TIME_OUTSIDE_OF_PLAYER_LOOP;GFXDEVICE_WAITFOREVENT_MESSAGEPUMP;ENABLE_WEBSOCKET_HOST;ENABLE_MONO;NET_STANDARD_2_0;ENABLE_PROFILER;DEBUG;TRACE;UNITY_ASSERTIONS;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_WIN;ENABLE_UNITY_COLLECTIONS_CHECKS;ENABLE_BURST_AOT;UNITY_TEAM_LICENSE;ENABLE_CUSTOM_RENDER_TEXTURE;ENABLE_DIRECTOR;ENABLE_LOCALIZATION;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_TILEMAP;ENABLE_TIMELINE;ENABLE_INPUT_SYSTEM;ENABLE_LEGACY_INPUT_MANAGER;CSHARP_7_OR_LATER;CSHARP_7_3_OR_NEWER</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <NoWarn>0169</NoWarn>
@@ -49,19 +49,46 @@
     <UnityProjectGenerator>Package</UnityProjectGenerator>
     <UnityProjectGeneratorVersion>2.0.16</UnityProjectGeneratorVersion>
     <UnityProjectType>Game:1</UnityProjectType>
-    <UnityBuildTarget>WSAPlayer:21</UnityBuildTarget>
+    <UnityBuildTarget>StandaloneWindows64:19</UnityBuildTarget>
     <UnityVersion>2020.3.39f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
     <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\ChangeRBW.cs" />
-    <Compile Include="Assets\ChangeRefLevel.cs" />
-    <Compile Include="Assets\ChangeFrequency.cs" />
+    <Compile Include="Assets\Samples\Mixed Reality Toolkit Examples\2.8.3\Demos - HandTracking\Scripts\LeapCoreAssetsDetector.cs" />
+    <Compile Include="Assets\Samples\Mixed Reality Toolkit Examples\2.8.3\Demos - UX\Dialog\Scripts\DialogExampleController.cs" />
+    <Compile Include="Assets\Samples\Mixed Reality Toolkit Examples\2.8.3\Demos - UX\ProgressIndicator\Scripts\ProgressIndicatorDemoAnimation.cs" />
+    <Compile Include="Assets\Samples\Mixed Reality Toolkit Examples\2.8.3\Demos - UX\Collections\Scripts\GridObjectLayoutControl.cs" />
+    <Compile Include="Assets\Samples\Mixed Reality Toolkit Examples\2.8.3\Demos - UX\Dwell\BaseDwellSample.cs" />
+    <Compile Include="Assets\Samples\Mixed Reality Toolkit Examples\2.8.3\Demos - HandTracking\Scripts\TetheredPlacement.cs" />
+    <Compile Include="Assets\Samples\Mixed Reality Toolkit Examples\2.8.3\Demos - HandTracking\Scripts\HandInteractionTouch.cs" />
+    <Compile Include="Assets\Samples\Mixed Reality Toolkit Examples\2.8.3\Demos - UX\ProgressIndicator\Scripts\IProgressIndicatorDemoObject.cs" />
+    <Compile Include="Assets\Samples\Mixed Reality Toolkit Examples\2.8.3\Demos - UX\ObjectManipulator\Scripts\ReturnToBounds.cs" />
+    <Compile Include="Assets\Samples\Mixed Reality Toolkit Examples\2.8.3\Demos - HandTracking\Scripts\SystemKeyboardExample.cs" />
+    <Compile Include="Assets\Samples\Mixed Reality Toolkit Examples\2.8.3\Demos - HandTracking\Scripts\ToggleBoundingBox.cs" />
+    <Compile Include="Assets\Samples\Mixed Reality Toolkit Examples\2.8.3\Demos - UX\BoundingBox\Scripts\BoundingBoxExampleTest.cs" />
+    <Compile Include="Assets\Samples\Mixed Reality Toolkit Examples\2.8.3\Demos - HandTracking\Scripts\GestureTester.cs" />
+    <Compile Include="Assets\Samples\Mixed Reality Toolkit Examples\2.8.3\Demos - UX\ManipulationHandler\Scripts\ChangeManipulation.cs" />
+    <Compile Include="Assets\Samples\Mixed Reality Toolkit Examples\2.8.3\Demos - UX\Dwell\InstantDwellSample.cs" />
     <Compile Include="Assets\fetchDPXFrame.cs" />
-    <Compile Include="Assets\DPXVoiceCommands.cs" />
-    <Compile Include="Assets\ChangeSpan.cs" />
+    <Compile Include="Assets\Samples\Mixed Reality Toolkit Examples\2.8.3\Demos - UX\ProgressIndicator\Scripts\ProgressIndicatorDemo.cs" />
+    <Compile Include="Assets\Samples\Mixed Reality Toolkit Examples\2.8.3\Demos - HandTracking\Scripts\DebugTextOutput.cs" />
+    <Compile Include="Assets\Samples\Mixed Reality Toolkit Examples\2.8.3\Demos - UX\Dwell\ToggleDwellSample.cs" />
+    <Compile Include="Assets\Samples\Mixed Reality Toolkit Examples\2.8.3\Demos - HandTracking\Scripts\RotateWithPan.cs" />
+    <Compile Include="Assets\Samples\Mixed Reality Toolkit Examples\2.8.3\Demos - HandTracking\Scripts\LeapMotionOrientationDisplay.cs" />
+    <Compile Include="Assets\Samples\Mixed Reality Toolkit Examples\2.8.3\Demos - UX\BoundsControl\Scripts\BoundsControlRuntimeExample.cs" />
+    <Compile Include="Assets\Samples\Mixed Reality Toolkit Examples\2.8.3\Demos - HandTracking\Scripts\GrabTouchExample.cs" />
+    <Compile Include="Assets\Samples\Mixed Reality Toolkit Examples\2.8.3\Demos - UX\Slider\Scripts\SliderLunarLander.cs" />
+    <Compile Include="Assets\Samples\Mixed Reality Toolkit Examples\2.8.3\Demos - HandTracking\Scripts\SolverTrackedTargetType.cs" />
+    <Compile Include="Assets\Samples\Mixed Reality Toolkit Examples\2.8.3\Demos - HandTracking\Scripts\LaunchUri.cs" />
+    <Compile Include="Assets\Samples\Mixed Reality Toolkit Examples\2.8.3\Demos - UX\ProgressIndicator\Scripts\ProgressIndicatorDemoSceneLoad.cs" />
+    <Compile Include="Assets\Samples\Mixed Reality Toolkit Examples\2.8.3\Demos - HandTracking\Scripts\DemoTouchButton.cs" />
+    <Compile Include="Assets\Samples\Mixed Reality Toolkit Examples\2.8.3\Demos - UX\Dwell\ListItemDwell.cs" />
+    <Compile Include="Assets\Samples\Mixed Reality Toolkit Examples\2.8.3\Demos - UX\ProgressIndicator\Scripts\ProgressIndicatorDemoAsyncMethod.cs" />
+    <Compile Include="Assets\Samples\Mixed Reality Toolkit Examples\2.8.3\Demos - HandTracking\Scripts\HandInteractionTouchRotate.cs" />
+    <Compile Include="Assets\ChangeFrequency.cs" />
+    <Compile Include="Assets\RSAAPITest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
@@ -71,19 +98,13 @@
     <None Include="Assets\MRTK\Shaders\InstancedColored.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
     <None Include="Assets\MRTK\Shaders\ChannelPacker.shader" />
-    <None Include="Assets\RSA_API\lib\x86\GPMeasDSP.dll" />
-    <None Include="Assets\RSA_API\lib\x86\SharedUtils.dll" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Mobile.cginc" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF SSD.shader" />
     <None Include="Assets\MRTK\Shaders\InvisibleShader.shader" />
-    <None Include="Assets\RSA_API\lib\x86\RSA500API.dll" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface-Mobile.shader" />
     <None Include="Assets\RSA_API\lib\x64\RSA500API.dll" />
     <None Include="Assets\MixedRealityToolkit.Generated\link.xml" />
-    <None Include="Assets\RSA_API\lib\x86\RSA_API.dll" />
-    <None Include="Assets\RSA_API\lib\x86\BaseDSPL.dll" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface.shader" />
-    <None Include="Assets\RSA_API\lib\x86\RSA300API.dll" />
     <None Include="Assets\TextMesh Pro\Sprites\EmojiOne Attribution.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Custom-Atlas.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF.shader" />
@@ -101,6 +122,7 @@
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Masking.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF Overlay.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Mobile.shader" />
+    <None Include="Assets\Time_Data.txt" />
     <None Include="Assets\TextMesh Pro\Fonts\LiberationSans - OFL.txt" />
     <None Include="Assets\MRTK\Shaders\DepthBufferPostProcess.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile.shader" />
@@ -135,6 +157,12 @@
     </Reference>
     <Reference Include="UnityEngine.ClothModule">
       <HintPath>C:\Program Files\Unity 2020.3.39f1\Editor\Data\Managed\UnityEngine\UnityEngine.ClothModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.ClusterInputModule">
+      <HintPath>C:\Program Files\Unity 2020.3.39f1\Editor\Data\Managed\UnityEngine\UnityEngine.ClusterInputModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.ClusterRendererModule">
+      <HintPath>C:\Program Files\Unity 2020.3.39f1\Editor\Data\Managed\UnityEngine\UnityEngine.ClusterRendererModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.CoreModule">
       <HintPath>C:\Program Files\Unity 2020.3.39f1\Editor\Data\Managed\UnityEngine\UnityEngine.CoreModule.dll</HintPath>
@@ -327,6 +355,9 @@
     </Reference>
     <Reference Include="Microsoft.MixedReality.Input.DotNet">
       <HintPath>Library\PackageCache\com.microsoft.mixedreality.input@c707ff4d69e7\Plugins\Windows\Microsoft.MixedReality.Input.DotNet.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>Library\PackageCache\com.unity.nuget.newtonsoft-json@2.0.2\Runtime\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="netstandard">
       <HintPath>C:\Program Files\Unity 2020.3.39f1\Editor\Data\NetStandard\ref\2.0.0\netstandard.dll</HintPath>
@@ -673,8 +704,14 @@
     <Reference Include="System.Xml.Serialization">
       <HintPath>C:\Program Files\Unity 2020.3.39f1\Editor\Data\NetStandard\compat\2.0.0\shims\netfx\System.Xml.Serialization.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.MixedReality.Toolkit.Providers.XRSDK.Oculus">
-      <HintPath>Library\ScriptAssemblies\Microsoft.MixedReality.Toolkit.Providers.XRSDK.Oculus.dll</HintPath>
+    <Reference Include="Microsoft.MixedReality.GraphicsTools">
+      <HintPath>Library\ScriptAssemblies\Microsoft.MixedReality.GraphicsTools.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.MixedReality.Toolkit.Editor.ServiceInspectors">
+      <HintPath>Library\ScriptAssemblies\Microsoft.MixedReality.Toolkit.Editor.ServiceInspectors.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.MixedReality.Toolkit.StandardAssets.Editor">
+      <HintPath>Library\ScriptAssemblies\Microsoft.MixedReality.Toolkit.StandardAssets.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.MixedReality.Toolkit.Services.InputSystem">
       <HintPath>Library\ScriptAssemblies\Microsoft.MixedReality.Toolkit.Services.InputSystem.dll</HintPath>
@@ -682,8 +719,17 @@
     <Reference Include="Microsoft.MixedReality.Toolkit.SDK.Editor">
       <HintPath>Library\ScriptAssemblies\Microsoft.MixedReality.Toolkit.SDK.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.MixedReality.Toolkit.Diagnostics.Visualization">
+      <HintPath>Library\ScriptAssemblies\Microsoft.MixedReality.Toolkit.Diagnostics.Visualization.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.MixedReality.Toolkit.Input">
+      <HintPath>Library\ScriptAssemblies\Microsoft.MixedReality.Toolkit.Input.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.VSCode.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.VSCode.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.XR.OpenXR.Features.RuntimeDebugger.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.XR.OpenXR.Features.RuntimeDebugger.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.MixedReality.Toolkit.Extensions.Tracking.Editor">
       <HintPath>Library\ScriptAssemblies\Microsoft.MixedReality.Toolkit.Extensions.Tracking.Editor.dll</HintPath>
@@ -706,6 +752,9 @@
     <Reference Include="Microsoft.MixedReality.OpenXR.Editor">
       <HintPath>Library\ScriptAssemblies\Microsoft.MixedReality.OpenXR.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.MixedReality.GraphicsTools.Editor">
+      <HintPath>Library\ScriptAssemblies\Microsoft.MixedReality.GraphicsTools.Editor.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.MixedReality.Toolkit.Extensions.HandPhysics">
       <HintPath>Library\ScriptAssemblies\Microsoft.MixedReality.Toolkit.Extensions.HandPhysics.dll</HintPath>
     </Reference>
@@ -718,6 +767,9 @@
     <Reference Include="Microsoft.MixedReality.Input.Editor">
       <HintPath>Library\ScriptAssemblies\Microsoft.MixedReality.Input.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.MixedReality.Toolkit.Async">
+      <HintPath>Library\ScriptAssemblies\Microsoft.MixedReality.Toolkit.Async.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEditor.UI">
       <HintPath>Library\ScriptAssemblies\UnityEditor.UI.dll</HintPath>
     </Reference>
@@ -727,17 +779,17 @@
     <Reference Include="Unity.Rider.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.Rider.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.MixedReality.Toolkit.SpatialManipulation">
+      <HintPath>Library\ScriptAssemblies\Microsoft.MixedReality.Toolkit.SpatialManipulation.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.MixedReality.Toolkit.Services.InputSystem.Editor">
       <HintPath>Library\ScriptAssemblies\Microsoft.MixedReality.Toolkit.Services.InputSystem.Editor.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.MixedReality.Toolkit.Services.SceneSystem">
-      <HintPath>Library\ScriptAssemblies\Microsoft.MixedReality.Toolkit.Services.SceneSystem.dll</HintPath>
+    <Reference Include="Microsoft.MixedReality.Toolkit.UXCore.Editor">
+      <HintPath>Library\ScriptAssemblies\Microsoft.MixedReality.Toolkit.UXCore.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.SpatialTracking">
       <HintPath>Library\ScriptAssemblies\UnityEngine.SpatialTracking.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.MixedReality.Toolkit.Providers.XRSDK.Oculus.Handtracking.Editor">
-      <HintPath>Library\ScriptAssemblies\Microsoft.MixedReality.Toolkit.Providers.XRSDK.Oculus.Handtracking.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UI">
       <HintPath>Library\ScriptAssemblies\UnityEngine.UI.dll</HintPath>
@@ -745,8 +797,20 @@
     <Reference Include="Microsoft.MixedReality.Toolkit.Extensions.SceneTransitionService">
       <HintPath>Library\ScriptAssemblies\Microsoft.MixedReality.Toolkit.Extensions.SceneTransitionService.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.MixedReality.Toolkit.Data.Editor">
+      <HintPath>Library\ScriptAssemblies\Microsoft.MixedReality.Toolkit.Data.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.MixedReality.Toolkit.Services.SceneSystem">
+      <HintPath>Library\ScriptAssemblies\Microsoft.MixedReality.Toolkit.Services.SceneSystem.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.MixedReality.Toolkit.SDK.Experimental.Editor.Interactive">
       <HintPath>Library\ScriptAssemblies\Microsoft.MixedReality.Toolkit.SDK.Experimental.Editor.Interactive.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.XR.CoreUtils.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.XR.CoreUtils.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.MixedReality.Toolkit.Providers.XRSDK.Oculus.Handtracking.Editor">
+      <HintPath>Library\ScriptAssemblies\Microsoft.MixedReality.Toolkit.Providers.XRSDK.Oculus.Handtracking.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.MixedReality.Toolkit.Providers.WindowsSceneUnderstanding.Editor">
       <HintPath>Library\ScriptAssemblies\Microsoft.MixedReality.Toolkit.Providers.WindowsSceneUnderstanding.Editor.dll</HintPath>
@@ -756,6 +820,9 @@
     </Reference>
     <Reference Include="Microsoft.MixedReality.Toolkit.GpuStats">
       <HintPath>Library\ScriptAssemblies\Microsoft.MixedReality.Toolkit.GpuStats.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.MixedReality.Toolkit.Accessibility.Editor">
+      <HintPath>Library\ScriptAssemblies\Microsoft.MixedReality.Toolkit.Accessibility.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.MixedReality.Toolkit.Editor.Utilities">
       <HintPath>Library\ScriptAssemblies\Microsoft.MixedReality.Toolkit.Editor.Utilities.dll</HintPath>
@@ -781,23 +848,32 @@
     <Reference Include="Unity.XR.Management">
       <HintPath>Library\ScriptAssemblies\Unity.XR.Management.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.MixedReality.Toolkit.Accessibility">
+      <HintPath>Library\ScriptAssemblies\Microsoft.MixedReality.Toolkit.Accessibility.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.XR.ARSubsystems">
       <HintPath>Library\ScriptAssemblies\Unity.XR.ARSubsystems.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.MixedReality.Toolkit.Editor.Inspectors">
       <HintPath>Library\ScriptAssemblies\Microsoft.MixedReality.Toolkit.Editor.Inspectors.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.MixedReality.Toolkit.SDK.Experimental.Interactive">
-      <HintPath>Library\ScriptAssemblies\Microsoft.MixedReality.Toolkit.SDK.Experimental.Interactive.dll</HintPath>
+    <Reference Include="FigmaToolkit">
+      <HintPath>Library\ScriptAssemblies\FigmaToolkit.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.MixedReality.Toolkit.Providers.LeapMotion">
       <HintPath>Library\ScriptAssemblies\Microsoft.MixedReality.Toolkit.Providers.LeapMotion.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.XR.ARFoundation.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.XR.ARFoundation.Editor.dll</HintPath>
+    <Reference Include="Microsoft.MixedReality.Toolkit.UXComponents.NonCanvas">
+      <HintPath>Library\ScriptAssemblies\Microsoft.MixedReality.Toolkit.UXComponents.NonCanvas.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.MixedReality.Toolkit.Providers.WindowsMixedReality.Shared">
       <HintPath>Library\ScriptAssemblies\Microsoft.MixedReality.Toolkit.Providers.WindowsMixedReality.Shared.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.XR.ARFoundation.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.XR.ARFoundation.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.MixedReality.Toolkit.SDK.Experimental.Interactive">
+      <HintPath>Library\ScriptAssemblies\Microsoft.MixedReality.Toolkit.SDK.Experimental.Interactive.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.MixedReality.Toolkit.SDK">
       <HintPath>Library\ScriptAssemblies\Microsoft.MixedReality.Toolkit.SDK.dll</HintPath>
@@ -805,8 +881,17 @@
     <Reference Include="Microsoft.MixedReality.Toolkit.Examples">
       <HintPath>Library\ScriptAssemblies\Microsoft.MixedReality.Toolkit.Examples.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.MixedReality.Toolkit.Core.Editor">
+      <HintPath>Library\ScriptAssemblies\Microsoft.MixedReality.Toolkit.Core.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.MixedReality.Toolkit.Input.Editor">
+      <HintPath>Library\ScriptAssemblies\Microsoft.MixedReality.Toolkit.Input.Editor.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.MixedReality.Toolkit.Services.SpatialAwarenessSystem">
       <HintPath>Library\ScriptAssemblies\Microsoft.MixedReality.Toolkit.Services.SpatialAwarenessSystem.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.MixedReality.Toolkit.Data">
+      <HintPath>Library\ScriptAssemblies\Microsoft.MixedReality.Toolkit.Data.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.MixedReality.Toolkit.Providers.WindowsVoiceInput">
       <HintPath>Library\ScriptAssemblies\Microsoft.MixedReality.Toolkit.Providers.WindowsVoiceInput.dll</HintPath>
@@ -825,6 +910,9 @@
     </Reference>
     <Reference Include="Unity.Timeline">
       <HintPath>Library\ScriptAssemblies\Unity.Timeline.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.MixedReality.Toolkit.Speech.Windows">
+      <HintPath>Library\ScriptAssemblies\Microsoft.MixedReality.Toolkit.Speech.Windows.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
       <HintPath>Library\ScriptAssemblies\Unity.TextMeshPro.dll</HintPath>
@@ -847,14 +935,26 @@
     <Reference Include="Unity.PlasticSCM.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.PlasticSCM.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.MixedReality.Toolkit.UXComponents.Editor">
+      <HintPath>Library\ScriptAssemblies\Microsoft.MixedReality.Toolkit.UXComponents.Editor.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.XR.OpenXR.Features.OculusQuestSupport">
       <HintPath>Library\ScriptAssemblies\Unity.XR.OpenXR.Features.OculusQuestSupport.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.MixedReality.OpenXR">
       <HintPath>Library\ScriptAssemblies\Microsoft.MixedReality.OpenXR.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.MixedReality.Toolkit.Diagnostics">
+      <HintPath>Library\ScriptAssemblies\Microsoft.MixedReality.Toolkit.Diagnostics.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.MixedReality.Toolkit.Providers.XRSDK">
       <HintPath>Library\ScriptAssemblies\Microsoft.MixedReality.Toolkit.Providers.XRSDK.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.MixedReality.Toolkit.TextToSpeech.Windows">
+      <HintPath>Library\ScriptAssemblies\Microsoft.MixedReality.Toolkit.TextToSpeech.Windows.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.MixedReality.Toolkit.UXCore">
+      <HintPath>Library\ScriptAssemblies\Microsoft.MixedReality.Toolkit.UXCore.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.XR.LegacyInputHelpers">
       <HintPath>Library\ScriptAssemblies\UnityEngine.XR.LegacyInputHelpers.dll</HintPath>
@@ -868,6 +968,9 @@
     <Reference Include="Unity.XR.OpenXR.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.XR.OpenXR.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.MixedReality.Toolkit.Audio">
+      <HintPath>Library\ScriptAssemblies\Microsoft.MixedReality.Toolkit.Audio.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.MixedReality.Toolkit.Editor.ClassExtensions">
       <HintPath>Library\ScriptAssemblies\Microsoft.MixedReality.Toolkit.Editor.ClassExtensions.dll</HintPath>
     </Reference>
@@ -877,17 +980,23 @@
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.Timeline.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.XR.CoreUtils">
+      <HintPath>Library\ScriptAssemblies\Unity.XR.CoreUtils.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.MixedReality.MovingPlatformLib.Editor">
       <HintPath>Library\ScriptAssemblies\Microsoft.MixedReality.MovingPlatformLib.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.XR.LegacyInputHelpers">
       <HintPath>Library\ScriptAssemblies\UnityEditor.XR.LegacyInputHelpers.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.MixedReality.Toolkit.Core">
+      <HintPath>Library\ScriptAssemblies\Microsoft.MixedReality.Toolkit.Core.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.MixedReality.Toolkit.Providers.UnityAR.Editor">
       <HintPath>Library\ScriptAssemblies\Microsoft.MixedReality.Toolkit.Providers.UnityAR.Editor.dll</HintPath>
     </Reference>
-    <Reference Include="MRTK.OpenXR.Editor">
-      <HintPath>Library\ScriptAssemblies\MRTK.OpenXR.Editor.dll</HintPath>
+    <Reference Include="Microsoft.MixedReality.Toolkit.Providers.OpenXR.Editor">
+      <HintPath>Library\ScriptAssemblies\Microsoft.MixedReality.Toolkit.Providers.OpenXR.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.MixedReality.Toolkit.Services.DiagnosticsSystem">
       <HintPath>Library\ScriptAssemblies\Microsoft.MixedReality.Toolkit.Services.DiagnosticsSystem.dll</HintPath>
@@ -895,8 +1004,14 @@
     <Reference Include="Unity.XR.OpenXR">
       <HintPath>Library\ScriptAssemblies\Unity.XR.OpenXR.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.MixedReality.Toolkit.Async">
-      <HintPath>Library\ScriptAssemblies\Microsoft.MixedReality.Toolkit.Async.dll</HintPath>
+    <Reference Include="Unity.XR.Interaction.Toolkit.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.XR.Interaction.Toolkit.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.MixedReality.Toolkit.Speech.Windows.Editor">
+      <HintPath>Library\ScriptAssemblies\Microsoft.MixedReality.Toolkit.Speech.Windows.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.XR.Interaction.Toolkit">
+      <HintPath>Library\ScriptAssemblies\Unity.XR.Interaction.Toolkit.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.SpatialTracking">
       <HintPath>Library\ScriptAssemblies\UnityEditor.SpatialTracking.dll</HintPath>
@@ -910,8 +1025,11 @@
     <Reference Include="Microsoft.MixedReality.Toolkit.SDK.Experimental.Editor">
       <HintPath>Library\ScriptAssemblies\Microsoft.MixedReality.Toolkit.SDK.Experimental.Editor.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.XR.OpenXR.Features.RuntimeDebugger.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.XR.OpenXR.Features.RuntimeDebugger.Editor.dll</HintPath>
+    <Reference Include="Microsoft.MixedReality.Toolkit.SpatialManipulation.Editor">
+      <HintPath>Library\ScriptAssemblies\Microsoft.MixedReality.Toolkit.SpatialManipulation.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.MixedReality.Toolkit.UXComponents">
+      <HintPath>Library\ScriptAssemblies\Microsoft.MixedReality.Toolkit.UXComponents.dll</HintPath>
     </Reference>
     <Reference Include="Unity.XR.ARFoundation">
       <HintPath>Library\ScriptAssemblies\Unity.XR.ARFoundation.dll</HintPath>
@@ -919,14 +1037,15 @@
     <Reference Include="Microsoft.MixedReality.Toolkit.Tools">
       <HintPath>Library\ScriptAssemblies\Microsoft.MixedReality.Toolkit.Tools.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.MixedReality.Toolkit.Editor.ServiceInspectors">
-      <HintPath>Library\ScriptAssemblies\Microsoft.MixedReality.Toolkit.Editor.ServiceInspectors.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.MixedReality.Toolkit.StandardAssets.Editor">
-      <HintPath>Library\ScriptAssemblies\Microsoft.MixedReality.Toolkit.StandardAssets.Editor.dll</HintPath>
+    <Reference Include="Microsoft.MixedReality.Toolkit.Providers.XRSDK.Oculus">
+      <HintPath>Library\ScriptAssemblies\Microsoft.MixedReality.Toolkit.Providers.XRSDK.Oculus.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="Microsoft.MixedReality.Toolkit.Demos.UX.Interactables.csproj">
+      <Project>{B1ECF758-9CF2-0C54-E491-5B8DD8677FBF}</Project>
+      <Name>Microsoft.MixedReality.Toolkit.Demos.UX.Interactables</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />

@@ -25,7 +25,7 @@ public class fetchDPXFrame : MonoBehaviour
         //apply initial texture
         img = GetComponent<RawImage>();
         img.texture = frame;
-        img.texture = LoadPNG("Assets/exe_axis.png");
+        //img.texture = LoadPNG("Assets/exe_axis.png");
         UnityEngine.Debug.Log("initial texture loaded");
 
         //for delay
@@ -54,9 +54,9 @@ public class fetchDPXFrame : MonoBehaviour
         //img.texture = frame;
         if(timer == 0)
         {
-            img.texture = LoadPNG("Assets/exe.png");
+            img.texture = LoadPNG("test.png");
             UnityEngine.Debug.Log("update called");
-            timer = 10;
+            timer = 2;
         }
         else
         {

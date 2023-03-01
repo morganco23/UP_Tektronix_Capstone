@@ -4,6 +4,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 
 public unsafe class RSAAPITest : MonoBehaviour
@@ -73,21 +74,19 @@ public unsafe class RSAAPITest : MonoBehaviour
         public int spectrumBitmapWidth;
         public int spectrumBitmapHeight;
         public int spectrumBitmapSize;
-        int spectrumTraceLength;
-        int numSpectrumTraces;
+        public int spectrumTraceLength;
+        public int numSpectrumTraces;
         bool spectrumEnabled;
         bool spectrogramEnabled;
-        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 161001)]
         public float* spectrumBitmap;
-        //[MarshalAs(UnmanagedType.ByValArray, SizeConst = 1065353216)]
-        //float[][] spectrumTraces;
+        public float** spectrumTraces;
         int sogramBitmapWidth;
         int sogramBitmapHeight;
         int sogramBitmapSize;
         int sogramBitmapNumValidLines;
-        //byte[] sogramBitmap;
-        //double[] sogramBitmapTimestampArray;
-        //double[] sogramBitmapContainTriggerArray;
+        byte* sogramBitmap;
+        double* sogramBitmapTimestampArray;
+        double* sogramBitmapContainTriggerArray;
     }
 
 
@@ -215,11 +214,14 @@ public unsafe class RSAAPITest : MonoBehaviour
     [DllImport("rsa_api", EntryPoint = "TRIG_SetTriggerPositionPercent")]
     private static extern ReturnStatus TRIG_SetTriggerPositionPercent(double trigPosPercent);
 
-    Texture2D tex;
+    bool doFrame;
+    RawImage img;
 
     // Start is called before the first frame update
     void Start()
     {
+        doFrame = false;
+        img = GetComponent<RawImage>();
         // Search for device
         int numDevices = 0;
         int[] idList = new int[20];
@@ -228,26 +230,23 @@ public unsafe class RSAAPITest : MonoBehaviour
         ReturnStatus error = DEVICE_Search(ref numDevices, idList, name, type);
 
         UnityEngine.Debug.Log("num devices found: " + numDevices);
-        UnityEngine.Debug.Log(idList[1]);
         error = DEVICE_Connect(idList[0]);
         UnityEngine.Debug.Log(error);
         StringBuilder hwVersion = new StringBuilder(20);
         error = DEVICE_GetHWVersion(hwVersion);
-        // UnityEngine.Debug.Log("error: " + error);
-        UnityEngine.Debug.Log(name);
-        error = DEVICE_Run();
-        UnityEngine.Debug.Log(error);
+        
 
         DPX_SettingStruct dpxSettings = new DPX_SettingStruct();
 
         //UnityEngine.Debug.Log(dpxSettings.bitmapHeight * dpxSettings.bitmapWidth);
 
-        error = CONFIG_SetCenterFreq(2400000.00);
-        UnityEngine.Debug.Log(error);
-        
-        error = DPX_SetParameters(40000000, 300000, 801, 1, 0, 0, -100, false, 1.0, false);
-        UnityEngine.Debug.Log("Error setting DPX parameters?: " + error);
-        error = DPX_Configure(true, false);
+            
+
+        error = CONFIG_SetCenterFreq(2400000000.00);
+        CONFIG_SetReferenceLevel(-10.0);
+
+        error = DPX_SetParameters(40000000, 300000, 801, 1, 0, 0, -100, false, 10, false);
+
         error = DPX_SetSpectrumTraceType(0, TraceType.TraceTypeMax);
         error = DPX_SetSpectrumTraceType(1, TraceType.TraceTypeMin);
         error = DPX_SetSpectrumTraceType(2, TraceType.TraceTypeAverage);
@@ -259,65 +258,95 @@ public unsafe class RSAAPITest : MonoBehaviour
 
         DEVICE_Run();
 
-        GameObject plane = GameObject.Find("Plane");
-        Renderer r = plane.GetComponent<Renderer>();
-        Material mat = r.material;
-
-        tex = new Texture2D(801, 201, TextureFormat.RGBA32, false);
-        mat.mainTexture = tex;
     }
 
     // Update is called once per frame
     void Update()
     {
-        DPX_Reset();
-        int c = 0;
         // only update once every 10 frames
-        if(c % 10 == 0)
+        doFrame = !doFrame;
+        if (!doFrame)
+            return;
+
+        ReturnStatus rs;
+        bool ready = false;
+        bool available = false;
+        var fb = new DPX_FrameBuffer();
+
+        bool isDpxReady = false;
+        rs = DPX_WaitForDataReady(1000, ref ready);
+
+        // If DPX is ready, check if the frame buffer is available.
+        while (ready)
         {
-            ReturnStatus rs;
-            bool ready = false;
-            bool available = false;
-            DPX_FrameBuffer fb = new DPX_FrameBuffer();
-
-            bool isDpxReady = false;
-            rs = DPX_WaitForDataReady(100, ref ready);
-
-            // If DPX is ready, check if the frame buffer is available.
-            if (ready)
+            rs = DPX_IsFrameBufferAvailable(ref available);
+            if (available)
             {
-                rs = DPX_IsFrameBufferAvailable(ref available);
+                DPX_GetFrameBuffer(ref fb);
+                break;
             }
+        }
+        /*
+        var traceFile = new System.IO.StreamWriter("DPXdata.txt");
 
-            if(available)
+        // Acquire the current trace information.
+        int traceLen = fb.spectrumTraceLength;
+        int numTraces = fb.numSpectrumTraces;
+        float** pTraces = fb.spectrumTraces;
+        // Print trace information to file.
+        for (int ntr = 0; ntr < numTraces; ntr++)
+        {
+            float* pTrace = pTraces[ntr];
+            for (int n = 0; n < traceLen; n++)
             {
-                rs = DPX_GetFrameBuffer(ref fb);
-                //UnityEngine.Debug.Log("grabbed new frame with timestamp: " + fb.timestamp);
+                traceFile.WriteLine("{0}\n", 10 * Math.Log10(pTrace[n] * 1e3));
             }
-            DPX_FinishFrameBuffer();
-
-            int bitmapWidth = fb.spectrumBitmapWidth;
-            int bitmapHeight = fb.spectrumBitmapHeight;
-            int bitmapSize = fb.spectrumBitmapSize;
-            float* bitmap = fb.spectrumBitmap;
-
-            // convert float* bitmap to actual colors.
-            Color[] colorArr = new Color[bitmapSize];
-
-            for(int i = 0; i < bitmapSize; i++)
-            {
-                colorArr[i] = Color.Lerp(Color.green, Color.red, .001f * bitmap[i]);
-            }
-
-            tex.SetPixels(colorArr);
-            tex.Apply();
+        }
             
+        traceFile.Close();
+        */
+        int bitmapWidth = fb.spectrumBitmapWidth;
+        int bitmapHeight = fb.spectrumBitmapHeight;
+        int bitmapSize = fb.spectrumBitmapSize;
+        float* bitmap = fb.spectrumBitmap;
 
-            c = 0;
+        // convert float* bitmap to actual colors.
+        byte[] pngBytes = new byte[bitmapSize];
+        /*
+        var bitmapFile = new System.IO.StreamWriter("DPXBitmap1.csv");
+
+        for(int nh = 0; nh < bitmapHeight; nh++)
+        {
+            for (int nw = 0; nw < bitmapWidth; nw++)
+            {
+                bitmapFile.Write("{0},", bitmap[nh * bitmapWidth + nw]);
+            }
+            bitmapFile.WriteLine();
+        }
+        bitmapFile.Close();
+        */
+
+        byte black = 0x89;
+        byte other = 0x4A;
+
+        for (int i = 0; i < bitmapSize; i++)
+        {
+            if (bitmap[i] == 0.0)
+                pngBytes[i] = black;
+            else
+                pngBytes[i] = other;
         }
 
-        c++;
+        Texture2D texture = null;
+        texture = new Texture2D(2, 2);
+        texture.LoadImage(pngBytes);
+
+        img.texture = texture;
+
         
+
+        DPX_FinishFrameBuffer();
+
 
     }
 }

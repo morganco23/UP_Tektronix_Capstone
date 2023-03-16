@@ -307,7 +307,7 @@ public unsafe class RSAAPITest : MonoBehaviour
         }
             
         traceFile.Close();
-
+        /*
         // Get and print current directory
         string currentDirectory = Directory.GetCurrentDirectory();
         Console.WriteLine("Current directory is: " + currentDirectory);
@@ -362,7 +362,7 @@ public unsafe class RSAAPITest : MonoBehaviour
 
 
 
-
+        */
         int bitmapWidth = fb.spectrumBitmapWidth;
         int bitmapHeight = fb.spectrumBitmapHeight;
         int bitmapSize = fb.spectrumBitmapSize;
@@ -370,7 +370,7 @@ public unsafe class RSAAPITest : MonoBehaviour
 
         // Generate csv of bitmap data
         // convert float* bitmap to actual colors.
-        byte[] pngBytes = new byte[bitmapSize];
+        Color32[] pngBytes = new Color32[bitmapSize];
         
         var bitmapFile = new System.IO.StreamWriter("DPXBitmap1.csv");
 
@@ -391,18 +391,21 @@ public unsafe class RSAAPITest : MonoBehaviour
         for (int i = 0; i < bitmapSize; i++)
         {
             if (bitmap[i] == 0.0)
-                pngBytes[i] = black;
+                pngBytes[i] = Color.black;
             else
-                pngBytes[i] = other;
+                pngBytes[i] = Color.green;
         }
 
         Texture2D texture = null;
-        texture = new Texture2D(2, 2);
-        texture.LoadImage(pngBytes);
+        texture = new Texture2D(801, 201);
+        texture.SetPixels32(pngBytes);
 
         img.texture = texture;
+            
+        byte[] bytes = texture.EncodeToPNG();
+        File.WriteAllBytes("Assets/image.png", bytes);
 
-        
+
 
         DPX_FinishFrameBuffer();
 

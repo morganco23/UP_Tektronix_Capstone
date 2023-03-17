@@ -244,9 +244,9 @@ public unsafe class RSAAPITest : MonoBehaviour
             
 
         error = CONFIG_SetCenterFreq(2400000000.00);
-        CONFIG_SetReferenceLevel(-10.0);
+        CONFIG_SetReferenceLevel(-20.0);
 
-        error = DPX_SetParameters(40000000, 300000, 801, 1, 0, 0, -100, false, 10, false);
+        error = DPX_SetParameters(40000000, 300000, 801, 1, 0, 0, -100, false, 1, false);
 
         error = DPX_SetSpectrumTraceType(0, TraceType.TraceTypeAverage);
         error = DPX_Configure(true, false);
@@ -263,10 +263,7 @@ public unsafe class RSAAPITest : MonoBehaviour
     void Update()
     {
         // call every other frame
-        doFrame = !doFrame;
-        if (!doFrame)
-            return;
-
+       
 
         // Get DPX Frame
         ReturnStatus rs;
@@ -275,7 +272,7 @@ public unsafe class RSAAPITest : MonoBehaviour
         var fb = new DPX_FrameBuffer();
 
         bool isDpxReady = false;
-        rs = DPX_WaitForDataReady(1000, ref ready);
+        rs = DPX_WaitForDataReady(300, ref ready);
 
         // If DPX is ready, check if the frame buffer is available.
         while (ready)
@@ -289,7 +286,7 @@ public unsafe class RSAAPITest : MonoBehaviour
         }
 
         // Generate text file from trace data
-        
+        /*
         var traceFile = new System.IO.StreamWriter("DPXdata.txt");
 
         // Acquire the current trace information.
@@ -367,45 +364,42 @@ public unsafe class RSAAPITest : MonoBehaviour
         int bitmapHeight = fb.spectrumBitmapHeight;
         int bitmapSize = fb.spectrumBitmapSize;
         float* bitmap = fb.spectrumBitmap;
-
-        // Generate csv of bitmap data
-        // convert float* bitmap to actual colors.
-        Color32[] pngBytes = new Color32[bitmapSize];
-        
-        var bitmapFile = new System.IO.StreamWriter("DPXBitmap1.csv");
-
-        for(int nh = 0; nh < bitmapHeight; nh++)
+        if (bitmapSize > 0)
         {
-            for (int nw = 0; nw < bitmapWidth; nw++)
+
+            // Generate csv of bitmap data
+            // convert float* bitmap to actual colors.
+            Color32[] pngBytes = new Color32[bitmapSize];
+
+            var bitmapFile = new System.IO.StreamWriter("DPXBitmap1.csv");
+
+            for (int nh = 0; nh < bitmapHeight; nh++)
             {
-                bitmapFile.Write("{0},", bitmap[nh * bitmapWidth + nw]);
+                for (int nw = 0; nw < bitmapWidth; nw++)
+                {
+                    bitmapFile.Write("{0},", bitmap[nh * bitmapWidth + nw]);
+                }
+                bitmapFile.WriteLine();
             }
-            bitmapFile.WriteLine();
+            bitmapFile.Close();
+
+            UnityEngine.Debug.Log(bitmapSize);
+            for (int i = 0; i < bitmapSize; i++)
+            {
+                if (bitmap[i] == 0.0)
+                    pngBytes[i] = Color.black;
+                else
+                    pngBytes[i] = Color.green;
+            }
+            UnityEngine.Debug.Log(pngBytes.Length);
+            Texture2D texture = null;
+            texture = new Texture2D(801, 201);
+            texture.SetPixels32(pngBytes);
+
+            byte[] bytes = texture.EncodeToPNG();
+            File.WriteAllBytes("Assets/image.png", bytes);
+
         }
-        bitmapFile.Close();
-        
-
-        byte black = 0x89;
-        byte other = 0x4A;
-
-        for (int i = 0; i < bitmapSize; i++)
-        {
-            if (bitmap[i] == 0.0)
-                pngBytes[i] = Color.black;
-            else
-                pngBytes[i] = Color.green;
-        }
-
-        Texture2D texture = null;
-        texture = new Texture2D(801, 201);
-        texture.SetPixels32(pngBytes);
-
-        img.texture = texture;
-            
-        byte[] bytes = texture.EncodeToPNG();
-        File.WriteAllBytes("Assets/image.png", bytes);
-
-
 
         DPX_FinishFrameBuffer();
 

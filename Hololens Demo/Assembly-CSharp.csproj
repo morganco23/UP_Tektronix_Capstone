@@ -24,7 +24,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>Temp\Bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE;UNITY_2020_3_39;UNITY_2020_3;UNITY_2020;UNITY_5_3_OR_NEWER;UNITY_5_4_OR_NEWER;UNITY_5_5_OR_NEWER;UNITY_5_6_OR_NEWER;UNITY_2017_1_OR_NEWER;UNITY_2017_2_OR_NEWER;UNITY_2017_3_OR_NEWER;UNITY_2017_4_OR_NEWER;UNITY_2018_1_OR_NEWER;UNITY_2018_2_OR_NEWER;UNITY_2018_3_OR_NEWER;UNITY_2018_4_OR_NEWER;UNITY_2019_1_OR_NEWER;UNITY_2019_2_OR_NEWER;UNITY_2019_3_OR_NEWER;UNITY_2019_4_OR_NEWER;UNITY_2020_1_OR_NEWER;UNITY_2020_2_OR_NEWER;UNITY_2020_3_OR_NEWER;PLATFORM_ARCH_64;UNITY_64;UNITY_INCLUDE_TESTS;USE_SEARCH_ENGINE_API;SCENE_TEMPLATE_MODULE;ENABLE_AR;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_EVENT_QUEUE;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_TEXTURE_STREAMING;ENABLE_VIRTUALTEXTURING;ENABLE_UNET;ENABLE_LZMA;ENABLE_UNITYEVENTS;ENABLE_VR;ENABLE_WEBCAM;ENABLE_UNITYWEBREQUEST;ENABLE_WWW;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_COLLAB;ENABLE_CLOUD_SERVICES_COLLAB_SOFTLOCKS;ENABLE_CLOUD_SERVICES_ADS;ENABLE_CLOUD_SERVICES_USE_WEBREQUEST;ENABLE_CLOUD_SERVICES_CRASH_REPORTING;ENABLE_CLOUD_SERVICES_PURCHASING;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_UNET;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_CLOUD_LICENSE;ENABLE_EDITOR_HUB_LICENSE;ENABLE_WEBSOCKET_CLIENT;ENABLE_DIRECTOR_AUDIO;ENABLE_DIRECTOR_TEXTURE;ENABLE_MANAGED_JOBS;ENABLE_MANAGED_TRANSFORM_JOBS;ENABLE_MANAGED_ANIMATION_JOBS;ENABLE_MANAGED_AUDIO_JOBS;ENABLE_MANAGED_UNITYTLS;INCLUDE_DYNAMIC_GI;ENABLE_MONO_BDWGC;ENABLE_SCRIPTING_GC_WBARRIERS;PLATFORM_SUPPORTS_MONO;RENDER_SOFTWARE_CURSOR;ENABLE_VIDEO;PLATFORM_STANDALONE;PLATFORM_STANDALONE_WIN;UNITY_STANDALONE_WIN;UNITY_STANDALONE;ENABLE_RUNTIME_GI;ENABLE_MOVIES;ENABLE_NETWORK;ENABLE_CRUNCH_TEXTURE_COMPRESSION;ENABLE_OUT_OF_PROCESS_CRASH_HANDLER;ENABLE_CLUSTER_SYNC;ENABLE_CLUSTERINPUT;PLATFORM_UPDATES_TIME_OUTSIDE_OF_PLAYER_LOOP;GFXDEVICE_WAITFOREVENT_MESSAGEPUMP;ENABLE_WEBSOCKET_HOST;ENABLE_MONO;NET_STANDARD_2_0;ENABLE_PROFILER;UNITY_ASSERTIONS;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_WIN;ENABLE_UNITY_COLLECTIONS_CHECKS;ENABLE_BURST_AOT;UNITY_TEAM_LICENSE;UNITY_PRO_LICENSE;ENABLE_CUSTOM_RENDER_TEXTURE;ENABLE_DIRECTOR;ENABLE_LOCALIZATION;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_TILEMAP;ENABLE_TIMELINE;ENABLE_INPUT_SYSTEM;ENABLE_LEGACY_INPUT_MANAGER;CSHARP_7_OR_LATER;CSHARP_7_3_OR_NEWER</DefineConstants>
+    <DefineConstants>DEBUG;TRACE;UNITY_2020_3_39;UNITY_2020_3;UNITY_2020;UNITY_5_3_OR_NEWER;UNITY_5_4_OR_NEWER;UNITY_5_5_OR_NEWER;UNITY_5_6_OR_NEWER;UNITY_2017_1_OR_NEWER;UNITY_2017_2_OR_NEWER;UNITY_2017_3_OR_NEWER;UNITY_2017_4_OR_NEWER;UNITY_2018_1_OR_NEWER;UNITY_2018_2_OR_NEWER;UNITY_2018_3_OR_NEWER;UNITY_2018_4_OR_NEWER;UNITY_2019_1_OR_NEWER;UNITY_2019_2_OR_NEWER;UNITY_2019_3_OR_NEWER;UNITY_2019_4_OR_NEWER;UNITY_2020_1_OR_NEWER;UNITY_2020_2_OR_NEWER;UNITY_2020_3_OR_NEWER;PLATFORM_ARCH_64;UNITY_64;UNITY_INCLUDE_TESTS;USE_SEARCH_ENGINE_API;SCENE_TEMPLATE_MODULE;ENABLE_AR;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_EVENT_QUEUE;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_TEXTURE_STREAMING;ENABLE_VIRTUALTEXTURING;ENABLE_UNET;ENABLE_LZMA;ENABLE_UNITYEVENTS;ENABLE_VR;ENABLE_WEBCAM;ENABLE_UNITYWEBREQUEST;ENABLE_WWW;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_COLLAB;ENABLE_CLOUD_SERVICES_COLLAB_SOFTLOCKS;ENABLE_CLOUD_SERVICES_ADS;ENABLE_CLOUD_SERVICES_USE_WEBREQUEST;ENABLE_CLOUD_SERVICES_CRASH_REPORTING;ENABLE_CLOUD_SERVICES_PURCHASING;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_UNET;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_CLOUD_LICENSE;ENABLE_EDITOR_HUB_LICENSE;ENABLE_WEBSOCKET_CLIENT;ENABLE_DIRECTOR_AUDIO;ENABLE_DIRECTOR_TEXTURE;ENABLE_MANAGED_JOBS;ENABLE_MANAGED_TRANSFORM_JOBS;ENABLE_MANAGED_ANIMATION_JOBS;ENABLE_MANAGED_AUDIO_JOBS;ENABLE_MANAGED_UNITYTLS;INCLUDE_DYNAMIC_GI;ENABLE_MONO_BDWGC;ENABLE_SCRIPTING_GC_WBARRIERS;PLATFORM_SUPPORTS_MONO;RENDER_SOFTWARE_CURSOR;ENABLE_VIDEO;PLATFORM_STANDALONE;PLATFORM_STANDALONE_WIN;UNITY_STANDALONE_WIN;UNITY_STANDALONE;ENABLE_RUNTIME_GI;ENABLE_MOVIES;ENABLE_NETWORK;ENABLE_CRUNCH_TEXTURE_COMPRESSION;ENABLE_OUT_OF_PROCESS_CRASH_HANDLER;ENABLE_CLUSTER_SYNC;ENABLE_CLUSTERINPUT;PLATFORM_UPDATES_TIME_OUTSIDE_OF_PLAYER_LOOP;GFXDEVICE_WAITFOREVENT_MESSAGEPUMP;ENABLE_WEBSOCKET_HOST;ENABLE_MONO;NET_STANDARD_2_0;ENABLE_PROFILER;UNITY_ASSERTIONS;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_WIN;ENABLE_UNITY_COLLECTIONS_CHECKS;ENABLE_BURST_AOT;UNITY_TEAM_LICENSE;ENABLE_CUSTOM_RENDER_TEXTURE;ENABLE_DIRECTOR;ENABLE_LOCALIZATION;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_TILEMAP;ENABLE_TIMELINE;ENABLE_INPUT_SYSTEM;ENABLE_LEGACY_INPUT_MANAGER;CSHARP_7_OR_LATER;CSHARP_7_3_OR_NEWER</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <NoWarn>0169</NoWarn>
@@ -288,7 +288,7 @@
  <HintPath>C:/Program Files/Unity/Hub/Editor/2020.3.39f1/Editor/Data/Managed/UnityEngine/UnityEditor.UnityConnectModule.dll</HintPath>
  </Reference>
  <Reference Include="Microsoft.MixedReality.Input.DotNet">
- <HintPath>C:/Users/celas/OneDrive/Desktop/connorchanges/UP_Tektronix_Capstone/Hololens Demo/Library/PackageCache/com.microsoft.mixedreality.input@c707ff4d69e7/Plugins/Windows/Microsoft.MixedReality.Input.DotNet.dll</HintPath>
+ <HintPath>C:/Users/Cerat/OneDrive/Documents/Github/UP_Tektronix_Capstone/Hololens Demo/Library/PackageCache/com.microsoft.mixedreality.input@c707ff4d69e7/Plugins/Windows/Microsoft.MixedReality.Input.DotNet.dll</HintPath>
  </Reference>
  <Reference Include="netstandard">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2020.3.39f1/Editor/Data/NetStandard/ref/2.0.0/netstandard.dll</HintPath>
@@ -636,256 +636,256 @@
  <HintPath>C:/Program Files/Unity/Hub/Editor/2020.3.39f1/Editor/Data/NetStandard/compat/2.0.0/shims/netfx/System.Xml.Serialization.dll</HintPath>
  </Reference>
  <Reference Include="Microsoft.MixedReality.Toolkit.Providers.XRSDK.Oculus">
- <HintPath>C:/Users/celas/OneDrive/Desktop/connorchanges/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/Microsoft.MixedReality.Toolkit.Providers.XRSDK.Oculus.dll</HintPath>
+ <HintPath>C:/Users/Cerat/OneDrive/Documents/Github/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/Microsoft.MixedReality.Toolkit.Providers.XRSDK.Oculus.dll</HintPath>
  </Reference>
  <Reference Include="Microsoft.MixedReality.Toolkit.Services.InputSystem">
- <HintPath>C:/Users/celas/OneDrive/Desktop/connorchanges/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/Microsoft.MixedReality.Toolkit.Services.InputSystem.dll</HintPath>
+ <HintPath>C:/Users/Cerat/OneDrive/Documents/Github/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/Microsoft.MixedReality.Toolkit.Services.InputSystem.dll</HintPath>
  </Reference>
  <Reference Include="Microsoft.MixedReality.Toolkit.SDK.Editor">
- <HintPath>C:/Users/celas/OneDrive/Desktop/connorchanges/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/Microsoft.MixedReality.Toolkit.SDK.Editor.dll</HintPath>
+ <HintPath>C:/Users/Cerat/OneDrive/Documents/Github/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/Microsoft.MixedReality.Toolkit.SDK.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.VSCode.Editor">
- <HintPath>C:/Users/celas/OneDrive/Desktop/connorchanges/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
+ <HintPath>C:/Users/Cerat/OneDrive/Documents/Github/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Microsoft.MixedReality.Toolkit.Extensions.Tracking.Editor">
- <HintPath>C:/Users/celas/OneDrive/Desktop/connorchanges/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/Microsoft.MixedReality.Toolkit.Extensions.Tracking.Editor.dll</HintPath>
+ <HintPath>C:/Users/Cerat/OneDrive/Documents/Github/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/Microsoft.MixedReality.Toolkit.Extensions.Tracking.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Microsoft.MixedReality.Toolkit.Providers.XRSDK.WindowsMixedReality">
- <HintPath>C:/Users/celas/OneDrive/Desktop/connorchanges/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/Microsoft.MixedReality.Toolkit.Providers.XRSDK.WindowsMixedReality.dll</HintPath>
+ <HintPath>C:/Users/Cerat/OneDrive/Documents/Github/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/Microsoft.MixedReality.Toolkit.Providers.XRSDK.WindowsMixedReality.dll</HintPath>
  </Reference>
  <Reference Include="Unity.TextMeshPro.Editor">
- <HintPath>C:/Users/celas/OneDrive/Desktop/connorchanges/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+ <HintPath>C:/Users/Cerat/OneDrive/Documents/Github/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Microsoft.MixedReality.Toolkit.Gltf">
- <HintPath>C:/Users/celas/OneDrive/Desktop/connorchanges/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/Microsoft.MixedReality.Toolkit.Gltf.dll</HintPath>
+ <HintPath>C:/Users/Cerat/OneDrive/Documents/Github/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/Microsoft.MixedReality.Toolkit.Gltf.dll</HintPath>
  </Reference>
  <Reference Include="Microsoft.MixedReality.Toolkit.Services.InputAnimation">
- <HintPath>C:/Users/celas/OneDrive/Desktop/connorchanges/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/Microsoft.MixedReality.Toolkit.Services.InputAnimation.dll</HintPath>
+ <HintPath>C:/Users/Cerat/OneDrive/Documents/Github/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/Microsoft.MixedReality.Toolkit.Services.InputAnimation.dll</HintPath>
  </Reference>
  <Reference Include="Microsoft.MixedReality.Toolkit.Services.TeleportSystem">
- <HintPath>C:/Users/celas/OneDrive/Desktop/connorchanges/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/Microsoft.MixedReality.Toolkit.Services.TeleportSystem.dll</HintPath>
+ <HintPath>C:/Users/Cerat/OneDrive/Documents/Github/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/Microsoft.MixedReality.Toolkit.Services.TeleportSystem.dll</HintPath>
  </Reference>
  <Reference Include="Microsoft.MixedReality.OpenXR.Editor">
- <HintPath>C:/Users/celas/OneDrive/Desktop/connorchanges/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/Microsoft.MixedReality.OpenXR.Editor.dll</HintPath>
+ <HintPath>C:/Users/Cerat/OneDrive/Documents/Github/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/Microsoft.MixedReality.OpenXR.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Microsoft.MixedReality.Toolkit.Extensions.HandPhysics">
- <HintPath>C:/Users/celas/OneDrive/Desktop/connorchanges/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/Microsoft.MixedReality.Toolkit.Extensions.HandPhysics.dll</HintPath>
+ <HintPath>C:/Users/Cerat/OneDrive/Documents/Github/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/Microsoft.MixedReality.Toolkit.Extensions.HandPhysics.dll</HintPath>
  </Reference>
  <Reference Include="Microsoft.MixedReality.Toolkit.PlaneFinding">
- <HintPath>C:/Users/celas/OneDrive/Desktop/connorchanges/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/Microsoft.MixedReality.Toolkit.PlaneFinding.dll</HintPath>
+ <HintPath>C:/Users/Cerat/OneDrive/Documents/Github/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/Microsoft.MixedReality.Toolkit.PlaneFinding.dll</HintPath>
  </Reference>
  <Reference Include="Microsoft.MixedReality.Toolkit">
- <HintPath>C:/Users/celas/OneDrive/Desktop/connorchanges/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/Microsoft.MixedReality.Toolkit.dll</HintPath>
+ <HintPath>C:/Users/Cerat/OneDrive/Documents/Github/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/Microsoft.MixedReality.Toolkit.dll</HintPath>
  </Reference>
  <Reference Include="Microsoft.MixedReality.Input.Editor">
- <HintPath>C:/Users/celas/OneDrive/Desktop/connorchanges/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/Microsoft.MixedReality.Input.Editor.dll</HintPath>
+ <HintPath>C:/Users/Cerat/OneDrive/Documents/Github/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/Microsoft.MixedReality.Input.Editor.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.UI">
- <HintPath>C:/Users/celas/OneDrive/Desktop/connorchanges/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+ <HintPath>C:/Users/Cerat/OneDrive/Documents/Github/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
  </Reference>
  <Reference Include="Unity.InputSystem">
- <HintPath>C:/Users/celas/OneDrive/Desktop/connorchanges/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/Unity.InputSystem.dll</HintPath>
+ <HintPath>C:/Users/Cerat/OneDrive/Documents/Github/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/Unity.InputSystem.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Rider.Editor">
- <HintPath>C:/Users/celas/OneDrive/Desktop/connorchanges/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
+ <HintPath>C:/Users/Cerat/OneDrive/Documents/Github/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Microsoft.MixedReality.Toolkit.Services.InputSystem.Editor">
- <HintPath>C:/Users/celas/OneDrive/Desktop/connorchanges/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/Microsoft.MixedReality.Toolkit.Services.InputSystem.Editor.dll</HintPath>
+ <HintPath>C:/Users/Cerat/OneDrive/Documents/Github/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/Microsoft.MixedReality.Toolkit.Services.InputSystem.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Microsoft.MixedReality.Toolkit.Services.SceneSystem">
- <HintPath>C:/Users/celas/OneDrive/Desktop/connorchanges/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/Microsoft.MixedReality.Toolkit.Services.SceneSystem.dll</HintPath>
+ <HintPath>C:/Users/Cerat/OneDrive/Documents/Github/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/Microsoft.MixedReality.Toolkit.Services.SceneSystem.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.SpatialTracking">
- <HintPath>C:/Users/celas/OneDrive/Desktop/connorchanges/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/UnityEngine.SpatialTracking.dll</HintPath>
+ <HintPath>C:/Users/Cerat/OneDrive/Documents/Github/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/UnityEngine.SpatialTracking.dll</HintPath>
  </Reference>
  <Reference Include="Microsoft.MixedReality.Toolkit.Providers.XRSDK.Oculus.Handtracking.Editor">
- <HintPath>C:/Users/celas/OneDrive/Desktop/connorchanges/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/Microsoft.MixedReality.Toolkit.Providers.XRSDK.Oculus.Handtracking.Editor.dll</HintPath>
+ <HintPath>C:/Users/Cerat/OneDrive/Documents/Github/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/Microsoft.MixedReality.Toolkit.Providers.XRSDK.Oculus.Handtracking.Editor.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.UI">
- <HintPath>C:/Users/celas/OneDrive/Desktop/connorchanges/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
+ <HintPath>C:/Users/Cerat/OneDrive/Documents/Github/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
  </Reference>
  <Reference Include="Microsoft.MixedReality.Toolkit.Extensions.SceneTransitionService">
- <HintPath>C:/Users/celas/OneDrive/Desktop/connorchanges/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/Microsoft.MixedReality.Toolkit.Extensions.SceneTransitionService.dll</HintPath>
+ <HintPath>C:/Users/Cerat/OneDrive/Documents/Github/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/Microsoft.MixedReality.Toolkit.Extensions.SceneTransitionService.dll</HintPath>
  </Reference>
  <Reference Include="Microsoft.MixedReality.Toolkit.SDK.Experimental.Editor.Interactive">
- <HintPath>C:/Users/celas/OneDrive/Desktop/connorchanges/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/Microsoft.MixedReality.Toolkit.SDK.Experimental.Editor.Interactive.dll</HintPath>
+ <HintPath>C:/Users/Cerat/OneDrive/Documents/Github/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/Microsoft.MixedReality.Toolkit.SDK.Experimental.Editor.Interactive.dll</HintPath>
  </Reference>
  <Reference Include="Microsoft.MixedReality.Toolkit.Providers.WindowsSceneUnderstanding.Editor">
- <HintPath>C:/Users/celas/OneDrive/Desktop/connorchanges/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/Microsoft.MixedReality.Toolkit.Providers.WindowsSceneUnderstanding.Editor.dll</HintPath>
+ <HintPath>C:/Users/Cerat/OneDrive/Documents/Github/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/Microsoft.MixedReality.Toolkit.Providers.WindowsSceneUnderstanding.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Microsoft.MixedReality.Toolkit.Providers.LeapMotion.Editor">
- <HintPath>C:/Users/celas/OneDrive/Desktop/connorchanges/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/Microsoft.MixedReality.Toolkit.Providers.LeapMotion.Editor.dll</HintPath>
+ <HintPath>C:/Users/Cerat/OneDrive/Documents/Github/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/Microsoft.MixedReality.Toolkit.Providers.LeapMotion.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Microsoft.MixedReality.Toolkit.GpuStats">
- <HintPath>C:/Users/celas/OneDrive/Desktop/connorchanges/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/Microsoft.MixedReality.Toolkit.GpuStats.dll</HintPath>
+ <HintPath>C:/Users/Cerat/OneDrive/Documents/Github/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/Microsoft.MixedReality.Toolkit.GpuStats.dll</HintPath>
  </Reference>
  <Reference Include="Microsoft.MixedReality.Toolkit.Editor.Utilities">
- <HintPath>C:/Users/celas/OneDrive/Desktop/connorchanges/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/Microsoft.MixedReality.Toolkit.Editor.Utilities.dll</HintPath>
+ <HintPath>C:/Users/Cerat/OneDrive/Documents/Github/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/Microsoft.MixedReality.Toolkit.Editor.Utilities.dll</HintPath>
  </Reference>
  <Reference Include="Microsoft.MixedReality.Toolkit.Services.InputSimulation">
- <HintPath>C:/Users/celas/OneDrive/Desktop/connorchanges/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/Microsoft.MixedReality.Toolkit.Services.InputSimulation.dll</HintPath>
+ <HintPath>C:/Users/Cerat/OneDrive/Documents/Github/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/Microsoft.MixedReality.Toolkit.Services.InputSimulation.dll</HintPath>
  </Reference>
  <Reference Include="Microsoft.MixedReality.Toolkit.Providers.WindowsSceneUnderstanding">
- <HintPath>C:/Users/celas/OneDrive/Desktop/connorchanges/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/Microsoft.MixedReality.Toolkit.Providers.WindowsSceneUnderstanding.dll</HintPath>
+ <HintPath>C:/Users/Cerat/OneDrive/Documents/Github/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/Microsoft.MixedReality.Toolkit.Providers.WindowsSceneUnderstanding.dll</HintPath>
  </Reference>
  <Reference Include="Microsoft.MixedReality.Toolkit.MicStream">
- <HintPath>C:/Users/celas/OneDrive/Desktop/connorchanges/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/Microsoft.MixedReality.Toolkit.MicStream.dll</HintPath>
+ <HintPath>C:/Users/Cerat/OneDrive/Documents/Github/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/Microsoft.MixedReality.Toolkit.MicStream.dll</HintPath>
  </Reference>
  <Reference Include="Microsoft.MixedReality.Toolkit.Extensions.Tracking">
- <HintPath>C:/Users/celas/OneDrive/Desktop/connorchanges/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/Microsoft.MixedReality.Toolkit.Extensions.Tracking.dll</HintPath>
+ <HintPath>C:/Users/Cerat/OneDrive/Documents/Github/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/Microsoft.MixedReality.Toolkit.Extensions.Tracking.dll</HintPath>
  </Reference>
  <Reference Include="Microsoft.MixedReality.Toolkit.Tests.Utilities">
- <HintPath>C:/Users/celas/OneDrive/Desktop/connorchanges/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/Microsoft.MixedReality.Toolkit.Tests.Utilities.dll</HintPath>
+ <HintPath>C:/Users/Cerat/OneDrive/Documents/Github/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/Microsoft.MixedReality.Toolkit.Tests.Utilities.dll</HintPath>
  </Reference>
  <Reference Include="Unity.XR.ARSubsystems.Editor">
- <HintPath>C:/Users/celas/OneDrive/Desktop/connorchanges/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/Unity.XR.ARSubsystems.Editor.dll</HintPath>
+ <HintPath>C:/Users/Cerat/OneDrive/Documents/Github/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/Unity.XR.ARSubsystems.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.XR.Management">
- <HintPath>C:/Users/celas/OneDrive/Desktop/connorchanges/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/Unity.XR.Management.dll</HintPath>
+ <HintPath>C:/Users/Cerat/OneDrive/Documents/Github/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/Unity.XR.Management.dll</HintPath>
  </Reference>
  <Reference Include="Unity.XR.ARSubsystems">
- <HintPath>C:/Users/celas/OneDrive/Desktop/connorchanges/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/Unity.XR.ARSubsystems.dll</HintPath>
+ <HintPath>C:/Users/Cerat/OneDrive/Documents/Github/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/Unity.XR.ARSubsystems.dll</HintPath>
  </Reference>
  <Reference Include="Microsoft.MixedReality.Toolkit.Editor.Inspectors">
- <HintPath>C:/Users/celas/OneDrive/Desktop/connorchanges/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/Microsoft.MixedReality.Toolkit.Editor.Inspectors.dll</HintPath>
+ <HintPath>C:/Users/Cerat/OneDrive/Documents/Github/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/Microsoft.MixedReality.Toolkit.Editor.Inspectors.dll</HintPath>
  </Reference>
  <Reference Include="Microsoft.MixedReality.Toolkit.SDK.Experimental.Interactive">
- <HintPath>C:/Users/celas/OneDrive/Desktop/connorchanges/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/Microsoft.MixedReality.Toolkit.SDK.Experimental.Interactive.dll</HintPath>
+ <HintPath>C:/Users/Cerat/OneDrive/Documents/Github/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/Microsoft.MixedReality.Toolkit.SDK.Experimental.Interactive.dll</HintPath>
  </Reference>
  <Reference Include="Microsoft.MixedReality.Toolkit.Providers.LeapMotion">
- <HintPath>C:/Users/celas/OneDrive/Desktop/connorchanges/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/Microsoft.MixedReality.Toolkit.Providers.LeapMotion.dll</HintPath>
+ <HintPath>C:/Users/Cerat/OneDrive/Documents/Github/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/Microsoft.MixedReality.Toolkit.Providers.LeapMotion.dll</HintPath>
  </Reference>
  <Reference Include="Unity.XR.ARFoundation.Editor">
- <HintPath>C:/Users/celas/OneDrive/Desktop/connorchanges/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/Unity.XR.ARFoundation.Editor.dll</HintPath>
+ <HintPath>C:/Users/Cerat/OneDrive/Documents/Github/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/Unity.XR.ARFoundation.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Microsoft.MixedReality.Toolkit.Providers.WindowsMixedReality.Shared">
- <HintPath>C:/Users/celas/OneDrive/Desktop/connorchanges/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/Microsoft.MixedReality.Toolkit.Providers.WindowsMixedReality.Shared.dll</HintPath>
+ <HintPath>C:/Users/Cerat/OneDrive/Documents/Github/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/Microsoft.MixedReality.Toolkit.Providers.WindowsMixedReality.Shared.dll</HintPath>
  </Reference>
  <Reference Include="Microsoft.MixedReality.Toolkit.SDK">
- <HintPath>C:/Users/celas/OneDrive/Desktop/connorchanges/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/Microsoft.MixedReality.Toolkit.SDK.dll</HintPath>
+ <HintPath>C:/Users/Cerat/OneDrive/Documents/Github/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/Microsoft.MixedReality.Toolkit.SDK.dll</HintPath>
  </Reference>
  <Reference Include="Microsoft.MixedReality.Toolkit.Examples">
- <HintPath>C:/Users/celas/OneDrive/Desktop/connorchanges/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/Microsoft.MixedReality.Toolkit.Examples.dll</HintPath>
+ <HintPath>C:/Users/Cerat/OneDrive/Documents/Github/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/Microsoft.MixedReality.Toolkit.Examples.dll</HintPath>
  </Reference>
  <Reference Include="Microsoft.MixedReality.Toolkit.Services.SpatialAwarenessSystem">
- <HintPath>C:/Users/celas/OneDrive/Desktop/connorchanges/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/Microsoft.MixedReality.Toolkit.Services.SpatialAwarenessSystem.dll</HintPath>
+ <HintPath>C:/Users/Cerat/OneDrive/Documents/Github/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/Microsoft.MixedReality.Toolkit.Services.SpatialAwarenessSystem.dll</HintPath>
  </Reference>
  <Reference Include="Microsoft.MixedReality.Toolkit.Providers.WindowsVoiceInput">
- <HintPath>C:/Users/celas/OneDrive/Desktop/connorchanges/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/Microsoft.MixedReality.Toolkit.Providers.WindowsVoiceInput.dll</HintPath>
+ <HintPath>C:/Users/Cerat/OneDrive/Documents/Github/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/Microsoft.MixedReality.Toolkit.Providers.WindowsVoiceInput.dll</HintPath>
  </Reference>
  <Reference Include="Microsoft.MixedReality.Toolkit.Services.CameraSystem">
- <HintPath>C:/Users/celas/OneDrive/Desktop/connorchanges/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/Microsoft.MixedReality.Toolkit.Services.CameraSystem.dll</HintPath>
+ <HintPath>C:/Users/Cerat/OneDrive/Documents/Github/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/Microsoft.MixedReality.Toolkit.Services.CameraSystem.dll</HintPath>
  </Reference>
  <Reference Include="Unity.XR.OpenXR.Features.OculusQuestSupport.Editor">
- <HintPath>C:/Users/celas/OneDrive/Desktop/connorchanges/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/Unity.XR.OpenXR.Features.OculusQuestSupport.Editor.dll</HintPath>
+ <HintPath>C:/Users/Cerat/OneDrive/Documents/Github/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/Unity.XR.OpenXR.Features.OculusQuestSupport.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.VisualStudio.Editor">
- <HintPath>C:/Users/celas/OneDrive/Desktop/connorchanges/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/Unity.VisualStudio.Editor.dll</HintPath>
+ <HintPath>C:/Users/Cerat/OneDrive/Documents/Github/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/Unity.VisualStudio.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.XR.Management.Editor">
- <HintPath>C:/Users/celas/OneDrive/Desktop/connorchanges/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/Unity.XR.Management.Editor.dll</HintPath>
+ <HintPath>C:/Users/Cerat/OneDrive/Documents/Github/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/Unity.XR.Management.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Timeline">
- <HintPath>C:/Users/celas/OneDrive/Desktop/connorchanges/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
+ <HintPath>C:/Users/Cerat/OneDrive/Documents/Github/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
  </Reference>
  <Reference Include="Unity.TextMeshPro">
- <HintPath>C:/Users/celas/OneDrive/Desktop/connorchanges/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+ <HintPath>C:/Users/Cerat/OneDrive/Documents/Github/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
  </Reference>
  <Reference Include="Microsoft.MixedReality.Toolkit.Services.InputSimulation.Editor">
- <HintPath>C:/Users/celas/OneDrive/Desktop/connorchanges/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/Microsoft.MixedReality.Toolkit.Services.InputSimulation.Editor.dll</HintPath>
+ <HintPath>C:/Users/Cerat/OneDrive/Documents/Github/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/Microsoft.MixedReality.Toolkit.Services.InputSimulation.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Microsoft.MixedReality.Toolkit.Providers.OpenXR">
- <HintPath>C:/Users/celas/OneDrive/Desktop/connorchanges/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/Microsoft.MixedReality.Toolkit.Providers.OpenXR.dll</HintPath>
+ <HintPath>C:/Users/Cerat/OneDrive/Documents/Github/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/Microsoft.MixedReality.Toolkit.Providers.OpenXR.dll</HintPath>
  </Reference>
  <Reference Include="Microsoft.MixedReality.Toolkit.Tools.Runtime">
- <HintPath>C:/Users/celas/OneDrive/Desktop/connorchanges/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/Microsoft.MixedReality.Toolkit.Tools.Runtime.dll</HintPath>
+ <HintPath>C:/Users/Cerat/OneDrive/Documents/Github/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/Microsoft.MixedReality.Toolkit.Tools.Runtime.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Subsystem.Registration">
- <HintPath>C:/Users/celas/OneDrive/Desktop/connorchanges/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/Unity.Subsystem.Registration.dll</HintPath>
+ <HintPath>C:/Users/Cerat/OneDrive/Documents/Github/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/Unity.Subsystem.Registration.dll</HintPath>
  </Reference>
  <Reference Include="Microsoft.MixedReality.Toolkit.Editor.BuildAndDeploy">
- <HintPath>C:/Users/celas/OneDrive/Desktop/connorchanges/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/Microsoft.MixedReality.Toolkit.Editor.BuildAndDeploy.dll</HintPath>
+ <HintPath>C:/Users/Cerat/OneDrive/Documents/Github/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/Microsoft.MixedReality.Toolkit.Editor.BuildAndDeploy.dll</HintPath>
  </Reference>
  <Reference Include="Unity.PlasticSCM.Editor">
- <HintPath>C:/Users/celas/OneDrive/Desktop/connorchanges/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/Unity.PlasticSCM.Editor.dll</HintPath>
+ <HintPath>C:/Users/Cerat/OneDrive/Documents/Github/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/Unity.PlasticSCM.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.XR.OpenXR.Features.OculusQuestSupport">
- <HintPath>C:/Users/celas/OneDrive/Desktop/connorchanges/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/Unity.XR.OpenXR.Features.OculusQuestSupport.dll</HintPath>
+ <HintPath>C:/Users/Cerat/OneDrive/Documents/Github/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/Unity.XR.OpenXR.Features.OculusQuestSupport.dll</HintPath>
  </Reference>
  <Reference Include="Microsoft.MixedReality.OpenXR">
- <HintPath>C:/Users/celas/OneDrive/Desktop/connorchanges/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/Microsoft.MixedReality.OpenXR.dll</HintPath>
+ <HintPath>C:/Users/Cerat/OneDrive/Documents/Github/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/Microsoft.MixedReality.OpenXR.dll</HintPath>
  </Reference>
  <Reference Include="Microsoft.MixedReality.Toolkit.Providers.XRSDK">
- <HintPath>C:/Users/celas/OneDrive/Desktop/connorchanges/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/Microsoft.MixedReality.Toolkit.Providers.XRSDK.dll</HintPath>
+ <HintPath>C:/Users/Cerat/OneDrive/Documents/Github/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/Microsoft.MixedReality.Toolkit.Providers.XRSDK.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.XR.LegacyInputHelpers">
- <HintPath>C:/Users/celas/OneDrive/Desktop/connorchanges/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/UnityEngine.XR.LegacyInputHelpers.dll</HintPath>
+ <HintPath>C:/Users/Cerat/OneDrive/Documents/Github/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/UnityEngine.XR.LegacyInputHelpers.dll</HintPath>
  </Reference>
  <Reference Include="Microsoft.MixedReality.Toolkit.Providers.ObjectMeshObserver">
- <HintPath>C:/Users/celas/OneDrive/Desktop/connorchanges/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/Microsoft.MixedReality.Toolkit.Providers.ObjectMeshObserver.dll</HintPath>
+ <HintPath>C:/Users/Cerat/OneDrive/Documents/Github/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/Microsoft.MixedReality.Toolkit.Providers.ObjectMeshObserver.dll</HintPath>
  </Reference>
  <Reference Include="Microsoft.MixedReality.Toolkit.Providers.WindowsMixedReality.Editor">
- <HintPath>C:/Users/celas/OneDrive/Desktop/connorchanges/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/Microsoft.MixedReality.Toolkit.Providers.WindowsMixedReality.Editor.dll</HintPath>
+ <HintPath>C:/Users/Cerat/OneDrive/Documents/Github/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/Microsoft.MixedReality.Toolkit.Providers.WindowsMixedReality.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.XR.OpenXR.Editor">
- <HintPath>C:/Users/celas/OneDrive/Desktop/connorchanges/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/Unity.XR.OpenXR.Editor.dll</HintPath>
+ <HintPath>C:/Users/Cerat/OneDrive/Documents/Github/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/Unity.XR.OpenXR.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Microsoft.MixedReality.Toolkit.Editor.ClassExtensions">
- <HintPath>C:/Users/celas/OneDrive/Desktop/connorchanges/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/Microsoft.MixedReality.Toolkit.Editor.ClassExtensions.dll</HintPath>
+ <HintPath>C:/Users/Cerat/OneDrive/Documents/Github/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/Microsoft.MixedReality.Toolkit.Editor.ClassExtensions.dll</HintPath>
  </Reference>
  <Reference Include="Microsoft.MixedReality.Toolkit.Providers.UnityAR">
- <HintPath>C:/Users/celas/OneDrive/Desktop/connorchanges/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/Microsoft.MixedReality.Toolkit.Providers.UnityAR.dll</HintPath>
+ <HintPath>C:/Users/Cerat/OneDrive/Documents/Github/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/Microsoft.MixedReality.Toolkit.Providers.UnityAR.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Timeline.Editor">
- <HintPath>C:/Users/celas/OneDrive/Desktop/connorchanges/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
+ <HintPath>C:/Users/Cerat/OneDrive/Documents/Github/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Microsoft.MixedReality.MovingPlatformLib.Editor">
- <HintPath>C:/Users/celas/OneDrive/Desktop/connorchanges/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/Microsoft.MixedReality.MovingPlatformLib.Editor.dll</HintPath>
+ <HintPath>C:/Users/Cerat/OneDrive/Documents/Github/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/Microsoft.MixedReality.MovingPlatformLib.Editor.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.XR.LegacyInputHelpers">
- <HintPath>C:/Users/celas/OneDrive/Desktop/connorchanges/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/UnityEditor.XR.LegacyInputHelpers.dll</HintPath>
+ <HintPath>C:/Users/Cerat/OneDrive/Documents/Github/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/UnityEditor.XR.LegacyInputHelpers.dll</HintPath>
  </Reference>
  <Reference Include="Microsoft.MixedReality.Toolkit.Providers.UnityAR.Editor">
- <HintPath>C:/Users/celas/OneDrive/Desktop/connorchanges/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/Microsoft.MixedReality.Toolkit.Providers.UnityAR.Editor.dll</HintPath>
+ <HintPath>C:/Users/Cerat/OneDrive/Documents/Github/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/Microsoft.MixedReality.Toolkit.Providers.UnityAR.Editor.dll</HintPath>
  </Reference>
  <Reference Include="MRTK.OpenXR.Editor">
- <HintPath>C:/Users/celas/OneDrive/Desktop/connorchanges/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/MRTK.OpenXR.Editor.dll</HintPath>
+ <HintPath>C:/Users/Cerat/OneDrive/Documents/Github/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/MRTK.OpenXR.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Microsoft.MixedReality.Toolkit.Services.DiagnosticsSystem">
- <HintPath>C:/Users/celas/OneDrive/Desktop/connorchanges/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/Microsoft.MixedReality.Toolkit.Services.DiagnosticsSystem.dll</HintPath>
+ <HintPath>C:/Users/Cerat/OneDrive/Documents/Github/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/Microsoft.MixedReality.Toolkit.Services.DiagnosticsSystem.dll</HintPath>
  </Reference>
  <Reference Include="Unity.XR.OpenXR">
- <HintPath>C:/Users/celas/OneDrive/Desktop/connorchanges/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/Unity.XR.OpenXR.dll</HintPath>
+ <HintPath>C:/Users/Cerat/OneDrive/Documents/Github/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/Unity.XR.OpenXR.dll</HintPath>
  </Reference>
  <Reference Include="Microsoft.MixedReality.Toolkit.Async">
- <HintPath>C:/Users/celas/OneDrive/Desktop/connorchanges/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/Microsoft.MixedReality.Toolkit.Async.dll</HintPath>
+ <HintPath>C:/Users/Cerat/OneDrive/Documents/Github/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/Microsoft.MixedReality.Toolkit.Async.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.SpatialTracking">
- <HintPath>C:/Users/celas/OneDrive/Desktop/connorchanges/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/UnityEditor.SpatialTracking.dll</HintPath>
+ <HintPath>C:/Users/Cerat/OneDrive/Documents/Github/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/UnityEditor.SpatialTracking.dll</HintPath>
  </Reference>
  <Reference Include="Microsoft.MixedReality.Toolkit.Gltf.Importers">
- <HintPath>C:/Users/celas/OneDrive/Desktop/connorchanges/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/Microsoft.MixedReality.Toolkit.Gltf.Importers.dll</HintPath>
+ <HintPath>C:/Users/Cerat/OneDrive/Documents/Github/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/Microsoft.MixedReality.Toolkit.Gltf.Importers.dll</HintPath>
  </Reference>
  <Reference Include="Unity.XR.OpenXR.Features.ConformanceAutomation">
- <HintPath>C:/Users/celas/OneDrive/Desktop/connorchanges/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/Unity.XR.OpenXR.Features.ConformanceAutomation.dll</HintPath>
+ <HintPath>C:/Users/Cerat/OneDrive/Documents/Github/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/Unity.XR.OpenXR.Features.ConformanceAutomation.dll</HintPath>
  </Reference>
  <Reference Include="Microsoft.MixedReality.Toolkit.SDK.Experimental.Editor">
- <HintPath>C:/Users/celas/OneDrive/Desktop/connorchanges/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/Microsoft.MixedReality.Toolkit.SDK.Experimental.Editor.dll</HintPath>
+ <HintPath>C:/Users/Cerat/OneDrive/Documents/Github/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/Microsoft.MixedReality.Toolkit.SDK.Experimental.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.XR.OpenXR.Features.RuntimeDebugger.Editor">
- <HintPath>C:/Users/celas/OneDrive/Desktop/connorchanges/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/Unity.XR.OpenXR.Features.RuntimeDebugger.Editor.dll</HintPath>
+ <HintPath>C:/Users/Cerat/OneDrive/Documents/Github/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/Unity.XR.OpenXR.Features.RuntimeDebugger.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.XR.ARFoundation">
- <HintPath>C:/Users/celas/OneDrive/Desktop/connorchanges/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/Unity.XR.ARFoundation.dll</HintPath>
+ <HintPath>C:/Users/Cerat/OneDrive/Documents/Github/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/Unity.XR.ARFoundation.dll</HintPath>
  </Reference>
  <Reference Include="Microsoft.MixedReality.Toolkit.Tools">
- <HintPath>C:/Users/celas/OneDrive/Desktop/connorchanges/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/Microsoft.MixedReality.Toolkit.Tools.dll</HintPath>
+ <HintPath>C:/Users/Cerat/OneDrive/Documents/Github/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/Microsoft.MixedReality.Toolkit.Tools.dll</HintPath>
  </Reference>
  <Reference Include="Microsoft.MixedReality.Toolkit.Editor.ServiceInspectors">
- <HintPath>C:/Users/celas/OneDrive/Desktop/connorchanges/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/Microsoft.MixedReality.Toolkit.Editor.ServiceInspectors.dll</HintPath>
+ <HintPath>C:/Users/Cerat/OneDrive/Documents/Github/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/Microsoft.MixedReality.Toolkit.Editor.ServiceInspectors.dll</HintPath>
  </Reference>
  <Reference Include="Microsoft.MixedReality.Toolkit.StandardAssets.Editor">
- <HintPath>C:/Users/celas/OneDrive/Desktop/connorchanges/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/Microsoft.MixedReality.Toolkit.StandardAssets.Editor.dll</HintPath>
+ <HintPath>C:/Users/Cerat/OneDrive/Documents/Github/UP_Tektronix_Capstone/Hololens Demo/Library/ScriptAssemblies/Microsoft.MixedReality.Toolkit.StandardAssets.Editor.dll</HintPath>
  </Reference>
   </ItemGroup>
   <ItemGroup>

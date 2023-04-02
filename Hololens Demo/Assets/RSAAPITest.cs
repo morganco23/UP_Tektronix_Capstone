@@ -217,6 +217,21 @@ public unsafe class RSAAPITest : MonoBehaviour
 
     bool doFrame;
     RawImage img;
+    
+    public struct DPX_Config
+    {
+        public double cf;
+        public double refLevel;
+        public double span;
+        public double rbw;
+    }
+
+    private static DPX_Config dpxConfig;
+
+    public static DPX_Config getDPXConfig()
+    {
+        return dpxConfig;
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -238,7 +253,7 @@ public unsafe class RSAAPITest : MonoBehaviour
         
 
         DPX_SettingStruct dpxSettings = new DPX_SettingStruct();
-
+        DPX_Config dpxConfig = new DPX_Config();
         //UnityEngine.Debug.Log(dpxSettings.bitmapHeight * dpxSettings.bitmapWidth);
 
             
@@ -247,7 +262,10 @@ public unsafe class RSAAPITest : MonoBehaviour
         CONFIG_SetReferenceLevel(-20.0);
 
         error = DPX_SetParameters(40000000, 300000, 801, 1, 0, 0, -100, false, 1, false);
-
+        dpxConfig.cf = 2400000000.00;
+        dpxConfig.rbw = 300000;
+        dpxConfig.span = 40000000;
+        dpxConfig.refLevel = -20.0;
         error = DPX_SetSpectrumTraceType(0, TraceType.TraceTypeAverage);
         error = DPX_Configure(true, false);
 
@@ -285,124 +303,126 @@ public unsafe class RSAAPITest : MonoBehaviour
             }
         }
 
-        // Generate text file from trace data
-        /*
-        var traceFile = new System.IO.StreamWriter("DPXdata.txt");
 
-        // Acquire the current trace information.
-        int traceLen = fb.spectrumTraceLength;
-        int numTraces = fb.numSpectrumTraces;
-        float** pTraces = fb.spectrumTraces;
-        // Print trace information to file.
-        for (int ntr = 0; ntr < numTraces/3; ntr++)
-        {
-            float* pTrace = pTraces[ntr];
-            for (int n = 0; n < traceLen; n++)
+
+            // Generate text file from trace data
+            /*
+            var traceFile = new System.IO.StreamWriter("DPXdata.txt");
+
+            // Acquire the current trace information.
+            int traceLen = fb.spectrumTraceLength;
+            int numTraces = fb.numSpectrumTraces;
+            float** pTraces = fb.spectrumTraces;
+            // Print trace information to file.
+            for (int ntr = 0; ntr < numTraces/3; ntr++)
             {
-                traceFile.WriteLine("{0}\n", 10 * Math.Log10(pTrace[n] * 1e3));
-            }
-        }
-            
-        traceFile.Close();
-        /*
-        // Get and print current directory
-        string currentDirectory = Directory.GetCurrentDirectory();
-        Console.WriteLine("Current directory is: " + currentDirectory);
-
-        // Create ScottPlot object
-        var plt = new ScottPlot.Plot(600, 400);
-        string fileName = "./DPXdata.txt"; // file name to be read from
-
-        // Read line by line from input file and add data values into dataArray
-        List<double> dataList = new List<double>();
-        double[] dataArray = { };
-        try
-        {
-            using (FileStream fs = new FileStream(fileName, FileMode.Open))
-            {
-                using (StreamReader sr = new StreamReader(fs))
+                float* pTrace = pTraces[ntr];
+                for (int n = 0; n < traceLen; n++)
                 {
-                    string line;
-                    while ((line = sr.ReadLine()) != null)
+                    traceFile.WriteLine("{0}\n", 10 * Math.Log10(pTrace[n] * 1e3));
+                }
+            }
+
+            traceFile.Close();
+            /*
+            // Get and print current directory
+            string currentDirectory = Directory.GetCurrentDirectory();
+            Console.WriteLine("Current directory is: " + currentDirectory);
+
+            // Create ScottPlot object
+            var plt = new ScottPlot.Plot(600, 400);
+            string fileName = "./DPXdata.txt"; // file name to be read from
+
+            // Read line by line from input file and add data values into dataArray
+            List<double> dataList = new List<double>();
+            double[] dataArray = { };
+            try
+            {
+                using (FileStream fs = new FileStream(fileName, FileMode.Open))
+                {
+                    using (StreamReader sr = new StreamReader(fs))
                     {
-                        if (double.TryParse(line, out double value))
+                        string line;
+                        while ((line = sr.ReadLine()) != null)
                         {
-                            dataList.Add(value);
+                            if (double.TryParse(line, out double value))
+                            {
+                                dataList.Add(value);
+                            }
                         }
                     }
                 }
+
+                dataArray = dataList.ToArray();
+                Console.WriteLine("Data successfully read from file. Here are the values:");
+            } 
+            catch (FileNotFoundException)
+            {
+                Console.WriteLine("Error: File not found. "  + fileName);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Error: " + e.Message);
             }
 
-            dataArray = dataList.ToArray();
-            Console.WriteLine("Data successfully read from file. Here are the values:");
-        } 
-        catch (FileNotFoundException)
-        {
-            Console.WriteLine("Error: File not found. "  + fileName);
-        }
-        catch (Exception e)
-        {
-            Console.WriteLine("Error: " + e.Message);
-        }
+            // plot the data values upto index 800
+            var sig = plt.PlotSignal(dataArray, maxRenderIndex: 800);
 
-        // plot the data values upto index 800
-        var sig = plt.PlotSignal(dataArray, maxRenderIndex: 800);
+            // setup plot labels
+            plt.Title("Partial Display of a 1,000,000 Element Array");
+            plt.YLabel("Value");
+            plt.XLabel("Array Index");
 
-        // setup plot labels
-        plt.Title("Partial Display of a 1,000,000 Element Array");
-        plt.YLabel("Value");
-        plt.XLabel("Array Index");
-
-        // save plot image
-        plt.AxisAuto();
-        plt.SaveFig("ScottPlotGenerated.png");
+            // save plot image
+            plt.AxisAuto();
+            plt.SaveFig("ScottPlotGenerated.png");
 
 
 
-        */
-        int bitmapWidth = fb.spectrumBitmapWidth;
-        int bitmapHeight = fb.spectrumBitmapHeight;
-        int bitmapSize = fb.spectrumBitmapSize;
-        float* bitmap = fb.spectrumBitmap;
-        if (bitmapSize > 0)
-        {
-
-            // Generate csv of bitmap data
-            // convert float* bitmap to actual colors.
-            Color32[] pngBytes = new Color32[bitmapSize];
-
-            var bitmapFile = new System.IO.StreamWriter("DPXBitmap1.csv");
-
-            for (int nh = 0; nh < bitmapHeight; nh++)
+            */
+            int bitmapWidth = fb.spectrumBitmapWidth;
+            int bitmapHeight = fb.spectrumBitmapHeight;
+            int bitmapSize = fb.spectrumBitmapSize;
+            float* bitmap = fb.spectrumBitmap;
+            if (bitmapSize > 0)
             {
-                for (int nw = 0; nw < bitmapWidth; nw++)
+
+                // Generate csv of bitmap data
+                // convert float* bitmap to actual colors.
+                Color32[] pngBytes = new Color32[bitmapSize];
+
+                var bitmapFile = new System.IO.StreamWriter("DPXBitmap1.csv");
+
+                for (int nh = 0; nh < bitmapHeight; nh++)
                 {
-                    bitmapFile.Write("{0},", bitmap[nh * bitmapWidth + nw]);
+                    for (int nw = 0; nw < bitmapWidth; nw++)
+                    {
+                        bitmapFile.Write("{0},", bitmap[nh * bitmapWidth + nw]);
+                    }
+                    bitmapFile.WriteLine();
                 }
-                bitmapFile.WriteLine();
+                bitmapFile.Close();
+
+                // UnityEngine.Debug.Log(bitmapSize);
+                for (int i = 0; i < bitmapSize; i++)
+                {
+                    if (bitmap[i] == 0.0)
+                        pngBytes[i] = Color.black;
+                    else
+                        pngBytes[i] = Color.green;
+                }
+                // UnityEngine.Debug.Log(pngBytes.Length);
+                Texture2D texture = null;
+                texture = new Texture2D(801, 201);
+                texture.SetPixels32(pngBytes);
+
+                byte[] bytes = texture.EncodeToPNG();
+                File.WriteAllBytes("Assets/image.png", bytes);
+
             }
-            bitmapFile.Close();
 
-            UnityEngine.Debug.Log(bitmapSize);
-            for (int i = 0; i < bitmapSize; i++)
-            {
-                if (bitmap[i] == 0.0)
-                    pngBytes[i] = Color.black;
-                else
-                    pngBytes[i] = Color.green;
-            }
-            UnityEngine.Debug.Log(pngBytes.Length);
-            Texture2D texture = null;
-            texture = new Texture2D(801, 201);
-            texture.SetPixels32(pngBytes);
+            DPX_FinishFrameBuffer();
 
-            byte[] bytes = texture.EncodeToPNG();
-            File.WriteAllBytes("Assets/image.png", bytes);
-
-        }
-
-        DPX_FinishFrameBuffer();
-
-
+        
     }
 }

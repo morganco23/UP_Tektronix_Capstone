@@ -11,12 +11,42 @@ using static RSAAPITest;
 public class DPXVoiceCommands : MonoBehaviour
 {
     KeywordRecognizer keywordRecognizer;
-    List<string> keywords = new List<string> { "increase frequency", "decrease frequency", "increase span", "decrease span", "increase amplitude", "decrease amplitude"};
+    Dictionary<string, Action> keywords = new Dictionary<string, Action>();
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("Adding keywords to recognizer");
-        keywordRecognizer = new KeywordRecognizer(keywords.ToArray());
+        Debug.Log("Adding keywords to recognizer"); 
+        keywords.Add("increase frequency", () =>
+        {
+            Debug.Log(gameObject);
+            gameObject.GetComponent<ChangeFrequency>().IncreaseFrequency();
+        });
+        keywords.Add("decrease frequency", () =>
+        {
+            Debug.Log(gameObject);
+            gameObject.GetComponent<ChangeFrequency>().DecreaseFrequency();
+        });
+        keywords.Add("increase span", () =>
+        {
+            Debug.Log(gameObject);
+            gameObject.GetComponent<ChangeSpan>().IncreaseSpan();
+        });
+        keywords.Add("decrease span", () =>
+        {
+            Debug.Log(gameObject);
+            gameObject.GetComponent<ChangeSpan>().DecreaseSpan();
+        });
+        keywords.Add("increase amplitude", () =>
+        {
+            Debug.Log(gameObject);
+            gameObject.GetComponent<ChangeRefLevel>().IncreaseRefLevel();
+        });
+        keywords.Add("decrease amplitude", () =>
+        {
+            Debug.Log(gameObject);
+            gameObject.GetComponent<ChangeRefLevel>().DecreaseRefLevel();
+        });
+        keywordRecognizer = new KeywordRecognizer(keywords.Keys.ToArray());
         keywordRecognizer.OnPhraseRecognized += ChangeSetting_OnPhraseRecognized;
         keywordRecognizer.Start();
     }
@@ -31,34 +61,9 @@ public class DPXVoiceCommands : MonoBehaviour
     private void ChangeSetting_OnPhraseRecognized(PhraseRecognizedEventArgs args)
     {
         Debug.Log("phrase recognized: " + args.text);
-        if (args.text.Contains("frequency"))
+        if (keywords.TryGetValue(args.text, out Action keywordAction))
         {
-            ChangeFrequency cf = GameObject.Find("Plane").GetComponent<ChangeFrequency>();
-            if (args.text.Contains("up")) {
-				cf.IncreaseFrequency();
-			}
-			else if (args.text.Contains("down")) {
-				cf.DecreaseFrequency();
-			}
-        }
-        else if (args.text.Contains("span"))
-        {
-            ChangeSpan csp = GameObject.Find("Plane").GetComponent<ChangeSpan>();
-            if (args.text.Contains("up")) {
-				csp.IncreaseSpan();
-			}
-			else if (args.text.Contains("down")) {
-				csp.DecreaseSpan();
-			}
-        }
-        else if (args.text.Contains("amplitude")) {
-            ChangeRefLevel crl = GameObject.Find("Plane").GetComponent<ChangeRefLevel>();
-            if (args.text.Contains("up")) {
-				crl.IncreaseRefLevel();
-			}
-			else if (args.text.Contains("down")) {
-				crl.DecreaseRefLevel();
-			}
+            keywordAction.Invoke();
         }
     }
 }

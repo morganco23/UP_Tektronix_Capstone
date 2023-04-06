@@ -693,10 +693,10 @@ GameObject:
   - component: {fileID: 2075457396}
   - component: {fileID: 2075457395}
   - component: {fileID: 2075457394}
-  - component: {fileID: 2075457402}
   - component: {fileID: 2075457401}
   - component: {fileID: 2075457400}
   - component: {fileID: 2075457399}
+  - component: {fileID: 2075457402}
   m_Layer: 5
   m_Name: Plane
   m_TagString: Untagged
@@ -859,6 +859,106 @@ MonoBehaviour:
   m_GameObject: {fileID: 2075457392}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 68da25d422cb4544bb7df22fbbca34da, type: 3}
+  m_Script: {fileID: 11500000, guid: 45b3eff181cc4244a8a14234096e62fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isFocusRequired: 0
+  keywords:
+  - keyword: Increase Frequency
+    response:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 2075457401}
+          m_TargetAssemblyTypeName: ChangeFrequency, Assembly-CSharp
+          m_MethodName: IncreaseFrequency
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - keyword: Decrease Frequency
+    response:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 2075457401}
+          m_TargetAssemblyTypeName: ChangeFrequency, Assembly-CSharp
+          m_MethodName: DecreaseFrequency
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - keyword: Increase Span
+    response:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 2075457399}
+          m_TargetAssemblyTypeName: ChangeSpan, Assembly-CSharp
+          m_MethodName: IncreaseSpan
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - keyword: Decrease Span
+    response:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 2075457399}
+          m_TargetAssemblyTypeName: ChangeSpan, Assembly-CSharp
+          m_MethodName: DecreaseSpan
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - keyword: Increase Amplitude
+    response:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 2075457400}
+          m_TargetAssemblyTypeName: ChangeRefLevel, Assembly-CSharp
+          m_MethodName: IncreaseRefLevel
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - keyword: Decrease Amplitude
+    response:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 2075457400}
+          m_TargetAssemblyTypeName: ChangeRefLevel, Assembly-CSharp
+          m_MethodName: DecreaseRefLevel
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  persistentKeywords: 0
+  speechConfirmationTooltipPrefab: {fileID: 0}

@@ -18,7 +18,7 @@ public class ChangeRefLevel : MonoBehaviour
     private const double REF_LEVEL_MIN = -130.0;
     private const double REF_LEVEL_MAX = 30.0;
 
-    public double refLevel;
+    private double refLevel;
     ReturnStatus error;
     // Start is called before the first frame update
     void Start()

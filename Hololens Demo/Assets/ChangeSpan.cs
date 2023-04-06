@@ -45,9 +45,9 @@ public class ChangeSpan : MonoBehaviour
         double newSpan = dpxConfig.span + 1e6;
         if (newSpan <= SPAN_MAX)
         {
-            DPX_SetParameters(newSpan, dpxConfig.rbw, 801, 1, 0, 0, -100, true, 1.0, false);
+            //DPX_SetParameters(newSpan, dpxConfig.rbw, 801, 1, 0, 0, -100, true, 1.0, false);
             dpxConfig.span += 1e6;
-            DPX_Configure(true, true);
+            //DPX_Configure(true, true);
         }
         Debug.Log($"Span is now {dpxConfig.span} Hz");
     }
@@ -57,23 +57,10 @@ public class ChangeSpan : MonoBehaviour
         Debug.Log($"Span was {dpxConfig.span} Hz");
         if ((dpxConfig.span - 1e6) >= SPAN_MIN)
         {
-            DPX_SetParameters(dpxConfig.span - 1e6, dpxConfig.rbw, 801, 1, 0, 0, -100, true, 1.0, false);
+            //DPX_SetParameters(dpxConfig.span - 1e6, dpxConfig.rbw, 801, 1, 0, 0, -100, true, 1.0, false);
             dpxConfig.span -= 1e6;
-            DPX_Configure(true, true);
+            //DPX_Configure(true, true);
         }
         Debug.Log($"Span is now {dpxConfig.span} Hz");
     }
-
-    /*public void UpdateSpan(double newSpan) 
-    {
-        GetDPXConfigParams(ref dpxConfig);
-        Debug.Log($"Span was {dpxConfig.span} Hz");
-        if (newSpan <= SPAN_MAX && newSpan >= SPAN_MIN)
-        {
-            DPX_SetParameters(newSpan, dpxConfig.rbw, 801, 1, 0, 0, -100, true, 1.0, false);
-            dpxConfig.span = newSpan;
-            DPX_Configure(true, true);
-        }
-        Debug.Log($"Span is now {dpxConfig.span}");
-    }*/
 }

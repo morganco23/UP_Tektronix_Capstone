@@ -61,7 +61,7 @@ public class ChangeRefLevel : MonoBehaviour
         Debug.Log($"Reference Level is now {refLevel}");
         if ((refLevel - 1.0) >= REF_LEVEL_MIN)
         {
-            error = CONFIG_SetReferenceLevel(refLevel + 1.0);
+            error = CONFIG_SetReferenceLevel(refLevel - 1.0);
             if (error == 0)
             {
                 DPX_Reset(); // Reset is necessary as the RSA will not update settings without resetting DPX first

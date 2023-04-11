@@ -16,7 +16,6 @@ public class ChangeFrequency : MonoBehaviour
 
     private const double FREQUENCY_MIN =  0.0;
     private const double FREQUENCY_MAX = 10.0e9;
-    private double frequency = 2.4453e9;
 
 
     // Start is called before the first frame update
@@ -34,24 +33,26 @@ public class ChangeFrequency : MonoBehaviour
     public void IncreaseFrequency()
     {
         DPX_Config dpxConfig = getDPXConfig();
-        Debug.Log($"Frequency Before = {frequency} Hz");
-        if ((frequency + 0.01e9) < FREQUENCY_MAX){
-            CONFIG_SetCenterFreq(frequency + 0.01e9);
+        Debug.Log($"Frequency Before = {dpxConfig.cf} Hz");
+        double newFreq = dpxConfig.cf + 0.01e9;
+        if (newFreq < FREQUENCY_MAX){
+            CONFIG_SetCenterFreq(newFreq);
             dpxConfig.cf += 0.01e9;
             DPX_Reset(); // Reset is necessary as the RSA will not update settings without resetting DPX first
         }
-        Debug.Log($"Frequency After = {frequency} Hz");
+        Debug.Log($"Frequency After = {dpxConfig.cf} Hz");
     }
 
     public void DecreaseFrequency()
     {
         DPX_Config dpxConfig = getDPXConfig();
-        Debug.Log($"Frequency Before = {frequency} Hz");
-        if((frequency - 0.01e9) > FREQUENCY_MIN){
-            CONFIG_SetCenterFreq(frequency - 0.01e9);
+        Debug.Log($"Frequency Before = {dpxConfig.cf} Hz");
+        double newFreq = dpxConfig.cf - 0.01e9;
+        if(newFreq > FREQUENCY_MIN){
+            CONFIG_SetCenterFreq(newFreq);
             dpxConfig.cf -= 0.01e9;
             DPX_Reset();
         }
-        Debug.Log($"Frequency After = {frequency} Hz");
+        Debug.Log($"Frequency After = {dpxConfig.cf} Hz");
     }
 }

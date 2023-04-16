@@ -18,32 +18,26 @@ public class DPXVoiceCommands : MonoBehaviour
         Debug.Log("Adding keywords to recognizer"); 
         keywords.Add("increase frequency", () =>
         {
-            Debug.Log(gameObject);
             gameObject.GetComponent<ChangeFrequency>().IncreaseFrequency();
         });
         keywords.Add("decrease frequency", () =>
         {
-            Debug.Log(gameObject);
             gameObject.GetComponent<ChangeFrequency>().DecreaseFrequency();
         });
         keywords.Add("increase span", () =>
         {
-            Debug.Log(gameObject);
             gameObject.GetComponent<ChangeSpan>().IncreaseSpan();
         });
         keywords.Add("decrease span", () =>
         {
-            Debug.Log(gameObject);
             gameObject.GetComponent<ChangeSpan>().DecreaseSpan();
         });
         keywords.Add("increase amplitude", () =>
         {
-            Debug.Log(gameObject);
             gameObject.GetComponent<ChangeRefLevel>().IncreaseRefLevel();
         });
         keywords.Add("decrease amplitude", () =>
         {
-            Debug.Log(gameObject);
             gameObject.GetComponent<ChangeRefLevel>().DecreaseRefLevel();
         });
         keywordRecognizer = new KeywordRecognizer(keywords.Keys.ToArray());

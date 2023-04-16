@@ -47,7 +47,6 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
-     <Compile Include="Assets\ChangeRBW.cs" />
      <Compile Include="Assets\ChangeRefLevel.cs" />
      <Compile Include="Assets\updateImage.cs" />
      <Compile Include="Assets\RSAAPITest.cs" />

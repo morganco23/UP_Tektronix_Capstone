@@ -254,18 +254,15 @@ public unsafe class RSAAPITest : MonoBehaviour
 
         DPX_SettingStruct dpxSettings = new DPX_SettingStruct();
         DPX_Config dpxConfig = new DPX_Config();
-        //UnityEngine.Debug.Log(dpxSettings.bitmapHeight * dpxSettings.bitmapWidth);
-
-            
+        dpxConfig.cf = 2400000000.00;
+        dpxConfig.rbw = 300000;
+        dpxConfig.span = 40000000;
+        dpxConfig.refLevel = -20.0;
 
         error = CONFIG_SetCenterFreq(2400000000.00);
         CONFIG_SetReferenceLevel(-20.0);
 
         error = DPX_SetParameters(40000000, 300000, 801, 1, 0, 0, -100, false, 1, false);
-        dpxConfig.cf = 2400000000.00;
-        dpxConfig.rbw = 300000;
-        dpxConfig.span = 40000000;
-        dpxConfig.refLevel = -20.0;
         error = DPX_SetSpectrumTraceType(0, TraceType.TraceTypeAverage);
         error = DPX_Configure(true, false);
 

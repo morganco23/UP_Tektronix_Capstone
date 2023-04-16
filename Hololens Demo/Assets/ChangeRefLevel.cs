@@ -75,24 +75,4 @@ public class ChangeRefLevel : MonoBehaviour
         }
         Debug.Log($"Reference Level is now {refLevel}");
     }
-
-    /*public void UpdateRefLevel(double newRefLevel) 
-    {
-        CONFIG_GetReferenceLevel(ref refLevel);
-        Debug.Log($"Reference Level is now {refLevel}");
-        if (newRefLevel >= REF_LEVEL_MIN && newRefLevel <= REF_LEVEL_MAX)
-        {
-            error = CONFIG_SetReferenceLevel(newRefLevel);
-            if (error == 0)
-            {
-                DPX_Reset(); // Reset is necessary as the RSA will not update settings without resetting DPX first
-                CONFIG_GetReferenceLevel(ref refLevel);
-            }
-            else
-            {
-                Debug.Log($"ERROR: CONFIG_SetReferenceLevel returned error code: {error}.");
-            }
-        }
-        Debug.Log($"Reference Level is now {refLevel}");
-    }*/
 }

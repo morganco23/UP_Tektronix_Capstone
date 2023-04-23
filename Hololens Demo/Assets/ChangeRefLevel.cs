@@ -35,7 +35,6 @@ public class ChangeRefLevel : MonoBehaviour
     public void IncreaseRefLevel()
     {
         CONFIG_GetReferenceLevel(ref refLevel);
-        DPX_Config dpxConfig = getDPXConfig();
         Debug.Log($"Reference Level is now {refLevel}");
         if ((refLevel + 1.0) <= REF_LEVEL_MAX)
         {
@@ -43,7 +42,7 @@ public class ChangeRefLevel : MonoBehaviour
             if (error == 0)
             {
                 DPX_Reset(); // Reset is necessary as the RSA will not update settings without resetting DPX first
-                dpxConfig.refLevel += 1.0;
+                setDPXConfigRefLevel(refLevel + 1.0);
                 CONFIG_GetReferenceLevel(ref refLevel);
             }
             else
@@ -57,7 +56,6 @@ public class ChangeRefLevel : MonoBehaviour
     public void DecreaseRefLevel()
     {
         CONFIG_GetReferenceLevel(ref refLevel);
-        DPX_Config dpxConfig = getDPXConfig();
         Debug.Log($"Reference Level is now {refLevel}");
         if ((refLevel - 1.0) >= REF_LEVEL_MIN)
         {
@@ -65,7 +63,7 @@ public class ChangeRefLevel : MonoBehaviour
             if (error == 0)
             {
                 DPX_Reset(); // Reset is necessary as the RSA will not update settings without resetting DPX first
-                dpxConfig.refLevel -= 1.0;
+                setDPXConfigRefLevel(refLevel - 1.0);
                 CONFIG_GetReferenceLevel(ref refLevel);
             }
             else

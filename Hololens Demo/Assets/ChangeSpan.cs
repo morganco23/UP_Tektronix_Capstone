@@ -23,13 +23,12 @@ public class ChangeSpan : MonoBehaviour
        bool showOnlyTrigFrame
        );
 
-    private DPX_Config dpxConfig;
     public const double SPAN_MIN = 0.0;
     public const double SPAN_MAX = 40e6;
     // Start is called before the first frame update
     void Start()
     {
-        dpxConfig = getDPXConfig();
+        
     }
 
     // Update is called once per frame
@@ -40,27 +39,31 @@ public class ChangeSpan : MonoBehaviour
 
     public void IncreaseSpan()
     {
-        Debug.Log($"Span was {dpxConfig.span} Hz");
-        Debug.Log($"New span = {dpxConfig.span + 1e6} Hz");
-        double newSpan = dpxConfig.span + 1e6;
+        Debug.Log($"Span was {getDPXConfigSpan()} Hz");
+        double newSpan = getDPXConfigSpan() + 1e6;
         if (newSpan <= SPAN_MAX)
         {
-            //DPX_SetParameters(newSpan, dpxConfig.rbw, 801, 1, 0, 0, -100, true, 1.0, false);
-            dpxConfig.span += 1e6;
-            //DPX_Configure(true, true);
+            setDPXConfigSpan(newSpan);
+            Debug.Log($"Span is now {newSpan} Hz");
         }
-        Debug.Log($"Span is now {dpxConfig.span} Hz");
+        else
+        {
+            Debug.Log("Span cannot go beyond 40 MHz. :(");
+        }
     }
 
     public void DecreaseSpan()
     {
-        Debug.Log($"Span was {dpxConfig.span} Hz");
-        if ((dpxConfig.span - 1e6) >= SPAN_MIN)
+        Debug.Log($"Span was {getDPXConfigSpan()} Hz");
+        double newSpan = getDPXConfigSpan() - 1e6;
+        if (newSpan >= SPAN_MIN)
         {
-            //DPX_SetParameters(dpxConfig.span - 1e6, dpxConfig.rbw, 801, 1, 0, 0, -100, true, 1.0, false);
-            dpxConfig.span -= 1e6;
-            //DPX_Configure(true, true);
+            setDPXConfigSpan(newSpan);
+            Debug.Log($"Span is now {newSpan} Hz");
         }
-        Debug.Log($"Span is now {dpxConfig.span} Hz");
+        else
+        {
+            Debug.Log("Span cannot be a negative number. Sorry! :(");
+        }
     }
 }

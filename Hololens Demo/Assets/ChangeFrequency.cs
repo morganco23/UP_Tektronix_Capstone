@@ -19,7 +19,6 @@ public class ChangeFrequency : MonoBehaviour
 
     private const double FREQUENCY_MIN =  0.0;
     private const double FREQUENCY_MAX = 10.0e9;
-    private double frequency;
 
     // Start is called before the first frame update
     void Start()
@@ -35,31 +34,27 @@ public class ChangeFrequency : MonoBehaviour
 
     public void IncreaseFrequency()
     {
-        CONFIG_GetCenterFreq(ref frequency);
-        DPX_Config dpxConfig = getDPXConfig();
-        dpxConfig.cf = frequency;
-        Debug.Log($"Frequency Before = {dpxConfig.cf} Hz");
-        double newFreq = dpxConfig.cf + 0.01e9;
-        if (newFreq < FREQUENCY_MAX){
+        double oldFreq = getDPXConfigFrequency();
+        Debug.Log($"Frequency Before = {oldFreq} Hz");
+        double newFreq = oldFreq + 0.01e9;
+        if (newFreq <= FREQUENCY_MAX){
             CONFIG_SetCenterFreq(newFreq);
-            dpxConfig.cf += 0.01e9;
+            setDPXConfigFrequency(newFreq);
             DPX_Reset(); // Reset is necessary as the RSA will not update settings without resetting DPX first
         }
-        Debug.Log($"Frequency After = {dpxConfig.cf} Hz");
+        Debug.Log($"Frequency After = {getDPXConfigFrequency()} Hz");
     }
 
     public void DecreaseFrequency()
     {
-        CONFIG_GetCenterFreq(ref frequency);
-        DPX_Config dpxConfig = getDPXConfig();
-        dpxConfig.cf = frequency;
-        Debug.Log($"Frequency Before = {dpxConfig.cf} Hz");
-        double newFreq = dpxConfig.cf - 0.01e9;
-        if(newFreq > FREQUENCY_MIN){
+        double oldFreq = getDPXConfigFrequency();
+        Debug.Log($"Frequency Before = {oldFreq} Hz");
+        double newFreq = oldFreq - 0.01e9;
+        if(newFreq >= FREQUENCY_MIN){
             CONFIG_SetCenterFreq(newFreq);
-            dpxConfig.cf -= 0.01e9;
+            setDPXConfigFrequency(newFreq);
             DPX_Reset();
         }
-        Debug.Log($"Frequency After = {dpxConfig.cf} Hz");
+        Debug.Log($"Frequency After = {getDPXConfigFrequency()} Hz");
     }
 }

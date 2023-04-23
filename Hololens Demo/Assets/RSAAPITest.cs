@@ -228,9 +228,39 @@ public unsafe class RSAAPITest : MonoBehaviour
 
     private static DPX_Config dpxConfig;
 
-    public static DPX_Config getDPXConfig()
+    public static double getDPXConfigFrequency()
     {
-        return dpxConfig;
+        return dpxConfig.cf;
+    }
+
+    public static double getDPXConfigSpan()
+    {
+        return dpxConfig.span;
+    }
+
+    public static double getDPXConfigRefLevel()
+    {
+        return dpxConfig.refLevel;
+    }
+
+    public static void setDPXConfigRBW(double newRBW)
+    {
+        dpxConfig.rbw = newRBW;
+    }
+
+    public static void setDPXConfigSpan(double newSpan)
+    {
+        dpxConfig.span = newSpan;
+    }
+
+    public static void setDPXConfigFrequency(double newCf)
+    {
+        dpxConfig.cf = newCf;
+    }
+
+    public static void setDPXConfigRefLevel(double newRefLevel)
+    {
+        dpxConfig.refLevel = newRefLevel;
     }
 
     // Start is called before the first frame update
@@ -245,19 +275,19 @@ public unsafe class RSAAPITest : MonoBehaviour
         StringBuilder name = new StringBuilder(20);
         ReturnStatus error = DEVICE_Search(ref numDevices, idList, name, type);
 
-        UnityEngine.Debug.Log("num devices found: " + numDevices);
+        Debug.Log("num devices found: " + numDevices);
         error = DEVICE_Connect(idList[0]);
-        UnityEngine.Debug.Log(error);
+        Debug.Log(error);
         StringBuilder hwVersion = new StringBuilder(20);
         error = DEVICE_GetHWVersion(hwVersion);
         
 
         DPX_SettingStruct dpxSettings = new DPX_SettingStruct();
         DPX_Config dpxConfig = new DPX_Config();
-        dpxConfig.cf = 2400000000.00;
-        dpxConfig.rbw = 300000;
-        dpxConfig.span = 40000000;
-        dpxConfig.refLevel = -20.0;
+        setDPXConfigFrequency(2400000000.00);
+        setDPXConfigRBW(300000);
+        setDPXConfigSpan(40000000);
+        setDPXConfigRefLevel(-20.0);
 
         error = CONFIG_SetCenterFreq(2400000000.00);
         CONFIG_SetReferenceLevel(-20.0);
